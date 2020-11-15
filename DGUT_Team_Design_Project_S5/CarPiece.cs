@@ -6,7 +6,6 @@ namespace DGUT_Team_Software_Project_Console
 {
     class CarPiece:Piece
     {
-
         public CarPiece(string player, int intX, int intY):base(player, intX, intY)
         {
             this.Name = "C";
@@ -32,19 +31,19 @@ namespace DGUT_Team_Software_Project_Console
 
             //后面写具体的判断
             //move horizontally
-            if (intX == x && intY != y)
+            if (CurrentX == x && CurrentY != y)
             {
                 //go right
-                if (y > intY)
+                if (y > CurrentY)
                 {
-                    for (int i = intY + 1; i < y; i++)
+                    for (int i = CurrentY + 1; i < y; i++)
                         if (gameboard.returnpieces()[x, i] != null)
                             return false;
                 }
                 else
                 {
                     //go left
-                    for (int i = intY - 1; i > y; i--)
+                    for (int i = CurrentY - 1; i > y; i--)
                         if (gameboard.returnpieces()[x, i] != null)
                             return false;
                 }
@@ -52,25 +51,24 @@ namespace DGUT_Team_Software_Project_Console
             }
 
             //move vertically
-            if (x != intX && y == intY)
+            if (x != CurrentX && y == CurrentY)
             {
                 //go down
-                if (x > intX)
+                if (x > CurrentX)
                 {
-                    for (int i = intX + 1; i < x; i++)
+                    for (int i = CurrentX + 1; i < x; i++)
                         if (gameboard.returnpieces()[i, y] != null)
                             return false;
                 }
                 else
                 {
                     //go up
-                    for (int i = intX - 1; i > x; i--)
+                    for (int i = CurrentX - 1; i > x; i--)
                         if (gameboard.returnpieces()[i, y] != null)
                             return false;
                 }
                 return true;
             }
-            
             return false;
         }
     }

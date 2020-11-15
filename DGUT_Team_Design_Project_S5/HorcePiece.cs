@@ -6,16 +6,15 @@ namespace DGUT_Team_Software_Project_Console
 {
     class HorcePiece:Piece
     {
-        int intX;
-        int intY;
-        string player;
-        string Name;
-        public HorcePiece(string player, int intX, int intY) : base(player, intX, intY)
+        public HorcePiece(string player, int CurrentX, int CurrentY) : base(player, CurrentX, CurrentY)
         {
             this.Name = "H";
         }
         public override bool ValidMoves(int x, int y, GameBoard gameboard, string player)
         {
+            int CurrentX = this.getCurrentPosition().Item1;
+            int CurrentY = this.getCurrentPosition().Item2;
+
             if (player != this.player)
             {
                 return false;
@@ -30,34 +29,34 @@ namespace DGUT_Team_Software_Project_Console
             }
 
             //to right
-            if (y == intY + 2 && (x == intX + 1 || x == intX - 1))
+            if (y == CurrentY + 2 && (x == CurrentX + 1 || x == CurrentX - 1))
             {
                 //whether stuck?
-                if (gameboard.returnpieces()[intX, intY + 1] == null)
+                if (gameboard.returnpieces()[CurrentX, CurrentY + 1] == null)
                     return true;
             }
 
             //to left
-            if (y == intY - 2 && (x == intX + 1 || x == intX - 1))
+            if (y == CurrentY - 2 && (x == CurrentX + 1 || x == CurrentX - 1))
             {
                 //whether stuck?
-                if (gameboard.returnpieces()[intX, intY - 1] == null)
+                if (gameboard.returnpieces()[CurrentX, CurrentY - 1] == null)
                     return true;
             }
 
             //to up
-            if (x == intX - 2 && (y == intY + 1 || y == intY - 1))
+            if (x == CurrentX - 2 && (y == CurrentY + 1 || y == CurrentY - 1))
             {
                 //whether stuck?
-                if (gameboard.returnpieces()[intX - 1, intY] == null)
+                if (gameboard.returnpieces()[CurrentX - 1, CurrentY] == null)
                     return true;
             }
 
             //to down
-            if (x == intX + 2 && (y == intY + 1 || y == intY - 1))
+            if (x == CurrentX + 2 && (y == CurrentY + 1 || y == CurrentY - 1))
             {
                 //whether stuck?
-                if (gameboard.returnpieces()[intX + 1, intY] == null)
+                if (gameboard.returnpieces()[CurrentX + 1, CurrentY] == null)
                     return true;
             }
             return false;
