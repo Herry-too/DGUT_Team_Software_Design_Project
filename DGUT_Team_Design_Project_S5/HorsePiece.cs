@@ -4,9 +4,9 @@ using System.Text;
 
 namespace DGUT_Team_Software_Project_Console
 {
-    class HorcePiece:Piece
+    class HorsePiece:Piece
     {
-        public HorcePiece(string player, int CurrentX, int CurrentY) : base(player, CurrentX, CurrentY)
+        public HorsePiece(string player, int CurrentX, int CurrentY) : base(player, CurrentX, CurrentY)
         {
             this.Name = "H";
         }
