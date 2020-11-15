@@ -6,7 +6,7 @@ namespace DGUT_Team_Software_Project_Console
 {
     class GameBoard
     {
-        String play
+        String player = "red";
         public GameBoard()
         {
         }
