@@ -28,7 +28,6 @@ namespace DGUT_Team_Software_Project_Console
             }
 
             //判断是否符合符合运子规则
-            if(
             
             return false;
         }
