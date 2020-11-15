@@ -6,10 +6,7 @@ namespace DGUT_Team_Software_Project_Console
 {
     class CarPiece:Piece
     {
-        int intX;
-        int intY;
-        string player;
-        string Name;
+
         public CarPiece(string player, int intX, int intY):base(player, intX, intY)
         {
             this.Name = "C";
@@ -70,7 +67,7 @@ namespace DGUT_Team_Software_Project_Console
                 }
                 return true;
             }
-
+            
             return false;
         }
     }

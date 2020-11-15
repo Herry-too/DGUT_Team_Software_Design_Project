@@ -6,15 +6,14 @@ namespace DGUT_Team_Software_Project_Console
 {
     abstract class Piece
     {
-        int intX;
-        int intY;
-        string player;
-        string Name;
+        protected int intX;
+        protected int intY;
+        protected string player;
+        protected string Name;
 
         public Piece(string player, int intX, int intY)
         {
             this.player = player;
-            this.Name = "NULL";
             this.intX = intX;
             this.intY = intY;
             //intX and intY are current position
@@ -31,35 +30,7 @@ namespace DGUT_Team_Software_Project_Console
         
         public string GetPieceWords()
         {
-            string strPiece = "";
-            switch (this.Name)
-            {
-                case "C":
-                    strPiece = "C";
-                    break;
-                case "H":
-                    strPiece = "H";
-                    break;
-                case "E":
-                    strPiece = "E";
-                    break;
-                case "A":
-                    strPiece = "A";
-                    break;
-                case "G":
-                    strPiece = "G";
-                    break;
-                case "S":
-                    strPiece = "S";
-                    break;
-                case "P":
-                    strPiece = "P";
-                    break;
-                default:
-                    break;
-            }
-            
-            return strPiece;
+            return Name;
         }
     }
 }
