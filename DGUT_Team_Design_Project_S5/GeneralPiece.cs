@@ -56,14 +56,14 @@ namespace DGUT_Team_Software_Project_Console
                 //go right
                 if (y > CurrentY)
                 {
-                    if (gameboard.returnpieces()[x, CurrentY + 1] != null)
+                    if (gameboard.getPieces()[x, CurrentY + 1] != null)
                         return false;
                 }
 
                 else
                 {
                     //go left
-                    if (gameboard.returnpieces()[x, CurrentY - 1] != null)
+                    if (gameboard.getPieces()[x, CurrentY - 1] != null)
                         return false;
                 }
 
@@ -78,13 +78,13 @@ namespace DGUT_Team_Software_Project_Console
                 if (x > intX)
                 {
                     //go down
-                    if (gameboard.returnpieces()[CurrentX + 1, y] != null)
+                    if (gameboard.getPieces()[CurrentX + 1, y] != null)
                         return false;
                 }
                 else
                 {
                     //go up
-                    if (gameboard.returnpieces()[CurrentX - 1, y] != null)
+                    if (gameboard.getPieces()[CurrentX - 1, y] != null)
                         return false;
                 }
                 return true;

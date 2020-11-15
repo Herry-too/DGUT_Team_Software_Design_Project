@@ -33,7 +33,7 @@ namespace DGUT_Team_Software_Project_Console
             if (y == CurrentY + 2 && (x == CurrentX + 1 || x == CurrentX - 1))
             {
                 //whether stuck?
-                if (gameboard.returnpieces()[CurrentX, CurrentY + 1] == null)
+                if (gameboard.getPieces()[CurrentX, CurrentY + 1] == null)
                     return true;
             }
 
@@ -41,7 +41,7 @@ namespace DGUT_Team_Software_Project_Console
             if (y == CurrentY - 2 && (x == CurrentX + 1 || x == CurrentX - 1))
             {
                 //whether stuck?
-                if (gameboard.returnpieces()[CurrentX, CurrentY - 1] == null)
+                if (gameboard.getPieces()[CurrentX, CurrentY - 1] == null)
                     return true;
             }
 
@@ -49,7 +49,7 @@ namespace DGUT_Team_Software_Project_Console
             if (x == CurrentX - 2 && (y == CurrentY + 1 || y == CurrentY - 1))
             {
                 //whether stuck?
-                if (gameboard.returnpieces()[CurrentX - 1, CurrentY] == null)
+                if (gameboard.getPieces()[CurrentX - 1, CurrentY] == null)
                     return true;
             }
 
@@ -57,7 +57,7 @@ namespace DGUT_Team_Software_Project_Console
             if (x == CurrentX + 2 && (y == CurrentY + 1 || y == CurrentY - 1))
             {
                 //whether stuck?
-                if (gameboard.returnpieces()[CurrentX + 1, CurrentY] == null)
+                if (gameboard.getPieces()[CurrentX + 1, CurrentY] == null)
                     return true;
             }
             return false;

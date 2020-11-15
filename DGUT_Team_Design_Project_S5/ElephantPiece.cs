@@ -15,7 +15,7 @@ namespace DGUT_Team_Software_Project_Console
 
         public override bool ValidMoves(int x, int y, GameBoard gameboard, String player)
         {
-            Piece[,] board = gameboard.returnpieces();
+            Piece[,] board = gameboard.getPieces();
             if (player != this.player)
             {
                 return false;

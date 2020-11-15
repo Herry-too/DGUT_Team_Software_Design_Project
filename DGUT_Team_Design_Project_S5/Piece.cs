@@ -11,8 +11,6 @@ namespace DGUT_Team_Software_Project_Console
         protected string player;
         protected string Name;
 
-        
-
         public Piece(string player, int intX, int intY)
         {
             this.player = player;
