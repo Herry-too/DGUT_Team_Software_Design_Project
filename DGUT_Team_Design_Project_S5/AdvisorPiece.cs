@@ -27,8 +27,30 @@ namespace DGUT_Team_Software_Project_Console
                 return false;
             }
 
-            //判断是否符合符合运子规则
-            
+            //判断当前玩家是红方还是黑方
+            if (this.player == "red")
+            {
+                //判断终点是否在米字格里
+                if (x <= 5 && x >= 3 && y <= 2 && y >= 0)
+                {
+                    if (x - intX == 1 && x - intX == -1 && y - intY == 1 && y - intY == -1)
+                    {
+                        return true;
+                    }
+                }
+            }
+            else if (this.player == "black")
+            {
+                //判断终点是否在米字格里
+                if (x <= 5 && x >= 3 && y <= 9 && y >= 7)
+                {
+                    if (x - intX == 1 && x - intX == -1 && y - intY == 1 && y - intY == -1)
+                    {
+                        return true;
+                    }
+                }
+            }
             return false;
         }
+    }
 }
