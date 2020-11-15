@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\herry\\source\\repos\\DGUT_Team_Design_Project_S5\\DGUT_Team_Design_Project_S5\\DGUT_Team_Software_Project_Test\\DGUT_Team_Software_Project_Console.csproj": {}
+    "C:\\Users\\herry\\source\\repos\\DGUT_Team_Design_Project_S5\\DGUT_Team_Design_Project_S5\\DGUT_Team_Design_Project_S5\\DGUT_Team_Software_Project_Console.csproj": {}
   },
   "projects": {
-    "C:\\Users\\herry\\source\\repos\\DGUT_Team_Design_Project_S5\\DGUT_Team_Design_Project_S5\\DGUT_Team_Software_Project_Test\\DGUT_Team_Software_Project_Console.csproj": {
+    "C:\\Users\\herry\\source\\repos\\DGUT_Team_Design_Project_S5\\DGUT_Team_Design_Project_S5\\DGUT_Team_Design_Project_S5\\DGUT_Team_Software_Project_Console.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\herry\\source\\repos\\DGUT_Team_Design_Project_S5\\DGUT_Team_Design_Project_S5\\DGUT_Team_Software_Project_Test\\DGUT_Team_Software_Project_Console.csproj",
+        "projectUniqueName": "C:\\Users\\herry\\source\\repos\\DGUT_Team_Design_Project_S5\\DGUT_Team_Design_Project_S5\\DGUT_Team_Design_Project_S5\\DGUT_Team_Software_Project_Console.csproj",
         "projectName": "DGUT_Team_Software_Project_Console",
-        "projectPath": "C:\\Users\\herry\\source\\repos\\DGUT_Team_Design_Project_S5\\DGUT_Team_Design_Project_S5\\DGUT_Team_Software_Project_Test\\DGUT_Team_Software_Project_Console.csproj",
+        "projectPath": "C:\\Users\\herry\\source\\repos\\DGUT_Team_Design_Project_S5\\DGUT_Team_Design_Project_S5\\DGUT_Team_Design_Project_S5\\DGUT_Team_Software_Project_Console.csproj",
         "packagesPath": "C:\\Users\\herry\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\herry\\source\\repos\\DGUT_Team_Design_Project_S5\\DGUT_Team_Design_Project_S5\\DGUT_Team_Software_Project_Test\\obj\\",
+        "outputPath": "C:\\Users\\herry\\source\\repos\\DGUT_Team_Design_Project_S5\\DGUT_Team_Design_Project_S5\\DGUT_Team_Design_Project_S5\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\herry\\AppData\\Roaming\\NuGet\\NuGet.Config",
