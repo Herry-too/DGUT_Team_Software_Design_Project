@@ -8,19 +8,19 @@
     ".NETCoreApp,Version=v3.1": []
   },
   "packageFolders": {
-    "C:\\Users\\herry\\.nuget\\packages\\": {}
+    "C:\\Users\\yzyye\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\herry\\source\\repos\\DGUT_Team_Design_Project_S5\\DGUT_Team_Design_Project_S5\\DGUT_Team_Design_Project_S5\\DGUT_Team_Software_Project_Console.csproj",
+      "projectUniqueName": "C:\\Users\\yzyye\\Source\\Repos\\DGUT_Team_Design_Project_S5\\DGUT_Team_Design_Project_S5\\DGUT_Team_Software_Project_Console.csproj",
       "projectName": "DGUT_Team_Software_Project_Console",
-      "projectPath": "C:\\Users\\herry\\source\\repos\\DGUT_Team_Design_Project_S5\\DGUT_Team_Design_Project_S5\\DGUT_Team_Design_Project_S5\\DGUT_Team_Software_Project_Console.csproj",
-      "packagesPath": "C:\\Users\\herry\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\herry\\source\\repos\\DGUT_Team_Design_Project_S5\\DGUT_Team_Design_Project_S5\\DGUT_Team_Design_Project_S5\\obj\\",
+      "projectPath": "C:\\Users\\yzyye\\Source\\Repos\\DGUT_Team_Design_Project_S5\\DGUT_Team_Design_Project_S5\\DGUT_Team_Software_Project_Console.csproj",
+      "packagesPath": "C:\\Users\\yzyye\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\yzyye\\Source\\Repos\\DGUT_Team_Design_Project_S5\\DGUT_Team_Design_Project_S5\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\herry\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\yzyye\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [

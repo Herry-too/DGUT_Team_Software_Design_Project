@@ -4,32 +4,20 @@ using System.Text;
 
 namespace DGUT_Team_Software_Project_Console
 {
-    abstract class Piece
+    class CarPiece:Piece
     {
         int intX;
         int intY;
         string player;
         string Name;
-
-        public Piece(string player, int intX, int intY)
+        public CarPiece(string player, int intX, int intY):base(player, intX, intY)
         {
-            this.player = player;
-            this.Name = "NULL";
-            this.intX = intX;
-            this.intY = intY;
-            //intX and intY are current position
-            //后续重写
-
-        }
-        public override string ToString()
-        {
-            string str= "Test String";
-            return str;
+            this.Name = "C";
         }
 
-        public bool ValidMoves(int x,int y, GameBoard gameboard,String player)
+        public bool ValidMoves(int x, int y, GameBoard gameboard, String player)
         {
-            if(player != this.player)
+            if (player != this.player)
             {
                 return false;
             }
@@ -42,6 +30,7 @@ namespace DGUT_Team_Software_Project_Console
                 return false;
             }
             //后面写具体的判断
+
             return false;
         }
     }
