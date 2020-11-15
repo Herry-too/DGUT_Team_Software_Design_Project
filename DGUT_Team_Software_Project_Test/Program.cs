@@ -1,14 +1,18 @@
 ﻿using System;
 
-namespace DGUT_Team_Software_Project_Test
+namespace DGUT_Team_Software_Project_Console
 {
     class Program
     {
         static void Main(string[] args)
         {
-            GameDisplay Displayer = new GameDisplay();
-            GameBoard Board = new GameBoard();
-            Displayer.DisplayBoard();
+            while (true)
+            {
+                GameDisplay Displayer = new GameDisplay();
+                GameBoard Board = new GameBoard();
+                Displayer.DisplayBoard();
+            }
+
         }
     }
 }

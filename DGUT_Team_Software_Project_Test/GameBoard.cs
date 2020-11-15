@@ -2,17 +2,18 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace DGUT_Team_Software_Project_Test
+namespace DGUT_Team_Software_Project_Console
 {
     class GameBoard
     {
-        private string playerStatusNow = "Player1";
+        String play
         public GameBoard()
         {
         }
 
         public void SwitchPlayer()
         {
+
         }
 
         public bool SelectPiece()
