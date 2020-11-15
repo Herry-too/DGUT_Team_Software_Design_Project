@@ -4,11 +4,11 @@ using System.Text;
 
 namespace DGUT_Team_Software_Project_Console
 {
-    class CarPiece:Piece
+    class GeneralPiece : Piece
     {
-        public CarPiece(string player, int intX, int intY):base(player, intX, intY)
+        public GeneralPiece(string player, int intX, int intY) : base(player, intX, intY)
         {
-            this.Name = "C";
+            this.Name = "G";
         }
 
         public override bool ValidMoves(int x, int y, GameBoard gameboard, String player)
@@ -20,55 +20,69 @@ namespace DGUT_Team_Software_Project_Console
             {
                 return false;
             }
-            if (x < 0 || x > 9)
+
+            if (player == "red")
             {
+                if ( x < 0 || x > 2)
+                {
                 return false;
+                }
             }
-            if (y < 0 || y > 8)
+            else
+            {
+                if ( x < 7 || x > 9 )
+                {
+                    return false;
+                }
+            }
+
+            if (y < 3 || y > 5)
             {
                 return false;
             }
 
-            //后面写具体的判断
-            //move horizontally
+
+            //此处写判断帅将的移动位置
+            //水平移动
             if (CurrentX == x && CurrentY != y)
             {
                 //go right
                 if (y > CurrentY)
                 {
-                    for (int i = CurrentY + 1; i < y; i++)
-                        if (gameboard.returnpieces()[x, i] != null)
-                            return false;
+                    if (gameboard.returnpieces()[x, CurrentY + 1] != null)
+                        return false;
                 }
+
                 else
                 {
                     //go left
-                    for (int i = CurrentY - 1; i > y; i--)
-                        if (gameboard.returnpieces()[x, i] != null)
-                            return false;
+                    if (gameboard.returnpieces()[x, CurrentY - 1] != null)
+                        return false;
                 }
+
                 return true;
+
             }
 
-            //move vertically
+            //竖直移动
             if (x != CurrentX && y == CurrentY)
             {
-                //go down
-                if (x > CurrentX)
+
+                if (x > intX)
                 {
-                    for (int i = CurrentX + 1; i < x; i++)
-                        if (gameboard.returnpieces()[i, y] != null)
-                            return false;
+                    //go down
+                    if (gameboard.returnpieces()[CurrentX + 1, y] != null)
+                        return false;
                 }
                 else
                 {
                     //go up
-                    for (int i = CurrentX - 1; i > x; i--)
-                        if (gameboard.returnpieces()[i, y] != null)
-                            return false;
+                    if (gameboard.returnpieces()[CurrentX - 1, y] != null)
+                        return false;
                 }
                 return true;
             }
+
             return false;
         }
     }
