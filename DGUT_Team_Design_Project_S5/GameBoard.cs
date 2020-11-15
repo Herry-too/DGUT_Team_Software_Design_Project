@@ -8,6 +8,7 @@ namespace DGUT_Team_Software_Project_Console
     {
         String player = "red";
         Piece[,] pieces;
+
         public GameBoard()
         {
              pieces = new Piece[10, 9];
@@ -26,7 +27,7 @@ namespace DGUT_Team_Software_Project_Console
             }
             else
             {
-                return pieces[x, y].getName();
+                return pieces[x, y].name;
             }
         }
 

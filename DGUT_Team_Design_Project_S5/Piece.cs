@@ -11,11 +11,13 @@ namespace DGUT_Team_Software_Project_Console
         string player;
         string Name;
 
+        
+
         public Piece(string player, int intX, int intY)
         {
             this.player = player;
             this.Name = "NULL";
-            this.intX = intX;
+            this.IntX = intX;
             this.intY = intY;
             //intX and intY are current position
             //后续重写
