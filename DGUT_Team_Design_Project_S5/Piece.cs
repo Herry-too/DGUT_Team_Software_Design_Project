@@ -11,12 +11,13 @@ namespace DGUT_Team_Software_Project_Console
         string player;
         string Name;
 
-        public Piece(string player)
+        public Piece(string player, int intX, int intY)
         {
             this.player = player;
             this.Name = "NULL";
-            this.intX = -1;
-            this.intY = -1;
+            this.intX = intX;
+            this.intY = intY;
+            //intX and intY are current position
             //后续重写
 
         }
@@ -26,22 +27,39 @@ namespace DGUT_Team_Software_Project_Console
             return str;
         }
 
-        public bool ValidMoves(int x,int y, GameBoard gameboard,String player)
+        public abstract bool ValidMoves(int x, int y, GameBoard gameboard, String player);
+        
+        public string GetPieceWords()
         {
-            if(player != this.player)
+            string strPiece = "";
+            switch (this.Name)
             {
-                return false;
+                case "C":
+                    strPiece = "C";
+                    break;
+                case "H":
+                    strPiece = "H";
+                    break;
+                case "E":
+                    strPiece = "E";
+                    break;
+                case "A":
+                    strPiece = "A";
+                    break;
+                case "G":
+                    strPiece = "G";
+                    break;
+                case "S":
+                    strPiece = "S";
+                    break;
+                case "P":
+                    strPiece = "P";
+                    break;
+                default:
+                    break;
             }
-            if (x < 0 || x > 9)
-            {
-                return false;
-            }
-            if (y < 0 || y > 8)
-            {
-                return false;
-            }
-            //后面写具体的判断
-            return false;
+            
+            return strPiece;
         }
     }
 }
