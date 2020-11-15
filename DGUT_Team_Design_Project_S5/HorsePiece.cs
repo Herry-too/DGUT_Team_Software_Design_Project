@@ -9,6 +9,7 @@ namespace DGUT_Team_Software_Project_Console
         public HorsePiece(string player, int CurrentX, int CurrentY) : base(player, CurrentX, CurrentY)
         {
             this.Name = "H";
+            //Horse - 马
         }
         public override bool ValidMoves(int x, int y, GameBoard gameboard, string player)
         {

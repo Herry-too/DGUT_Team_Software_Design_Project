@@ -9,6 +9,7 @@ namespace DGUT_Team_Software_Project_Console
         public GeneralPiece(string player, int intX, int intY) : base(player, intX, intY)
         {
             this.Name = "G";
+            //General - 將
         }
 
         public override bool ValidMoves(int x, int y, GameBoard gameboard, String player)

@@ -4,18 +4,15 @@ using System.Text;
 
 namespace DGUT_Team_Software_Project_Console
 {
-    class XiangPiece : Piece
+    class ElephantPiece : Piece
     {
-        int intX;
-        int intY;
-        string player;
-        string Name;
-        public XiangPiece(string player, int intX, int intY): base (player,intX,intY)
+        public ElephantPiece(string player, int intX, int intY): base (player,intX,intY)
         {
-
+            this.Name = "E";
+            //Elephant - 象
         }
-        
-        
+
+
         public override bool ValidMoves(int x, int y, GameBoard gameboard, String player)
         {
             Piece[,] board = gameboard.returnpieces();

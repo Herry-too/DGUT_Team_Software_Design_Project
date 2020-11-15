@@ -4,11 +4,12 @@ using System.Text;
 
 namespace DGUT_Team_Software_Project_Console
 {
-    class ShellPiece:Piece
+    class CannonPiece:Piece
     {
-        public ShellPiece(string player, int intX, int intY) : base(player, intX, intY)
+        public CannonPiece(string player, int intX, int intY) : base(player, intX, intY)
         {
-            this.Name = "S";
+            this.Name = "C";
+            //Cannon - 炮
         }
         public override bool ValidMoves(int x, int y, GameBoard gameboard, string player)
         {
@@ -79,6 +80,5 @@ namespace DGUT_Team_Software_Project_Console
 
             return false;
         }
-    }
     }
 }

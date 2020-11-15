@@ -8,7 +8,8 @@ namespace DGUT_Team_Software_Project_Console
     {
         public CarPiece(string player, int intX, int intY):base(player, intX, intY)
         {
-            this.Name = "C";
+            this.Name = "R";
+            //Rook - 车
         }
 
         public override bool ValidMoves(int x, int y, GameBoard gameboard, String player)

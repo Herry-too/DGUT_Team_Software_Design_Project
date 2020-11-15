@@ -4,11 +4,12 @@ using System.Text;
 
 namespace DGUT_Team_Software_Project_Console
 {
-    class PawnPiece : Piece
+    class SoldierPiece : Piece
     {
-        public PawnPiece(string player, int intX, int intY) : base(player, intX, intY)
+        public SoldierPiece(string player, int intX, int intY) : base(player, intX, intY)
         {
-            this.Name = "P";
+            this.Name = "S";
+            //Soldier - 兵
         }
 
         public override bool ValidMoves(int x, int y, GameBoard gameboard, string player)

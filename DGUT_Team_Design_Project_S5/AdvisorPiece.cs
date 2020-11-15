@@ -6,13 +6,10 @@ namespace DGUT_Team_Software_Project_Console
 {
     class AdvisorPiece : Piece
     {
-        int intX;
-        int intY;
-        string player;
-        string Name;
         public AdvisorPiece(string player, int intX, int intY) : base(player, intX, intY)
         {
-
+            this.Name = "A";
+            //Advisor - 士
         }
 
         public override bool ValidMoves(int x, int y, GameBoard gameboard, String player)
