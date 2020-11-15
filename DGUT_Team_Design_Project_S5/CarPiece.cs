@@ -17,6 +17,9 @@ namespace DGUT_Team_Software_Project_Console
 
         public override bool ValidMoves(int x, int y, GameBoard gameboard, String player)
         {
+            int CurrentX = this.getCurrentPosition().Item1;
+            int CurrentY = this.getCurrentPosition().Item2;
+
             if (player != this.player)
             {
                 return false;

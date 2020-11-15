@@ -18,9 +18,9 @@ namespace DGUT_Team_Software_Project_Console
             this.intX = intX;
             this.intY = intY;
             //intX and intY are current position
-            //后续重写
-
         }
+        public (int, int) getCurrentPosition() { return (intX,intY); }
+        public void setCurrentPosition(int NewIntX, int NewIntY) { intX = NewIntX; intY = NewIntY; }
         public override string ToString()
         {
             string str= "Test String";
