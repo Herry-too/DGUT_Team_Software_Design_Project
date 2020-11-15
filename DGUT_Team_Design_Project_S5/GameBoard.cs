@@ -7,9 +7,27 @@ namespace DGUT_Team_Software_Project_Console
     class GameBoard
     {
         String player = "red";
+        Piece[,] pieces;
         public GameBoard()
         {
+             pieces = new Piece[10, 9];
+        }
 
+        public Piece[,] returnpieces()
+        {
+            return pieces;
+        }
+
+        public string getPieceName(int x,int y)
+        {
+            if(pieces[x,y] == null)
+            {
+                return " ";
+            }
+            else
+            {
+                return pieces[x, y].getName();
+            }
         }
 
         public void SwitchPlayer()
