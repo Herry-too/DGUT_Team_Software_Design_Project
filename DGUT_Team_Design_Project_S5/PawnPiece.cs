@@ -49,7 +49,6 @@ namespace DGUT_Team_Software_Project_Console
                     if ((y == CurrentY - 1 && x == CurrentX) || (x == CurrentX && y == CurrentY + 1))
                         return true;
                 }
-                return false;
             }
             //black side
             else
