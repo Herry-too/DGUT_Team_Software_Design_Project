@@ -21,7 +21,7 @@ namespace DGUT_Team_Software_Project_Console
                 return false;
             }
 
-            if (player == "red")
+            if (player == "red")//判断颜色 红上黑下
             {
                 if ( x < 0 || x > 2)
                 {
@@ -41,10 +41,16 @@ namespace DGUT_Team_Software_Project_Console
                 return false;
             }
 
+            //判断是否超过一步
+            if(Math.Abs(CurrentX - x)>1 || Math.Abs(CurrentY - y) > 1)
+            {
+                return false;
+            }
+
 
             //此处写判断帅将的移动位置
             //水平移动
-            if (CurrentX == x && CurrentY != y)
+                if (CurrentX == x && CurrentY != y)
             {
                 //go right
                 if (y > CurrentY)
