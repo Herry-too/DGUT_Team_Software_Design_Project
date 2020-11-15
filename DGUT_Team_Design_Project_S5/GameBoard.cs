@@ -10,7 +10,9 @@ namespace DGUT_Team_Software_Project_Console
         Piece[,] pieces;
         public GameBoard()
         {
-             pieces = new Piece[10, 9];
+            pieces = new Piece[10, 9];
+            pieces[0, 0] = new CarPiece("red", 0, 0);
+            pieces[1, 1] = new CarPiece("red", 1, 1);
         }
 
         public Piece[,] returnpieces()
@@ -26,7 +28,7 @@ namespace DGUT_Team_Software_Project_Console
             }
             else
             {
-                return pieces[x, y].getName();
+                return pieces[x, y].GetPieceWords();
             }
         }
 
