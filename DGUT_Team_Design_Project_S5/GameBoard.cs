@@ -18,6 +18,18 @@ namespace DGUT_Team_Software_Project_Console
             return pieces;
         }
 
+        public string getPieceName(int x,int y)
+        {
+            if(pieces[x,y] == null)
+            {
+                return " ";
+            }
+            else
+            {
+                return pieces[x, y].getName();
+            }
+        }
+
         public void SwitchPlayer()
         {
             if(player == "red")
