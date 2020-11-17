@@ -12,13 +12,10 @@ namespace DGUT_Team_Software_Project_Console
             //Advisor - 士
         }
 
-        public override bool ValidMoves(int x, int y, GameBoard gameboard, String player)
+        public override bool ValidMoves(int x, int y, GameBoard gameboard)
         {
             Piece[,] board = gameboard.getPieces();
-            if (player != this.player)
-            {
-                return false;
-            }
+            
             if (x < 0 || x > 9 || y < 0 || y > 8)
             {
                 return false;
