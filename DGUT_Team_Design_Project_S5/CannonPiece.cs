@@ -42,7 +42,7 @@ namespace DGUT_Team_Software_Project_Console
                         if (gameboard.getPieces()[x, i] != null)
                             count++;
                 }
-                else
+                if (y < CurrentY)
                 {
                     //to left
                     count = 0;
@@ -53,19 +53,21 @@ namespace DGUT_Team_Software_Project_Console
                     }
                 }
             }
-            //move verically
+            //move vertically
             if (y == CurrentY && x != CurrentX)
             {
                 //up
-                if (x > CurrentX)
+                if (x < CurrentX)
                 {
+                    count = 0;
                     for (int i = CurrentX - 1; i > x; i--)
                         if (gameboard.getPieces()[i, y] != null)
                             count++;
                 }
                 //down
-                else
+                if (x > CurrentX)
                 {
+                    count = 0;
                     for (int i = CurrentX + 1; i < x; i++)
                         if (gameboard.getPieces()[i, y] != null)
                             count++;
@@ -74,7 +76,7 @@ namespace DGUT_Team_Software_Project_Console
             //move and eat the piece
             if (count == 1 && gameboard.getPieces()[x, y] != null)
                 return true;
-            //just move the shell
+            //just move the Cannon
             if (count == 0 && gameboard.getPieces()[x, y] == null)
                 return true;
 
