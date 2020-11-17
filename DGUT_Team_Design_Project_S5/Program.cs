@@ -6,12 +6,18 @@ namespace DGUT_Team_Software_Project_Console
     {
         static void Main(string[] args)
         {
+            GameDisplay Displayer = new GameDisplay();
+            GameBoard board = new GameBoard();
             while (true)
             {
-                GameDisplay Displayer = new GameDisplay();
-                GameBoard Board = new GameBoard();
-                Displayer.DisplayBoard();
-                break;
+                Displayer.DisplayBoard(board);
+                Displayer.AskSelectPiece();
+                while (!board.SelectPiece(Console.ReadLine()))
+                    Displayer.ErrorInput();
+                Displayer.DisplayBoard(board);
+                Displayer.AskMovePiece();
+                while (!board.MovePiece(Console.ReadLine()))
+                    Displayer.ErrorInput();
             }
 
         }

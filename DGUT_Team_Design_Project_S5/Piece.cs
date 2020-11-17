@@ -18,8 +18,13 @@ namespace DGUT_Team_Software_Project_Console
             this.intY = intY;
             //intX and intY are current position
         }
-        public (int, int) getCurrentPosition() { return (intX,intY); }
-        public void setCurrentPosition(int NewIntX, int NewIntY) { intX = NewIntX; intY = NewIntY; }
+        public (int, int) getCurrentPosition() { 
+            return (intX,intY); 
+        }
+        public void setCurrentPosition(int NewIntX, int NewIntY) {
+            intX = NewIntX;
+            intY = NewIntY; 
+        }
         public override string ToString()
         {
             string str= "Test String";
@@ -28,9 +33,14 @@ namespace DGUT_Team_Software_Project_Console
 
         public abstract bool ValidMoves(int x, int y, GameBoard gameboard, String player);
         
-        public string GetPieceWords()
+        public string getPieceWords()
         {
             return Name;
+        }
+
+        public string getPlayer()
+        {
+            return player;
         }
     }
 }

@@ -8,6 +8,8 @@ namespace DGUT_Team_Software_Project_Console
     {
         String player = "red";
         Piece[,] pieces;
+        int selectedX = -1;
+        int selectedY = -1;
 
         public GameBoard()
         {
@@ -57,12 +59,17 @@ namespace DGUT_Team_Software_Project_Console
         {
             if(pieces[x,y] == null)
             {
-                return " ";
+                return "";
             }
             else
             {
-                return pieces[x, y].GetPieceWords();
+                return pieces[x, y].getPieceWords();
             }
+        }
+
+        public string getPiecePlayer(int x,int y)
+        {
+            return pieces[x, y].getPlayer();
         }
 
         public void SwitchPlayer()
@@ -77,19 +84,70 @@ namespace DGUT_Team_Software_Project_Console
             }
         }
 
-        public bool SelectPiece()
+        int[] strInputToIntArrayInput(String strInput)
         {
+            int[] returnArray = new int[2];
+            if (strInput.Length != 2)
+                return new int[] { -1,-1};
+            for (int i = 0; i < strInput.Length; i++)
+            {
+                if (strInput[i] > 96 && strInput[i] < 106)
+                    returnArray[1] = strInput[i] - 97;
+                if (strInput[i] > 47 && strInput[i] < 58)
+                    returnArray[0] = strInput[i] - 48;
+            }
+            return returnArray;
+        }
+        public bool SelectPiece(String strInput)
+        {
+            int[] intArray = strInputToIntArrayInput(strInput);
+            int posX = intArray[0];
+            int posY = intArray[1];
+            if (pieces[posX,posY] == null)
+            {
+                return false;
+            }
+            selectedX = posX;
+            selectedY = posY;
             return true;
         }
 
-        public bool MovePiece()
+        public bool MovePiece(String strInput)
         {
+            int posX, posY;
+            int[] intArray = strInputToIntArrayInput(strInput);
+            posX = intArray[0];
+            posY = intArray[1];
+            if (CalculateValidMoves(posX, posY))
+            {
+                pieces[posX, posY] = pieces[selectedX, selectedY];
+                pieces[selectedX, selectedY] = null;
+                selectedX = selectedY = -1;
+                return true;
+            }
             return false;
         }
 
-        public void CalculateValidMoves()
+        bool CalculateValidMoves(int posX, int posY)
         {
+            if (posX < 0 || posX > 9)
+            {
+                return false;
+            }
+            if (posY < 0 || posY > 8)
+            {
+                return false;
+            }
+            return pieces[selectedX, selectedY].ValidMoves(posX, posY, this, player);
+        }
 
+        public int getSelectedX()
+        {
+            return selectedX;
+        }
+        public int getSelectedY()
+        {
+            return selectedY;
         }
     }
 }
