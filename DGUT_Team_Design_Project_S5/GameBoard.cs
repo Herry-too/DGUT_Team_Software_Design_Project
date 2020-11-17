@@ -90,7 +90,7 @@ namespace DGUT_Team_Software_Project_Console
 
         int[] strInputToIntArrayInput(String strInput)
         {
-            int[] returnArray = new int[2];
+            int[] returnArray = new int[2] { -1,-1};
             if (strInput.Length != 2)
                 return new int[] { -1,-1};  //if there is a invaild input,return {-1,-1}
             for (int i = 0; i < strInput.Length; i++)
@@ -106,7 +106,7 @@ namespace DGUT_Team_Software_Project_Console
         {
             int[] intArray = strInputToIntArrayInput(strInput);
             int posX = intArray[0];
-            if (posX == -1)
+            if (intArray[0] == -1 || intArray[1] == -1)
                 return false;// if invaild number, return false
             int posY = intArray[1];
             if (pieces[posX,posY] == null)
@@ -126,7 +126,7 @@ namespace DGUT_Team_Software_Project_Console
         {
             int posX, posY;
             int[] intArray = strInputToIntArrayInput(strInput);
-            if (intArray[0] == -1)
+            if (intArray[0] == -1 || intArray[1] == -1)
                 return false;//same as SelectPiece
             posX = intArray[0];
             posY = intArray[1];
