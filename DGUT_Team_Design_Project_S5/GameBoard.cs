@@ -151,7 +151,11 @@ namespace DGUT_Team_Software_Project_Console
             {
                 return false;
             }
-            return pieces[selectedX, selectedY].ValidMoves(posX, posY, this, player);
+            if(player != pieces[selectedX, selectedY].getPlayer())
+            {
+                return false;
+            }
+            return pieces[selectedX, selectedY].ValidMoves(posX, posY, this);
         }
 
         public int getSelectedX()
