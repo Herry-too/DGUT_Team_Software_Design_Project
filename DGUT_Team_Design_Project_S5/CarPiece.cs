@@ -12,23 +12,10 @@ namespace DGUT_Team_Software_Project_Console
             //Rook - 车
         }
 
-        public override bool ValidMoves(int x, int y, GameBoard gameboard, String player)
+        public override bool ValidMoves(int x, int y, GameBoard gameboard)
         {
             int CurrentX = this.getCurrentPosition().Item1;
             int CurrentY = this.getCurrentPosition().Item2;
-            
-            if (player != this.player)
-            {
-                return false;
-            }
-            if (x < 0 || x > 9)
-            {
-                return false;
-            }
-            if (y < 0 || y > 8)
-            {
-                return false;
-            }
 
             //后面写具体的判断
             //move horizontally
