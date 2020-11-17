@@ -62,11 +62,11 @@ namespace DGUT_Team_Software_Project_Console
                 }
             }
             //move and eat the piece
-            if (count == 1 && gameboard.getPieces()[x, y] != null)
-                return true;
+            if (count == 1 && gameboard.getPieces()[x, y] != null)  //if count == 1 it means that there is only one piece on the way it move  
+                return true;                                        //forward and it must be the eaten piece
             //just move the Cannon
-            if (count == 0 && gameboard.getPieces()[x, y] == null)
-                return true;
+            if (count == 0 && gameboard.getPieces()[x, y] == null)  //if count == 0 it means that there is no piece on the way it move forward
+                return true;                                        //and the destination must of no piece
 
             return false;
         }

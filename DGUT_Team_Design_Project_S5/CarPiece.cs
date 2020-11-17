@@ -17,22 +17,21 @@ namespace DGUT_Team_Software_Project_Console
             int CurrentX = this.getCurrentPosition().Item1;
             int CurrentY = this.getCurrentPosition().Item2;
 
-            //后面写具体的判断
-            //move horizontally
+            //make the rook move horizontally
             if (CurrentX == x && CurrentY != y)
             {
                 //go right
                 if (y > CurrentY)
                 {
                     for (int i = CurrentY + 1; i < y; i++)
-                        if (gameboard.getPieces()[x, i] != null)
+                        if (gameboard.getPieces()[x, i] != null)  //if there is a piece on the way of its moving forward, then return false 
                             return false;
                 }
                 else
                 {
                     //go left
                     for (int i = CurrentY - 1; i > y; i--)
-                        if (gameboard.getPieces()[x, i] != null)
+                        if (gameboard.getPieces()[x, i] != null)  //the same
                             return false;
                 }
                 return true;
@@ -45,14 +44,14 @@ namespace DGUT_Team_Software_Project_Console
                 if (x > CurrentX)
                 {
                     for (int i = CurrentX + 1; i < x; i++)
-                        if (gameboard.getPieces()[i, y] != null)
+                        if (gameboard.getPieces()[i, y] != null)  //the same
                             return false;
                 }
                 else
                 {
                     //go up
                     for (int i = CurrentX - 1; i > x; i--)
-                        if (gameboard.getPieces()[i, y] != null)
+                        if (gameboard.getPieces()[i, y] != null)  //the same
                             return false;
                 }
                 return true;
