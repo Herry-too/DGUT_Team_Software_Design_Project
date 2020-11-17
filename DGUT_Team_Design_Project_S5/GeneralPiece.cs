@@ -12,15 +12,11 @@ namespace DGUT_Team_Software_Project_Console
             //General - 將
         }
 
-        public override bool ValidMoves(int x, int y, GameBoard gameboard, String player)
+        public override bool ValidMoves(int x, int y, GameBoard gameboard)
         {
             int CurrentX = this.getCurrentPosition().Item1;
             int CurrentY = this.getCurrentPosition().Item2;
 
-            if (player != this.player)
-            {
-                return false;
-            }
 
             if (player == "red")//判断颜色 红上黑下
             {
@@ -28,6 +24,7 @@ namespace DGUT_Team_Software_Project_Console
                 {
                 return false;
                 }
+
             }
             else
             {
