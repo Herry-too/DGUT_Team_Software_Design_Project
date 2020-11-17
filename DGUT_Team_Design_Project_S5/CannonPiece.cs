@@ -4,11 +4,12 @@ using System.Text;
 
 namespace DGUT_Team_Software_Project_Console
 {
-    class ShellPiece:Piece
+    class CannonPiece:Piece
     {
-        public ShellPiece(string player, int intX, int intY) : base(player, intX, intY)
+        public CannonPiece(string player, int intX, int intY) : base(player, intX, intY)
         {
-            this.Name = "S";
+            this.Name = "C";
+            //Cannon - 炮
         }
         public override bool ValidMoves(int x, int y, GameBoard gameboard, string player)
         {
@@ -38,7 +39,7 @@ namespace DGUT_Team_Software_Project_Console
                     //to right
                     count = 0;
                     for (int i = CurrentY + 1; i < y; i++)
-                        if (gameboard.returnpieces()[x, i] != null)
+                        if (gameboard.getPieces()[x, i] != null)
                             count++;
                 }
                 else
@@ -47,7 +48,7 @@ namespace DGUT_Team_Software_Project_Console
                     count = 0;
                     for (int i = CurrentY - 1; i > y; i--)
                     {
-                        if (gameboard.returnpieces()[x, i] != null)
+                        if (gameboard.getPieces()[x, i] != null)
                             count++;
                     }
                 }
@@ -59,26 +60,25 @@ namespace DGUT_Team_Software_Project_Console
                 if (x > CurrentX)
                 {
                     for (int i = CurrentX - 1; i > x; i--)
-                        if (gameboard.returnpieces()[i, y] != null)
+                        if (gameboard.getPieces()[i, y] != null)
                             count++;
                 }
                 //down
                 else
                 {
                     for (int i = CurrentX + 1; i < x; i++)
-                        if (gameboard.returnpieces()[i, y] != null)
+                        if (gameboard.getPieces()[i, y] != null)
                             count++;
                 }
             }
             //move and eat the piece
-            if (count == 1 && gameboard.returnpieces()[x, y] != null)
+            if (count == 1 && gameboard.getPieces()[x, y] != null)
                 return true;
             //just move the shell
-            if (count == 0 && gameboard.returnpieces()[x, y] == null)
+            if (count == 0 && gameboard.getPieces()[x, y] == null)
                 return true;
 
             return false;
         }
-    }
     }
 }

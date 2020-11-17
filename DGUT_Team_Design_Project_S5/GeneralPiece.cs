@@ -9,6 +9,7 @@ namespace DGUT_Team_Software_Project_Console
         public GeneralPiece(string player, int intX, int intY) : base(player, intX, intY)
         {
             this.Name = "G";
+            //General - 將
         }
 
         public override bool ValidMoves(int x, int y, GameBoard gameboard, String player)
@@ -21,7 +22,7 @@ namespace DGUT_Team_Software_Project_Console
                 return false;
             }
 
-            if (player == "red")
+            if (player == "red")//判断颜色 红上黑下
             {
                 if ( x < 0 || x > 2)
                 {
@@ -41,22 +42,28 @@ namespace DGUT_Team_Software_Project_Console
                 return false;
             }
 
+            //判断是否超过一步
+            if(Math.Abs(CurrentX - x)>1 || Math.Abs(CurrentY - y) > 1)
+            {
+                return false;
+            }
+
 
             //此处写判断帅将的移动位置
             //水平移动
-            if (CurrentX == x && CurrentY != y)
+                if (CurrentX == x && CurrentY != y)
             {
                 //go right
                 if (y > CurrentY)
                 {
-                    if (gameboard.returnpieces()[x, CurrentY + 1] != null)
+                    if (gameboard.getPieces()[x, CurrentY + 1] != null)
                         return false;
                 }
 
                 else
                 {
                     //go left
-                    if (gameboard.returnpieces()[x, CurrentY - 1] != null)
+                    if (gameboard.getPieces()[x, CurrentY - 1] != null)
                         return false;
                 }
 
@@ -71,13 +78,13 @@ namespace DGUT_Team_Software_Project_Console
                 if (x > intX)
                 {
                     //go down
-                    if (gameboard.returnpieces()[CurrentX + 1, y] != null)
+                    if (gameboard.getPieces()[CurrentX + 1, y] != null)
                         return false;
                 }
                 else
                 {
                     //go up
-                    if (gameboard.returnpieces()[CurrentX - 1, y] != null)
+                    if (gameboard.getPieces()[CurrentX - 1, y] != null)
                         return false;
                 }
                 return true;

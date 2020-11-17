@@ -8,7 +8,8 @@ namespace DGUT_Team_Software_Project_Console
     {
         public CarPiece(string player, int intX, int intY):base(player, intX, intY)
         {
-            this.Name = "C";
+            this.Name = "R";
+            //Rook - 车
         }
 
         public override bool ValidMoves(int x, int y, GameBoard gameboard, String player)
@@ -37,14 +38,14 @@ namespace DGUT_Team_Software_Project_Console
                 if (y > CurrentY)
                 {
                     for (int i = CurrentY + 1; i < y; i++)
-                        if (gameboard.returnpieces()[x, i] != null)
+                        if (gameboard.getPieces()[x, i] != null)
                             return false;
                 }
                 else
                 {
                     //go left
                     for (int i = CurrentY - 1; i > y; i--)
-                        if (gameboard.returnpieces()[x, i] != null)
+                        if (gameboard.getPieces()[x, i] != null)
                             return false;
                 }
                 return true;
@@ -57,14 +58,14 @@ namespace DGUT_Team_Software_Project_Console
                 if (x > CurrentX)
                 {
                     for (int i = CurrentX + 1; i < x; i++)
-                        if (gameboard.returnpieces()[i, y] != null)
+                        if (gameboard.getPieces()[i, y] != null)
                             return false;
                 }
                 else
                 {
                     //go up
                     for (int i = CurrentX - 1; i > x; i--)
-                        if (gameboard.returnpieces()[i, y] != null)
+                        if (gameboard.getPieces()[i, y] != null)
                             return false;
                 }
                 return true;
