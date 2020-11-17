@@ -72,9 +72,19 @@ namespace DGUT_Team_Software_Project_Console
                 Console.WriteLine();
             }
             Console.WriteLine("  a b c d e f g h i");
-            Console.WriteLine("12345123451234512345 - DEBUG FORMAT ONLY!");
             Console.BackgroundColor = ConsoleColor.Black;
             Console.ForegroundColor = ConsoleColor.White;
+            Console.Write("Currrent Player: ");
+            if (board.getPlayer() == "red")
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("Red");
+                Console.ForegroundColor = ConsoleColor.White;
+            }
+            else
+            {
+                Console.WriteLine("Black");
+            }
         }
 
         public void AskSelectPiece()
@@ -89,7 +99,7 @@ namespace DGUT_Team_Software_Project_Console
 
         public void ErrorInput()
         {
-            Console.WriteLine("Error Input!");
+            Console.WriteLine("Error Input! Please check it and try again!");
         }
     }
 }

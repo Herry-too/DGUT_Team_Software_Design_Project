@@ -55,6 +55,10 @@ namespace DGUT_Team_Software_Project_Console
             return pieces;
         }
 
+        public string getPlayer()
+        {
+            return player;
+        }
         public string getPieceName(int x,int y)
         {
             if(pieces[x,y] == null)
@@ -102,25 +106,34 @@ namespace DGUT_Team_Software_Project_Console
         {
             int[] intArray = strInputToIntArrayInput(strInput);
             int posX = intArray[0];
+            if (posX == -1)
+                return false;
             int posY = intArray[1];
             if (pieces[posX,posY] == null)
             {
                 return false;
             }
-            selectedX = posX;
-            selectedY = posY;
-            return true;
+            if (pieces[posX, posY].getPlayer() == player)
+            {
+                selectedX = posX;
+                selectedY = posY;
+                return true;
+            }
+            return false;
         }
 
         public bool MovePiece(String strInput)
         {
             int posX, posY;
             int[] intArray = strInputToIntArrayInput(strInput);
+            if (intArray[0] == -1)
+                return false;
             posX = intArray[0];
             posY = intArray[1];
             if (CalculateValidMoves(posX, posY))
             {
                 pieces[posX, posY] = pieces[selectedX, selectedY];
+                pieces[posX, posY].setCurrentPosition(posX, posY);
                 pieces[selectedX, selectedY] = null;
                 selectedX = selectedY = -1;
                 return true;
@@ -138,7 +151,11 @@ namespace DGUT_Team_Software_Project_Console
             {
                 return false;
             }
-            return pieces[selectedX, selectedY].ValidMoves(posX, posY, this, player);
+            if(player != pieces[selectedX, selectedY].getPlayer())
+            {
+                return false;
+            }
+            return pieces[selectedX, selectedY].ValidMoves(posX, posY, this);
         }
 
         public int getSelectedX()

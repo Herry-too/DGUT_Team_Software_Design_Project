@@ -11,23 +11,10 @@ namespace DGUT_Team_Software_Project_Console
             this.Name = "H";
             //Horse - 马
         }
-        public override bool ValidMoves(int x, int y, GameBoard gameboard, string player)
+        public override bool ValidMoves(int x, int y, GameBoard gameboard)
         {
             int CurrentX = this.getCurrentPosition().Item1;
             int CurrentY = this.getCurrentPosition().Item2;
-
-            if (player != this.player)
-            {
-                return false;
-            }
-            if (x < 0 || x > 9)
-            {
-                return false;
-            }
-            if (y < 0 || y > 8)
-            {
-                return false;
-            }
 
             //to right
             if (y == CurrentY + 2 && (x == CurrentX + 1 || x == CurrentX - 1))

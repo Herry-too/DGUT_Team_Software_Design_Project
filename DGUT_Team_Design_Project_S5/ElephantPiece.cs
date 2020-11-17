@@ -13,7 +13,7 @@ namespace DGUT_Team_Software_Project_Console
         }
 
 
-        public override bool ValidMoves(int x, int y, GameBoard gameboard, String player)
+        public override bool ValidMoves(int x, int y, GameBoard gameboard)
         {
             Piece[,] board = gameboard.getPieces();
             if (player != this.player)

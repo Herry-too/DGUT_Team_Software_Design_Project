@@ -31,7 +31,7 @@ namespace DGUT_Team_Software_Project_Console
             return str;
         }
 
-        public abstract bool ValidMoves(int x, int y, GameBoard gameboard, String player);
+        public abstract bool ValidMoves(int x, int y, GameBoard gameboard);
         
         public string getPieceWords()
         {
