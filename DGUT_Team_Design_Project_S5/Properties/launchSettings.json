@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "DGUT_Team_Software_Project_Console": {
+      "commandName": "Project",
+      "nativeDebugging": false
+    }
+  }
+}
