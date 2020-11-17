@@ -32,6 +32,15 @@ namespace DGUT_Team_Software_Project_Console
                     //判断“田”字路径中间有没有子
                     if (board[(x + intX) / 2, (y + intY) / 2] == null)
                     {
+                        //判断目标位置是否有子
+                        if (board[x, y] != null)
+                        {
+                            //若有子，则判断目标位置的棋子是否为己方
+                            if(board[x, y].getPlayer() == this.player)
+                            {
+                                return false;
+                            }
+                        }
                         return true;
                     }
                 }
