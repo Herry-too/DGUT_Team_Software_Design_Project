@@ -16,7 +16,7 @@ namespace DGUT_Team_Software_Project_Console
         public override bool ValidMoves(int x, int y, GameBoard gameboard)
         {
             Piece[,] board = gameboard.getPieces();
-            
+
             if (x < 0 || x > 9 || y < 0 || y > 8)
             {
                 return false;
