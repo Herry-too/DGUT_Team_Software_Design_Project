@@ -18,6 +18,7 @@ namespace DGUT_Team_Software_Project_Console
                 Displayer.AskMovePiece();
                 while (!board.MovePiece(Console.ReadLine()))
                     Displayer.ErrorInput();
+                board.SwitchPlayer();
             }
 
         }
