@@ -71,8 +71,8 @@ namespace DGUT_Team_Software_Project_Console
                 }
                 Console.WriteLine();
             }
-            Console.BackgroundColor = ConsoleColor.Black;
             Console.WriteLine("  a b c d e f g h i");
+            Console.BackgroundColor = ConsoleColor.Black;
             Console.ForegroundColor = ConsoleColor.White;
             Console.Write("Currrent Player: ");
             if (board.getPlayer() == "red")

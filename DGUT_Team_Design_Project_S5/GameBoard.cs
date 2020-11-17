@@ -133,6 +133,7 @@ namespace DGUT_Team_Software_Project_Console
             if (CalculateValidMoves(posX, posY))
             {
                 pieces[posX, posY] = pieces[selectedX, selectedY];
+                pieces[posX, posY].setCurrentPosition(posX, posY);
                 pieces[selectedX, selectedY] = null;
                 selectedX = selectedY = -1;
                 return true;
