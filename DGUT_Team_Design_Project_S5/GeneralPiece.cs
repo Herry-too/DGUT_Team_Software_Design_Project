@@ -53,14 +53,14 @@ namespace DGUT_Team_Software_Project_Console
                 //go right
                 if (y > CurrentY)
                 {
-                    if (gameboard.getPieces()[x, CurrentY + 1] != null)
+                    if (gameboard.getPieces()[x, CurrentY + 1].getPlayer() == gameboard.getPieces()[CurrentX,CurrentY].getPlayer())
                         return false;
                 }
 
                 else
                 {
                     //go left
-                    if (gameboard.getPieces()[x, CurrentY - 1] != null)
+                    if (gameboard.getPieces()[x, CurrentY - 1].getPlayer() == gameboard.getPieces()[CurrentX, CurrentY].getPlayer())
                         return false;
                 }
 
@@ -75,13 +75,13 @@ namespace DGUT_Team_Software_Project_Console
                 if (x > intX)
                 {
                     //go down
-                    if (gameboard.getPieces()[CurrentX + 1, y] != null)
+                    if (gameboard.getPieces()[CurrentX + 1, y].getPlayer() == gameboard.getPieces()[CurrentX, CurrentY].getPlayer())
                         return false;
                 }
                 else
                 {
                     //go up
-                    if (gameboard.getPieces()[CurrentX - 1, y] != null)
+                    if (gameboard.getPieces()[CurrentX - 1, y].getPlayer() == gameboard.getPieces()[CurrentX, CurrentY].getPlayer())
                         return false;
                 }
                 return true;
