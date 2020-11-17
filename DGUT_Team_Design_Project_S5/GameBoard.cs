@@ -13,8 +13,8 @@ namespace DGUT_Team_Software_Project_Console
 
         public GameBoard()
         {
-            pieces = new Piece[10, 9];
-            //Red
+            pieces = new Piece[10, 9];                      //Create a new gameboard, include 10*9 places to hold piece
+            //Set Red Player default pieces
             pieces[0, 0] = new CarPiece("red", 0, 0);
             pieces[0, 1] = new HorsePiece("red", 0, 1);
             pieces[0, 2] = new ElephantPiece("red", 0, 2);
@@ -31,7 +31,7 @@ namespace DGUT_Team_Software_Project_Console
             pieces[3, 4] = new SoldierPiece("red", 3, 4);
             pieces[3, 6] = new SoldierPiece("red", 3, 6);
             pieces[3, 8] = new SoldierPiece("red", 3, 8);
-            //Black
+            //Same as Black Player
             pieces[9, 0] = new CarPiece("black", 9, 0);
             pieces[9, 1] = new HorsePiece("black", 9, 1);
             pieces[9, 2] = new ElephantPiece("black", 9, 2);
@@ -52,31 +52,31 @@ namespace DGUT_Team_Software_Project_Console
 
         public Piece[,] getPieces()
         {
-            return pieces;
+            return pieces;  //return all pieces,string.
         }
 
         public string getPlayer()
         {
-            return player;
+            return player;  //return current player, string.
         }
         public string getPieceName(int x,int y)
         {
             if(pieces[x,y] == null)
             {
-                return "";
+                return "";  //if there is no piece at this place
             }
             else
             {
-                return pieces[x, y].getPieceWords();
+                return pieces[x, y].getPieceWords();//else return the Name of the Piece
             }
         }
 
         public string getPiecePlayer(int x,int y)
         {
-            return pieces[x, y].getPlayer();
+            return pieces[x, y].getPlayer();    //get a piece's player
         }
 
-        public void SwitchPlayer()
+        public void SwitchPlayer()  //Switch player
         {
             if(player == "red")
             {
@@ -92,13 +92,13 @@ namespace DGUT_Team_Software_Project_Console
         {
             int[] returnArray = new int[2];
             if (strInput.Length != 2)
-                return new int[] { -1,-1};
+                return new int[] { -1,-1};  //if there is a invaild input,return {-1,-1}
             for (int i = 0; i < strInput.Length; i++)
             {
                 if (strInput[i] > 96 && strInput[i] < 106)
-                    returnArray[1] = strInput[i] - 97;
+                    returnArray[1] = strInput[i] - 97;  //if there is a character between alphabet 'a' to 'i', change it to int and set it as the posY/intY
                 if (strInput[i] > 47 && strInput[i] < 58)
-                    returnArray[0] = strInput[i] - 48;
+                    returnArray[0] = strInput[i] - 48;// same
             }
             return returnArray;
         }
@@ -107,13 +107,13 @@ namespace DGUT_Team_Software_Project_Console
             int[] intArray = strInputToIntArrayInput(strInput);
             int posX = intArray[0];
             if (posX == -1)
-                return false;
+                return false;// if invaild number, return false
             int posY = intArray[1];
             if (pieces[posX,posY] == null)
             {
-                return false;
+                return false;//if there is no pieces at this place,could not select nothing,return false
             }
-            if (pieces[posX, posY].getPlayer() == player)
+            if (pieces[posX, posY].getPlayer() == player)//make sure only cureent player could select own pieces
             {
                 selectedX = posX;
                 selectedY = posY;
@@ -127,15 +127,15 @@ namespace DGUT_Team_Software_Project_Console
             int posX, posY;
             int[] intArray = strInputToIntArrayInput(strInput);
             if (intArray[0] == -1)
-                return false;
+                return false;//same as SelectPiece
             posX = intArray[0];
             posY = intArray[1];
-            if (CalculateValidMoves(posX, posY))
+            if (CalculateValidMoves(posX, posY))//check if it could move
             {
-                pieces[posX, posY] = pieces[selectedX, selectedY];
+                pieces[posX, posY] = pieces[selectedX, selectedY];//coverage the pieces
                 pieces[posX, posY].setCurrentPosition(posX, posY);
-                pieces[selectedX, selectedY] = null;
-                selectedX = selectedY = -1;
+                pieces[selectedX, selectedY] = null;//remove old pieces
+                selectedX = selectedY = -1;// remove selected record.
                 return true;
             }
             return false;
@@ -145,17 +145,17 @@ namespace DGUT_Team_Software_Project_Console
         {
             if (posX < 0 || posX > 9)
             {
-                return false;
+                return false;//if the point is out of board
             }
             if (posY < 0 || posY > 8)
             {
-                return false;
+                return false;//same
             }
             if(player != pieces[selectedX, selectedY].getPlayer())
             {
-                return false;
+                return false;//current player is the owner of the piece
             }
-            return pieces[selectedX, selectedY].ValidMoves(posX, posY, this);
+            return pieces[selectedX, selectedY].ValidMoves(posX, posY, this);//let pieces check it's rule
         }
 
         public int getSelectedX()
