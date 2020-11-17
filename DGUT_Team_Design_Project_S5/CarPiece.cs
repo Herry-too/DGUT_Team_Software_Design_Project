@@ -16,7 +16,7 @@ namespace DGUT_Team_Software_Project_Console
         {
             int CurrentX = this.getCurrentPosition().Item1;
             int CurrentY = this.getCurrentPosition().Item2;
-
+            
             if (player != this.player)
             {
                 return false;
