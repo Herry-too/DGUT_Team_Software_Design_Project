@@ -28,10 +28,10 @@ namespace DGUT_Team_Software_Project_Console
             if (this.player == "red")
             {
                 //判断终点是否在米字格里
-                if (x <= 5 && x >= 3 && y <= 2 && y >= 0)
+                if (x <= 2 && x >= 0 && y <= 5 && y >= 3)
                 {
                     //判断是否对角线移动
-                    if ((x - intX == 1 || x - intX == -1 ) && (y - intY == 1 && y - intY == -1))
+                    if ((x - intX == 1 || x - intX == -1 ) && (y - intY == 1 || y - intY == -1))
                     {
                         return true;
                     }
@@ -40,7 +40,7 @@ namespace DGUT_Team_Software_Project_Console
             else if (this.player == "black")
             {
                 //判断终点是否在米字格里
-                if (x <= 5 && x >= 3 && y <= 9 && y >= 7)
+                if (x <= 9 && x >= 7 && y <= 5 && y >= 3)
                 {
                     if ((x - intX == 1 || x - intX == -1) && (y - intY == 1 || y - intY == -1))
                     {
