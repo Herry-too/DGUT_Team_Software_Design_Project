@@ -30,7 +30,7 @@ namespace DGUT_Team_Software_Project_Console
                 if (y - intY == 2 || y - intY == -2)
                 {
                     //判断“田”字路径中间有没有子
-                    if (board[(x + intX) / 2, (y + intY) / 2] != null)
+                    if (board[(x + intX) / 2, (y + intY) / 2] == null)
                     {
                         return true;
                     }
