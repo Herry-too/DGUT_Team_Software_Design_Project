@@ -50,20 +50,21 @@ namespace DGUT_Team_Software_Project_Console
             //Horizontal
             if (CurrentX == x && CurrentY != y)
             {
-                //go right
+               
                 if (y > CurrentY)
-                {
-                    if(gameboard.getPieces()[x, CurrentY + 1] != null)
-                    if (gameboard.getPieces()[x, CurrentY + 1].getPlayer() == this.player)
-                        return false;
+                { 
+                    //go right
+                    if(gameboard.getPieces()[x, CurrentY + 1] != null)// Judge the position doesn't have piece  
+                        if (gameboard.getPieces()[x, CurrentY + 1].getPlayer() == this.player)// Judge the player is  red or black
+                            return false;
                 }
 
                 else
                 {
                     //go left
                     if(gameboard.getPieces()[x, CurrentY + 1] != null)
-                    if (gameboard.getPieces()[x, CurrentY - 1].getPlayer() == this.player)
-                        return false;
+                        if (gameboard.getPieces()[x, CurrentY - 1].getPlayer() == this.player)
+                            return false;
                 }
 
                 return true;
@@ -78,15 +79,15 @@ namespace DGUT_Team_Software_Project_Console
                 {
                     //go down
                     if(gameboard.getPieces()[CurrentX + 1, y] != null)
-                    if (gameboard.getPieces()[CurrentX + 1, y].getPlayer() == this.player)
-                        return false;
+                        if (gameboard.getPieces()[CurrentX + 1, y].getPlayer() == this.player)
+                            return false;
                 }
                 else
                 {
                     //go up
                     if (gameboard.getPieces()[CurrentX - 1, y] != null)
                         if (gameboard.getPieces()[CurrentX - 1, y].getPlayer() == this.player)
-                        return false;
+                            return false;
                 }
                 return true;
             }
