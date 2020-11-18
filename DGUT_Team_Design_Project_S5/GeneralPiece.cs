@@ -17,9 +17,33 @@ namespace DGUT_Team_Software_Project_Console
             int CurrentX = this.getCurrentPosition().Item1;
             int CurrentY = this.getCurrentPosition().Item2;
 
+            //judge the relative position between red and black
+            if (gameboard.getPieces()[x, y] != null)
+            {   //from red to black
+                if (gameboard.getPieces()[x, y].getPieceWords() == "G" && gameboard.getPieces()[x, y].getPlayer() == "black"
+                    && x >= 7 && x <= 9 && y == CurrentY)
+                {
+                    for (int i = CurrentX + 1; i < x; i++)
+                        if (gameboard.getPieces()[i,y] != null)
+                        {
+                            return false;
+                        }
+                    return true; //if true the general could eat the opponent general piece directly
+                }//from black to red
+                else if (gameboard.getPieces()[x, y].getPieceWords() == "G" && gameboard.getPieces()[x, y].getPlayer() == "red"
+                    && x >= 0 && x <= 2 && y == CurrentY)
+                {
+                    for (int i = CurrentX - 1; i > x; i--)
+                        if (gameboard.getPieces()[i,y] != null)
+                        {
+                            return false;
+                        }
+                    return true; //if true the general could eat the opponent general piece directly
+                }                                   
+            }
 
             if (player == "red")//Judge the player is  red or black
-            {
+            {               
                 if (x < 0 || x > 2)
                 {
                     return false;
@@ -62,7 +86,7 @@ namespace DGUT_Team_Software_Project_Console
                 else
                 {
                     //go left
-                    if(gameboard.getPieces()[x, CurrentY + 1] != null)
+                    if(gameboard.getPieces()[x, CurrentY - 1] != null)
                         if (gameboard.getPieces()[x, CurrentY - 1].getPlayer() == this.player)
                             return false;
                 }
