@@ -94,7 +94,7 @@ namespace DGUT_Team_Software_Project_Console
 
         public void AskMovePiece()
         {
-            Console.WriteLine("Which piece do you want to move to?");
+            Console.WriteLine("Which piece do you want to move to?\n(Enter the position of your currently selected piece to deselect it if you want.)");
         }
 
         public void ErrorInput()

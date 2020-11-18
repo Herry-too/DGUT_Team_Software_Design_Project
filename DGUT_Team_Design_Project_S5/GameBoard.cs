@@ -130,6 +130,13 @@ namespace DGUT_Team_Software_Project_Console
                 return false;//same as SelectPiece
             posX = intArray[0];
             posY = intArray[1];
+            if (posX == selectedX && posY == selectedY) //cancel the select
+            {
+                SwitchPlayer();
+                selectedX = -1;
+                selectedY = -1;
+                return true;
+            }
             if (CalculateValidMoves(posX, posY))//check if it could move
             {
                 pieces[posX, posY] = pieces[selectedX, selectedY];//coverage the pieces
@@ -155,6 +162,8 @@ namespace DGUT_Team_Software_Project_Console
             {
                 return false;//current player is the owner of the piece
             }
+            if (pieces[posX, posY] != null && player == pieces[posX, posY].getPlayer())
+                return false;//dont eat own pieces
             return pieces[selectedX, selectedY].ValidMoves(posX, posY, this);//let pieces check it's rule
         }
 
