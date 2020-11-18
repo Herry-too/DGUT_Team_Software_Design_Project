@@ -8,8 +8,11 @@ namespace DGUT_Team_Software_Project_Console
     {
         String player = "red";
         Piece[,] pieces;
+        bool gameStatus = true;
         int selectedX = -1;
         int selectedY = -1;
+        int[] redGeneralPiece;
+        int[] blackGeneralPiece;
 
         public GameBoard()
         {
@@ -48,6 +51,9 @@ namespace DGUT_Team_Software_Project_Console
             pieces[6, 4] = new SoldierPiece("black", 6, 4);
             pieces[6, 6] = new SoldierPiece("black", 6, 6);
             pieces[6, 8] = new SoldierPiece("black", 6, 8);
+
+            redGeneralPiece = new int[2]{ 0,4};
+            blackGeneralPiece = new int[2]{ 9,4};
         }
 
         public Piece[,] getPieces()
@@ -132,10 +138,28 @@ namespace DGUT_Team_Software_Project_Console
             posY = intArray[1];
             if (CalculateValidMoves(posX, posY))//check if it could move
             {
+                if(pieces[posX, posY] != null && pieces[posX,posY].getPieceWords() == "G")
+                {
+                    gameStatus = false;
+                }
                 pieces[posX, posY] = pieces[selectedX, selectedY];//coverage the pieces
                 pieces[posX, posY].setCurrentPosition(posX, posY);
                 pieces[selectedX, selectedY] = null;//remove old pieces
                 selectedX = selectedY = -1;// remove selected record.
+                if (pieces[posX, posY].getPieceWords() == "G")
+                {
+                    switch (player)
+                    {
+                        case "red":
+                            redGeneralPiece[0] = posX;
+                            redGeneralPiece[1] = posY;
+                            break;
+                        case "black":
+                            blackGeneralPiece[0] = posX;
+                            blackGeneralPiece[1] = posY;
+                            break;
+                    }
+                }
                 return true;
             }
             return false;
@@ -165,6 +189,56 @@ namespace DGUT_Team_Software_Project_Console
         public int getSelectedY()
         {
             return selectedY;
+        }
+        public int[] getGeneralPiece()
+        {
+            int x;
+            if (player == "red")
+                x = 7;
+            else x = 0;
+            for (int i = 7; i <= 9; i++)
+            {
+                for (int j = 3; j <= 5; j++)
+                {
+                    if (pieces[i, j].getPieceWords() == "G")
+                    {
+                        return new int[2] { i, j };
+                    }
+                }
+            }
+            return null;
+        }
+        public bool ifDeliveredCheck()
+        {
+            int genX, genY;
+            if(player == "red")
+            {
+                genX = redGeneralPiece[0];
+                genY = redGeneralPiece[1];
+            }
+            else
+            {
+                genX = blackGeneralPiece[0];
+                genY = blackGeneralPiece[1];
+            }
+            foreach (Piece piece in pieces)
+            {
+                if (piece == null || piece.getPlayer() == player)
+                {
+                    continue;
+                }
+                if (piece.ValidMoves(genX, genY, this))
+                {
+                    return true;
+                }
+            }
+            return false;
+
+        }
+
+        public bool getGameStatus()
+        {
+            return gameStatus;
         }
     }
 }

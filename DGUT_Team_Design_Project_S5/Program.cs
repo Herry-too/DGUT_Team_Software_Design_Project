@@ -8,9 +8,11 @@ namespace DGUT_Team_Software_Project_Console
         {
             GameDisplay Displayer = new GameDisplay();
             GameBoard board = new GameBoard();
-            while (true)
+            while (board.getGameStatus())
             {
                 Displayer.DisplayBoard(board);
+                if(board.ifDeliveredCheck())
+                    Displayer.Delivered();
                 Displayer.AskSelectPiece();
                 while (!board.SelectPiece(Console.ReadLine()))
                     Displayer.ErrorInput();
@@ -18,6 +20,10 @@ namespace DGUT_Team_Software_Project_Console
                 Displayer.AskMovePiece();
                 while (!board.MovePiece(Console.ReadLine()))
                     Displayer.ErrorInput();
+                if (!board.getGameStatus())
+                {
+                    Displayer.Congratulation();
+                }
                 board.SwitchPlayer();
             }
 

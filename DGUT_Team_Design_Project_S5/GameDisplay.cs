@@ -101,5 +101,19 @@ namespace DGUT_Team_Software_Project_Console
         {
             Console.WriteLine("Error Input! Please check it and try again!");
         }
+
+        public void Delivered()
+        {
+            Console.BackgroundColor = ConsoleColor.Red;
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.WriteLine("WARNING:Delivered a check!");
+            Console.BackgroundColor = ConsoleColor.Black;
+            Console.ForegroundColor = ConsoleColor.White;
+        }
+
+        public void Congratulation()
+        {
+            Console.WriteLine("Congratulations! You win this game!");
+        }
     }
 }
