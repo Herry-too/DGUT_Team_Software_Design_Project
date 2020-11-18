@@ -15,49 +15,31 @@ namespace DGUT_Team_Software_Project_Console
         public override bool ValidMoves(int x, int y, GameBoard gameboard)
         {
             Piece[,] board = gameboard.getPieces();
+            int temp_x;
 
-            //判断当前玩家是红方还是黑方
-            if (this.player == "red")
+            //Determining whether the current player is red or black
+            if (player == "red") temp_x = 0;
+            else temp_x = 7;
+            
+            //Determine if the end point is in the palace
+            if (x <= (temp_x+2) && x >= temp_x && y <= 5 && y >= 3)
             {
-                //判断终点是否在米字格里
-                if (x <= 2 && x >= 0 && y <= 5 && y >= 3)
+                //Determining compliance with the rules of moving pieces (diagonal)
+                if ((x - intX == 1 || x - intX == -1 ) && (y - intY == 1 || y - intY == -1))
                 {
-                    //判断是否对角线移动
-                    if ((x - intX == 1 || x - intX == -1 ) && (y - intY == 1 || y - intY == -1))
+                    //Determine if there are pawns in the target position
+                    if (board[x, y] != null)
                     {
-                        //判断目标位置是否有子
-                        if (board[x, y] != null)
+                        //Determine whether the piece in the target position is your own pawn
+                        if (board[x, y].getPlayer() == this.player)
                         {
-                            //若有子，则判断目标位置的棋子是否为己方
-                            if (board[x, y].getPlayer() == this.player)
-                            {
-                                return false;
-                            }
+                            return false;
                         }
-                        return true;
                     }
+                    return true;
                 }
             }
-            else if (this.player == "black")
-            {
-                //判断终点是否在米字格里
-                if (x <= 9 && x >= 7 && y <= 5 && y >= 3)
-                {
-                    if ((x - intX == 1 || x - intX == -1) && (y - intY == 1 || y - intY == -1))
-                    {
-                        //判断目标位置是否有子
-                        if (board[x, y] != null)
-                        {
-                            //若有子，则判断目标位置的棋子是否为己方
-                            if (board[x, y].getPlayer() == this.player)
-                            {
-                                return false;
-                            }
-                        }
-                        return true;
-                    }
-                }
-            }
+            
             return false;
         }
     }

@@ -16,61 +16,37 @@ namespace DGUT_Team_Software_Project_Console
         public override bool ValidMoves(int x, int y, GameBoard gameboard)
         {
             Piece[,] board = gameboard.getPieces();
+            int temp_x;
 
-            //判断在红方还是黑方
-            if (this.player == "red")
+            //Determining whether the current player is red or black
+            if (player == "red") temp_x = 0;
+            else temp_x = 5;
+
+            //Determining compliance with the rules of moving pieces(田）
+            if (x >= temp_x && x <= (temp_x+4) && y >= 0 && y <= 8)
             {
-                //判断是否符合符合运子规则
-                if (x >= 0 && x <= 4 && y >= 0 && y <= 8)
+                if (x - intX == 2 || x - intX == -2)
                 {
-                    if (x - intX == 2 || x - intX == -2)
+                    if (y - intY == 2 || y - intY == -2)
                     {
-                        if (y - intY == 2 || y - intY == -2)
+                        //Determine if there are any pieces in the middle of "田"
+                        if (board[(x + intX) / 2, (y + intY) / 2] == null)
                         {
-                            //判断“田”字路径中间有没有子
-                            if (board[(x + intX) / 2, (y + intY) / 2] == null)
+                            //Determine if there are pawns in the target position
+                            if (board[x, y] != null)
                             {
-                                //判断目标位置是否有子
-                                if (board[x, y] != null)
+                                //Determine whether the piece in the target position is your own pawn
+                                if (board[x, y].getPlayer() == this.player)
                                 {
-                                    //若有子，则判断目标位置的棋子是否为己方
-                                    if (board[x, y].getPlayer() == this.player)
-                                    {
-                                        return false;
-                                    }
+                                    return false;
                                 }
-                                return true;
                             }
+                            return true;
                         }
                     }
                 }
             }
-            else if (this.player == "black")
-            {
-                if (x >= 5 && x <= 9 && y >= 0 && y <= 8)
-                {
-                    if (x - intX == 2 || x - intX == -2)
-                    {
-                        if (y - intY == 2 || y - intY == -2)
-                        {
-                            //判断“田”字路径中间有没有子
-                            if (board[(x + intX) / 2, (y + intY) / 2] == null)
-                            {
-                                //判断目标位置是否有子
-                                if (board[x, y] != null)
-                                {
-                                    //若有子，则判断目标位置的棋子是否为己方
-                                    if (board[x, y].getPlayer() == this.player)
-                                    {
-                                        return false;
-                                    }
-                                }
-                                return true;
-                            }
-                        }
-                    }
-                }
-            }
+            
             return false;
         }
     }
