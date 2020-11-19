@@ -25,11 +25,6 @@ namespace DGUT_Team_Software_Project_Console
             intX = NewIntX;
             intY = NewIntY; 
         }
-        public override string ToString()
-        {
-            string str= "Test String";
-            return str;
-        }
 
         public abstract bool ValidMoves(int x, int y, GameBoard gameboard);
         

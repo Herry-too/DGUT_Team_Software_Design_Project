@@ -14,11 +14,11 @@ namespace DGUT_Team_Software_Project_Console
                 if(board.ifDeliveredCheck())
                     Displayer.Delivered();
                 Displayer.AskSelectPiece();
-                while (!board.SelectPiece(Console.ReadLine()))
+                while (!board.boolSelectPiece(Console.ReadLine()))
                     Displayer.ErrorInput();
                 Displayer.DisplayBoard(board);
                 Displayer.AskMovePiece();
-                while (!board.MovePiece(Console.ReadLine()))
+                while (!board.boolMovePiece(Console.ReadLine()))
                     Displayer.ErrorInput();
                 if (!board.getGameStatus())
                 {

@@ -6,7 +6,7 @@ namespace DGUT_Team_Software_Project_Console
 {
     class GameBoard
     {
-        String player = "red";
+        string player = "red";
         Piece[,] pieces;
         bool gameStatus = true;
         int selectedX = -1;
@@ -108,7 +108,7 @@ namespace DGUT_Team_Software_Project_Console
             }
             return returnArray;
         }
-        public bool SelectPiece(String strInput)
+        public bool boolSelectPiece(String strInput)
         {
             int[] intArray = strInputToIntArrayInput(strInput);
             int posX = intArray[0];
@@ -128,12 +128,12 @@ namespace DGUT_Team_Software_Project_Console
             return false;
         }
 
-        public bool MovePiece(String strInput)
+        public bool boolMovePiece(String strInput)
         {
             int posX, posY;
             int[] intArray = strInputToIntArrayInput(strInput);
             if (intArray[0] == -1 || intArray[1] == -1)
-                return false;//same as SelectPiece
+                return false;//same as boolSelectPiece
             posX = intArray[0];
             posY = intArray[1];
             if (posX == selectedX && posY == selectedY) //cancel the select
@@ -143,7 +143,7 @@ namespace DGUT_Team_Software_Project_Console
                 selectedY = -1;
                 return true;
             }
-            if (CalculateValidMoves(posX, posY))//check if it could move
+            if (calculateValidMoves(posX, posY))//check if it could move
             {
                 if(pieces[posX, posY] != null && pieces[posX,posY].getPieceWords() == "G")
                 {
@@ -172,7 +172,7 @@ namespace DGUT_Team_Software_Project_Console
             return false;
         }
 
-        bool CalculateValidMoves(int posX, int posY)
+        bool calculateValidMoves(int posX, int posY)
         {
             if (posX < 0 || posX > 9)
             {
@@ -199,24 +199,7 @@ namespace DGUT_Team_Software_Project_Console
         {
             return selectedY;
         }
-        public int[] getGeneralPiece()
-        {
-            int x;
-            if (player == "red")
-                x = 7;
-            else x = 0;
-            for (int i = 7; i <= 9; i++)
-            {
-                for (int j = 3; j <= 5; j++)
-                {
-                    if (pieces[i, j].getPieceWords() == "G")
-                    {
-                        return new int[2] { i, j };
-                    }
-                }
-            }
-            return null;
-        }
+
         public bool ifDeliveredCheck()
         {
             int genX, genY;
@@ -244,7 +227,6 @@ namespace DGUT_Team_Software_Project_Console
             return false;
 
         }
-
         public bool getGameStatus()
         {
             return gameStatus;
