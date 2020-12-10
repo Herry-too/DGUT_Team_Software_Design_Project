@@ -6,13 +6,13 @@ namespace DGUT_Team_Software_Project_Console
 {
     class GameBoard
     {
-        string player = "red";
-        Piece[,] pieces;
-        bool gameStatus = true;
-        int selectedX = -1;
-        int selectedY = -1;
-        int[] redGeneralPiece;
-        int[] blackGeneralPiece;
+        string player = "red";//current player
+        Piece[,] pieces;//all pieces
+        bool gameStatus = true;//game status now
+        int selectedX = -1;//if selected a pieces, it's row
+        int selectedY = -1;//it's column
+        int[] redGeneralPiece;//red General Piece
+        int[] blackGeneralPiece;//black general piece
 
         public GameBoard()
         {
