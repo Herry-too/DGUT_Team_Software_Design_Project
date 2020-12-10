@@ -23,6 +23,12 @@ namespace DGUT_Team_Software_Project_WPF
         public MainWindow()
         {
             InitializeComponent();
+
+            this.Height = 600;
+            this.Width = 450;
+            Grid mainWindow = new Grid();
+            mainWindow.Background = new ImageBrush(new BitmapImage(new Uri(@"pack://application:,,,/src/img/board.png")));
+            this.Content = mainWindow;
         }
     }
 }
