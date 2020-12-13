@@ -21,7 +21,7 @@
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
                         <Grid>
-                            <Rectangle Name="background" Fill="{StaticResource info_button_light}"/>
+                            <Rectangle Name="background" Fill="{StaticResource info_button}"/>
                             <ContentPresenter Name ="content" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Grid>
                         <ControlTemplate.Triggers>

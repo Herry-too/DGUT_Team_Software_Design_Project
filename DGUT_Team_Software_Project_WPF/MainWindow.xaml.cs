@@ -194,12 +194,50 @@ namespace DGUT_Team_Software_Project_WPF
                         {
                             button.Style = blackStyle;
                         }
+                        button.Click += piece_Click;
+                        button.FontSize = 15;
+                        button.Tag = new int[] {i,j };
+                        Grid.SetRow(button, i);
+                        Grid.SetColumn(button, j);
+                        gameboardGrid.Children.Add(button);
+                    }
+                    else
+                    {
+                        Button button = new Button();
+                        button.Click += piece_Click;
+                        button.Tag = new int[] { i, j };
                         Grid.SetRow(button, i);
                         Grid.SetColumn(button, j);
                         gameboardGrid.Children.Add(button);
                     }
                 }
             }
+            if (program.GetBoard().getSelectedX() == -1)
+            {
+                textInfoLine1.Text = "Please Select...";
+            }
+            else
+            {
+                textInfoLine1.Text = "Please Move...";
+            }
+            if (program.GetBoard().getPlayer() == "red")
+            {
+                textInfoLine0.Foreground = Brushes.Red;
+                textInfoLine0.Text = "Red Player";
+            }
+            else
+            {
+                textInfoLine0.Foreground = Brushes.Black;
+                textInfoLine0.Text = "Black Player";
+            }
+        }
+
+        private void piece_Click(object sender, RoutedEventArgs e)
+        {
+            Button button = (Button)sender;
+            int[] data = (int[])button.Tag;
+            program.pieceClick(data[1], data[0]);
+            update_gameboard();
         }
     }
 }
