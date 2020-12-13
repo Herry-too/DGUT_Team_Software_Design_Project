@@ -10,14 +10,15 @@ namespace DGUT_Team_Software_Project_WPF
         GameBoard board = new GameBoard();
         public Program()
         {
+            //Just a bridge from console to WPF
         }
 
         public GameBoard GetBoard()
         {
-            return board;
+            return board;//Return the board
         }
 
-        string intArrtoStr(int column, int row)
+        string intArrtoStr(int column, int row)//Analog keyboard input
         {
             string returnStr = "";
             char alphabet = (char)(column + 97);
@@ -26,18 +27,18 @@ namespace DGUT_Team_Software_Project_WPF
         }
         public bool pieceClick(int column,int row)
         {
-            if (!board.getGameStatus())
+            if (!board.getGameStatus())//If game over ignore anything
             {
                 return false;
             }
-            //原代码中数字是行row1-9，字母是列a-i
-            if(board.getSelectedX() == -1)
+            //In console, row: 1-9，column: a-i
+            if(board.getSelectedX() == -1)//If not selected, select
             {
                 board.boolSelectPiece(intArrtoStr(column, row));
             }
             else
             {
-                if(board.boolMovePiece(intArrtoStr(column, row)))
+                if(board.boolMovePiece(intArrtoStr(column, row)))//If move success, change the player
                 {
                     board.SwitchPlayer();
                 }

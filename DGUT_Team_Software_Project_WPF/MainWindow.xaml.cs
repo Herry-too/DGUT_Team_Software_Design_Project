@@ -20,11 +20,11 @@ namespace DGUT_Team_Software_Project_WPF
     /// </summary>
     public partial class MainWindow : Window
     {
-        TextBlock textInfoLine0 = new TextBlock();
-        TextBlock textInfoLine1 = new TextBlock();
-        Grid gameboardGrid = new Grid();
-        Grid infoGrid = new Grid();
-        Program program;
+        TextBlock textInfoLine0 = new TextBlock();//Information Line 1
+        TextBlock textInfoLine1 = new TextBlock();//Information Line 2
+        Grid gameboardGrid = new Grid();//gameboard grid(child grid of main grid)
+        Grid infoGrid = new Grid();//infomation Grid, contain two button and two information line
+        Program program;//A bridge (or converter) to console versions of code
 
         public MainWindow()
         {
@@ -37,18 +37,25 @@ namespace DGUT_Team_Software_Project_WPF
 
         void InitGameBoard()
         {
+            //Set the Height and Width of this program
             this.Height = 713;
             this.Width = 533;
-
+            
+            //Set Title and Icon
             this.Title = "Chinese Chess";
             this.Icon = BitmapFrame.Create(new Uri("pack://application:,,,/src/img/icon.ico", UriKind.RelativeOrAbsolute));
 
-            this.ResizeMode = System.Windows.ResizeMode.CanMinimize;        //Prohibit MainWindow changeSize
+            this.ResizeMode = System.Windows.ResizeMode.CanMinimize;        //Prevent users from modifying the window size
 
-            Grid mainWindow = new Grid();//主窗口
-            //下面为设置主窗口的分格
-            ColumnDefinition columnDefinition0 = new ColumnDefinition();
-            columnDefinition0.Width = new GridLength(92, GridUnitType.Star);
+            Grid mainWindow = new Grid();//Create the main Grid
+            /**
+            Set the Column and Row of main Grid
+            According to the UI design scheme, it is divided into three columns and five rows.
+            The width ratio of the three columns is 92:527:92;
+            The height ratio of the 5 rows is 1094:3517:218:650:226.(From top to bottom)
+            **/
+            ColumnDefinition columnDefinition0 = new ColumnDefinition();//Create a Column Definition, the same below
+            columnDefinition0.Width = new GridLength(92, GridUnitType.Star);//Set the width ratio,the same below
 
             ColumnDefinition columnDefinition1 = new ColumnDefinition();
             columnDefinition1.Width = new GridLength(527, GridUnitType.Star);
@@ -56,8 +63,8 @@ namespace DGUT_Team_Software_Project_WPF
             ColumnDefinition columnDefinition2 = new ColumnDefinition();
             columnDefinition2.Width = new GridLength(92, GridUnitType.Star);
 
-            RowDefinition rowDefinition0 = new RowDefinition();
-            rowDefinition0.Height = new GridLength(1094, GridUnitType.Star);
+            RowDefinition rowDefinition0 = new RowDefinition();//Create a Row definition, same below
+            rowDefinition0.Height = new GridLength(1094, GridUnitType.Star);//Set the height ratio, same below
 
             RowDefinition rowDefinition1 = new RowDefinition();
             rowDefinition1.Height = new GridLength(3517, GridUnitType.Star);
@@ -71,7 +78,7 @@ namespace DGUT_Team_Software_Project_WPF
             RowDefinition rowDefinition4 = new RowDefinition();
             rowDefinition4.Height = new GridLength(226, GridUnitType.Star);
 
-            mainWindow.ColumnDefinitions.Add(columnDefinition0);
+            mainWindow.ColumnDefinitions.Add(columnDefinition0);//Add it to the Window Definition, same as below
             mainWindow.ColumnDefinitions.Add(columnDefinition1);
             mainWindow.ColumnDefinitions.Add(columnDefinition2);
 
@@ -80,7 +87,10 @@ namespace DGUT_Team_Software_Project_WPF
             mainWindow.RowDefinitions.Add(rowDefinition2);
             mainWindow.RowDefinitions.Add(rowDefinition3);
             mainWindow.RowDefinitions.Add(rowDefinition4);
-            //下面为设置信息窗口的分格
+
+            //Sst the Column of the information Grid, same as above
+            //there are two buttons are on both sides of the grid, and two lineinfo in the center of the grid.
+            //Column: 1:2:1
             ColumnDefinition infoColumnDef0 = new ColumnDefinition();
             infoColumnDef0.Width = new GridLength(1, GridUnitType.Star);
 
@@ -94,57 +104,62 @@ namespace DGUT_Team_Software_Project_WPF
             infoGrid.ColumnDefinitions.Add(infoColumnDef1);
             infoGrid.ColumnDefinitions.Add(infoColumnDef2);
 
-            for (int i = 0; i < 9; i++)
+            //Set the Column and Row of the gameboard Grid
+            for (int i = 0; i < 9; i++)//Add 9 Rows and 9 Column
             {
                 gameboardGrid.ColumnDefinitions.Add(new ColumnDefinition());
                 gameboardGrid.RowDefinitions.Add(new RowDefinition());
             }
-            gameboardGrid.RowDefinitions.Add(new RowDefinition());//9列10行
+            gameboardGrid.RowDefinitions.Add(new RowDefinition());//We need 10 Row
 
-            //下面为信息grid的中间的文字分格
+            //Use StackPanel to typeset two textInfoLine
             StackPanel infoStackPanel = new StackPanel();
-            infoStackPanel.HorizontalAlignment = HorizontalAlignment.Center;
-            infoStackPanel.VerticalAlignment = VerticalAlignment.Center;
-            Grid.SetColumn(infoStackPanel, 1);
-            infoGrid.Children.Add(infoStackPanel);
+            infoStackPanel.HorizontalAlignment = HorizontalAlignment.Center;//Set it as the center of the Horizontal
+            infoStackPanel.VerticalAlignment = VerticalAlignment.Center;//Set it as the center of the Vertical
+            Grid.SetColumn(infoStackPanel, 1);//Set Column
+            infoGrid.Children.Add(infoStackPanel);//Add it to the infoGrid
 
+            //Set subGrid's column and row
             Grid.SetColumn(gameboardGrid, 1);
             Grid.SetColumn(infoGrid, 1);
 
             Grid.SetRow(gameboardGrid, 1);
             Grid.SetRow(infoGrid, 3);
 
+            //And add them to the mainGrid
             mainWindow.Children.Add(gameboardGrid);
             mainWindow.Children.Add(infoGrid);
 
+            //Set the mainGrid's background to the gameboard picture
             mainWindow.Background = new ImageBrush(new BitmapImage(new Uri(@"pack://application:,,,/src/img/board.png")));
             
-
-            textInfoLine0.Text = "Welcome!";
-            textInfoLine0.FontSize = 20;
-            textInfoLine0.HorizontalAlignment = HorizontalAlignment.Center;
-            infoStackPanel.Children.Add(textInfoLine0);
-
+            //Init the first infoLine
+            textInfoLine0.Text = "Welcome!";//Set the InfoLine's Default Text
+            textInfoLine0.FontSize = 20;//It's FontSize
+            textInfoLine0.HorizontalAlignment = HorizontalAlignment.Center;//Set it as the center of the Horizontal
+            infoStackPanel.Children.Add(textInfoLine0);//Add it to the stackPanel
+            //And the second one, same as above
             textInfoLine1.Text = "Waiting...";
             textInfoLine1.FontSize = 18;
             textInfoLine1.VerticalAlignment = VerticalAlignment.Center;
             textInfoLine1.HorizontalAlignment = HorizontalAlignment.Center;
             textInfoLine1.TextAlignment = TextAlignment.Center;
             infoStackPanel.Children.Add(textInfoLine1);
-            //设置左右两个按钮
-            var infoStyle = FindResource("infoButtonStyle") as Style;
-            Button leftButton = new Button();
-            leftButton.Content = "CLOSE";
-            leftButton.FontSize = 16;
-            leftButton.Style = infoStyle;
-            leftButton.Height = 40;
-            leftButton.Width = 80;
-            leftButton.VerticalAlignment = VerticalAlignment.Center;
-            leftButton.HorizontalAlignment = HorizontalAlignment.Center;
-            leftButton.Click += new RoutedEventHandler(left_button_Click);
-            Grid.SetColumn(leftButton, 0);
 
-            Button rightButton = new Button();
+            //Set two buttons
+            var infoStyle = FindResource("infoButtonStyle") as Style;//Find the pre-written style in xaml
+            Button leftButton = new Button();
+            leftButton.Content = "CLOSE";//Default Text
+            leftButton.FontSize = 16;
+            leftButton.Style = infoStyle;//Set the Style of this button
+            leftButton.Height = 40;//It's Height and width
+            leftButton.Width = 80;
+            leftButton.VerticalAlignment = VerticalAlignment.Center;//In the Center of the space
+            leftButton.HorizontalAlignment = HorizontalAlignment.Center;
+            leftButton.Click += new RoutedEventHandler(left_button_Click);//Add a Event
+            Grid.SetColumn(leftButton, 0);//Set it should be the left of the infoGrid
+
+            Button rightButton = new Button();//Same as above
             rightButton.Content = "START";
             rightButton.FontSize = 16;
 
@@ -159,7 +174,7 @@ namespace DGUT_Team_Software_Project_WPF
             infoGrid.Children.Add(leftButton);
             infoGrid.Children.Add(rightButton);
 
-            this.Content = mainWindow;
+            this.Content = mainWindow;//Set the content to the mainGrid.
             
         }
         void left_button_Click(object sender, EventArgs e)
@@ -168,9 +183,9 @@ namespace DGUT_Team_Software_Project_WPF
             switch (leftButton.Content)
             {
                 case "CLOSE":
-                    this.Close();
+                    this.Close();//Just Close the program.
                     break;
-                case "UNDO":
+                case "UNDO"://Actually I want to write an Undo function previously...
                     break;
             }
         }
@@ -179,78 +194,87 @@ namespace DGUT_Team_Software_Project_WPF
         {
             Button button = (Button)sender;
             button.Content = "RESET";
-            start_game();
-            update_gameboard();
+            start_game();//Init the gameboard
+            update_gameboard();//Update Gameboard(like it's function name), put the pieces to the gameboard
         }
 
         void start_game()
         {
-            program = new Program();
+            program = new Program();//Create the bridge, the bridge will create a Gameboard
         }
 
         void update_gameboard()
         {
+            /**
+            There are 6 styles in this program, Which located in the xaml file
+            1 for the information Button, such as the "START" Button
+            4 for the pieces, each color of the pieces have two styles determines whether they are highlighted when the mouse slides over
+            1 for the Empty Button, when there is no pieces we still need a button to handle the position selection, which is transparent.
+            **/
 
+            //Just mark the styles
             var redStyle = FindResource("RedButton") as Style;
             var blackStyle = FindResource("BlackButton") as Style;
             var EmptyStyle = FindResource("EmptyButton") as Style;
-            if (program.GetBoard().getPlayer() == Piece.Players.red)
+            if (program.GetBoard().getPlayer() == Piece.Players.red)// If now is Red player's turn, Blackbutton should not be highlighted
             {
                 blackStyle = FindResource("BlackButtonNoLight") as Style;
             }
-            else
+            else//And vice versa
             {
                 redStyle = FindResource("RedButtonNoLight") as Style;
             }
-            if (!program.GetBoard().getGameStatus())
+            if (!program.GetBoard().getGameStatus())//If gameover, no pieces could be selected and no highlighted.
             {
                 blackStyle = FindResource("BlackButtonNoLight") as Style;
                 redStyle = FindResource("RedButtonNoLight") as Style;
             }
-            gameboardGrid.Children.Clear();//清空
-            for (int i = 0; i < 10; i++)//Row, 行
+            gameboardGrid.Children.Clear();//Clear all the Old Children, they are old pieces.
+            for (int i = 0; i < 10; i++)//Each Row
             {
-                for (int j = 0; j < 9; j++)//Column,列
+                for (int j = 0; j < 9; j++)//Each Column
                 {
-
+                    //IF:
+                    //Already selected the pieces AND
+                    //(No piece in this position OR this piece is another player) AND
+                    //The selected pieces could move to this place
                     if (program.GetBoard().getSelectedX() != -1 &&
                         (program.GetBoard().getPieces()[i,j] == null || program.GetBoard().getPieces()[i, j].getPlayer() != program.GetBoard().getPlayer())
                         && program.GetBoard().getPieces()[program.GetBoard().getSelectedX(), program.GetBoard().getSelectedY()]
                         .ValidMoves(i, j, program.GetBoard()))
                     {
-                        Rectangle rectangle = new Rectangle();
-                        rectangle.Fill = new ImageBrush(new BitmapImage(new Uri(@"pack://application:,,,/src/img/flag.png")));
+                        Rectangle rectangle = new Rectangle();//Create a Rectangle to Suggest pieces Location.
+                        rectangle.Fill = new ImageBrush(new BitmapImage(new Uri(@"pack://application:,,,/src/img/flag.png")));//Fill it with pic.
                         Grid.SetRow(rectangle, i);
                         Grid.SetColumn(rectangle, j);
-                        gameboardGrid.Children.Add(rectangle);
+                        gameboardGrid.Children.Add(rectangle);//Add it to the right place.
                     }
 
-
-                    if (program.GetBoard().getPieceName(i, j) != "")//有棋子
+                    if (program.GetBoard().getPieceName(i, j) != "")//If there are piece in this position
                     {
                         Button button = new Button();
-                        button.Content = program.GetBoard().getPieceName(i, j);
+                        button.Content = program.GetBoard().getPieceName(i, j);//button's name from the piece
                         if (program.GetBoard().getPiecePlayer(i, j) == Piece.Players.red)
                         {
-                            button.Style = redStyle;
+                            button.Style = redStyle;//Set it to red style
                         }
                         else
                         {
-                            button.Style = blackStyle;
+                            button.Style = blackStyle;//Set it to black style
                         }
-                        button.Click += piece_Click;
-                        button.FontSize = 25;
-                        button.FontFamily = new FontFamily("隶书");
-                        button.Tag = new int[] { i, j };
+                        button.Click += piece_Click;//Add a Event
+                        button.FontSize = 25;//Set font size
+                        button.FontFamily = new FontFamily("隶书");//Set Font Family to LISHU
+                        button.Tag = new int[] { i, j };//Create a int array to store the location and set it to the tag.
                         Grid.SetRow(button, i);
                         Grid.SetColumn(button, j);
                         gameboardGrid.Children.Add(button);
                     }
-                    else
+                    else//If not
                     {
                         Button button = new Button();
                         button.Click += piece_Click;
-                        button.Style = EmptyStyle;
+                        button.Style = EmptyStyle;//Transparent button
                         button.Tag = new int[] { i, j };
                         Grid.SetRow(button, i);
                         Grid.SetColumn(button, j);
@@ -258,15 +282,16 @@ namespace DGUT_Team_Software_Project_WPF
                     }
                 }
             }
-            textInfoLine0.Foreground = Brushes.Black;
 
-            if (!program.GetBoard().getGameStatus())
+            textInfoLine0.Foreground = Brushes.Black;
+            if (!program.GetBoard().getGameStatus())//If game over
             {
                 textInfoLine1.Foreground = Brushes.Red;
                 textInfoLine1.Text = "GAME OVER!";
                 return;
             }
-            if (program.GetBoard().getSelectedX() == -1)
+
+            if (program.GetBoard().getSelectedX() == -1)//If not select
             {
                 textInfoLine1.Foreground = Brushes.Black;
                 textInfoLine1.Text = "Please Select...";
@@ -276,12 +301,12 @@ namespace DGUT_Team_Software_Project_WPF
                 textInfoLine1.Foreground = Brushes.Black;
                 textInfoLine1.Text = "Please Move...";
             }
-            if (program.GetBoard().ifDeliveredCheck())
+            if (program.GetBoard().ifDeliveredCheck())//If delivered a check
             {
                 textInfoLine1.Foreground = Brushes.Red;
                 textInfoLine1.Text += "\nDELIVERED A CHECK!";
             }
-            if (program.GetBoard().getPlayer() == Piece.Players.red)
+            if (program.GetBoard().getPlayer() == Piece.Players.red)//If the player is red
             {
                 textInfoLine0.Foreground = Brushes.Red;
                 textInfoLine0.Text = "Red Player";
@@ -296,8 +321,8 @@ namespace DGUT_Team_Software_Project_WPF
         private void piece_Click(object sender, RoutedEventArgs e)
         {
             Button button = (Button)sender;
-            int[] data = (int[])button.Tag;
-            program.pieceClick(data[1], data[0]);
+            int[] data = (int[])button.Tag;//get column and row
+            program.pieceClick(data[1], data[0]);//Let the bridge to solve this selection
             update_gameboard();
         }
     }
