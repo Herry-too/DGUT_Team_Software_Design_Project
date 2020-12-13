@@ -40,6 +40,9 @@ namespace DGUT_Team_Software_Project_WPF
             this.Height = 713;
             this.Width = 533;
 
+            this.Title = "Chinese Chess";
+            this.Icon = BitmapFrame.Create(new Uri("pack://application:,,,/src/img/icon.ico", UriKind.RelativeOrAbsolute));
+
             this.ResizeMode = System.Windows.ResizeMode.CanMinimize;        //Prohibit MainWindow changeSize
 
             Grid mainWindow = new Grid();//主窗口
@@ -126,6 +129,7 @@ namespace DGUT_Team_Software_Project_WPF
             textInfoLine1.FontSize = 18;
             textInfoLine1.VerticalAlignment = VerticalAlignment.Center;
             textInfoLine1.HorizontalAlignment = HorizontalAlignment.Center;
+            textInfoLine1.TextAlignment = TextAlignment.Center;
             infoStackPanel.Children.Add(textInfoLine1);
             //设置左右两个按钮
             var infoStyle = FindResource("infoButtonStyle") as Style;
@@ -164,7 +168,6 @@ namespace DGUT_Team_Software_Project_WPF
             switch (leftButton.Content)
             {
                 case "CLOSE":
-                    MessageBox.Show("Bye!");
                     this.Close();
                     break;
                 case "UNDO":
@@ -175,7 +178,7 @@ namespace DGUT_Team_Software_Project_WPF
         void right_button_Click(object sender, EventArgs e)
         {
             Button button = (Button)sender;
-            MessageBox.Show("Start Now!");
+            button.Content = "RESET";
             start_game();
             update_gameboard();
         }
@@ -215,11 +218,11 @@ namespace DGUT_Team_Software_Project_WPF
                         && program.GetBoard().getPieces()[program.GetBoard().getSelectedX(), program.GetBoard().getSelectedY()]
                         .ValidMoves(i, j, program.GetBoard()))
                     {
-                        Rectangle ellipse = new Rectangle();
-                        ellipse.Fill = System.Windows.Media.Brushes.DarkBlue;
-                        Grid.SetRow(ellipse, i);
-                        Grid.SetColumn(ellipse, j);
-                        gameboardGrid.Children.Add(ellipse);
+                        Rectangle rectangle = new Rectangle();
+                        rectangle.Fill = new ImageBrush(new BitmapImage(new Uri(@"pack://application:,,,/src/img/flag.png")));
+                        Grid.SetRow(rectangle, i);
+                        Grid.SetColumn(rectangle, j);
+                        gameboardGrid.Children.Add(rectangle);
                     }
 
 
@@ -262,13 +265,14 @@ namespace DGUT_Team_Software_Project_WPF
                 textInfoLine1.Text = "GAME OVER!";
                 return;
             }
-
             if (program.GetBoard().getSelectedX() == -1)
             {
+                textInfoLine1.Foreground = Brushes.Black;
                 textInfoLine1.Text = "Please Select...";
             }
             else
             {
+                textInfoLine1.Foreground = Brushes.Black;
                 textInfoLine1.Text = "Please Move...";
             }
             if (program.GetBoard().ifDeliveredCheck())
