@@ -239,7 +239,8 @@ namespace DGUT_Team_Software_Project_WPF
                             button.Style = blackStyle;
                         }
                         button.Click += piece_Click;
-                        button.FontSize = 15;
+                        button.FontSize = 25;
+                        button.FontFamily = new FontFamily("隶书");
                         button.Tag = new int[] { i, j };
                         Grid.SetRow(button, i);
                         Grid.SetColumn(button, j);
