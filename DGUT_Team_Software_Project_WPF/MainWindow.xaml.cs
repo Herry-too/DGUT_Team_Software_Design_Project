@@ -263,7 +263,7 @@ namespace DGUT_Team_Software_Project_WPF
                             button.Style = blackStyle;//Set it to black style
                         }
                         button.Click += piece_Click;//Add a Event
-                        button.FontSize = 25;//Set font size
+                        button.FontSize = 24;//Set font size
                         button.FontFamily = new FontFamily("隶书");//Set Font Family to LISHU
                         button.Tag = new int[] { i, j };//Create a int array to store the location and set it to the tag.
                         Grid.SetRow(button, i);
