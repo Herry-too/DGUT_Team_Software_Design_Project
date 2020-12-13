@@ -6,10 +6,10 @@ namespace DGUT_Team_Software_Project_WPF
 {
     class CarPiece:Piece
     {
-        public CarPiece(string player, int intX, int intY):base(player, intX, intY)
+        public CarPiece(Players player, int intX, int intY):base(player, intX, intY)
         {
-            if (player == "red") this.Name = "俥";
-            if (player == "black") this.Name = "車";
+            if (player == Players.red) this.Name = "俥";
+            if (player == Players.black) this.Name = "車";
             //Rook - 车
         }
 
