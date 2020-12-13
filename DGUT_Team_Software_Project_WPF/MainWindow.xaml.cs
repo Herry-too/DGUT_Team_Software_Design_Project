@@ -25,6 +25,9 @@ namespace DGUT_Team_Software_Project_WPF
         Grid gameboardGrid = new Grid();//gameboard grid(child grid of main grid)
         Grid infoGrid = new Grid();//infomation Grid, contain two button and two information line
         Program program;//A bridge (or converter) to console versions of code
+        Button leftButton = new Button();
+        Button rightButton = new Button();
+
 
         public MainWindow()
         {
@@ -148,7 +151,6 @@ namespace DGUT_Team_Software_Project_WPF
 
             //Set two buttons
             var infoStyle = FindResource("infoButtonStyle") as Style;//Find the pre-written style in xaml
-            Button leftButton = new Button();
             leftButton.Content = "CLOSE";//Default Text
             leftButton.FontSize = 16;
             leftButton.Style = infoStyle;//Set the Style of this button
@@ -159,7 +161,6 @@ namespace DGUT_Team_Software_Project_WPF
             leftButton.Click += new RoutedEventHandler(left_button_Click);//Add a Event
             Grid.SetColumn(leftButton, 0);//Set it should be the left of the infoGrid
 
-            Button rightButton = new Button();//Same as above
             rightButton.Content = "START";
             rightButton.FontSize = 16;
 
@@ -186,6 +187,9 @@ namespace DGUT_Team_Software_Project_WPF
                     this.Close();//Just Close the program.
                     break;
                 case "UNDO"://Actually I want to write an Undo function previously...
+                    if (!program.undoBoard())
+                        MessageBox.Show("No History Record!");
+                    update_gameboard();
                     break;
             }
         }
@@ -194,6 +198,7 @@ namespace DGUT_Team_Software_Project_WPF
         {
             Button button = (Button)sender;
             button.Content = "RESET";
+            leftButton.Content = "UNDO";
             start_game();//Init the gameboard
             update_gameboard();//Update Gameboard(like it's function name), put the pieces to the gameboard
         }

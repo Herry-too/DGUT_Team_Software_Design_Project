@@ -11,10 +11,10 @@ namespace DGUT_Team_Software_Project_WPF
             red,
             black
         }
-        protected int intX;
-        protected int intY;
-        protected string Name;
-        protected Players player;
+        public int intX { get; set; }
+        public int intY { get; set; }
+        public string Name { get; set; }
+        public Players player { get; set; }
 
         public Piece(Players player, int intX, int intY)
         {
