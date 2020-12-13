@@ -9,7 +9,7 @@
     
     <Window.Resources>
         <ImageBrush x:Key="info_button" ImageSource="src/img/button.png"/>
-        <ImageBrush x:Key="info_button_light" ImageSource="src/img/button.png"/>
+        <ImageBrush x:Key="info_button_light" ImageSource="src/img/button_light.png"/>
         <ImageBrush x:Key="red_piece" ImageSource="src/img/piece_red.png"/>
         <ImageBrush x:Key="red_piece_light" ImageSource="src/img/piece_red_light.png"/>
         <ImageBrush x:Key="black_piece" ImageSource="src/img/piece_black.png"/>

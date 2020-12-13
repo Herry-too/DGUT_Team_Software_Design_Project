@@ -32,7 +32,7 @@ namespace DGUT_Team_Software_Project_WPF
                     return true; //if true the general could eat the opponent general piece directly
                 }//from black to red
 
-                else if (gameboard.getPieces()[x, y].getPieceWords() == "帅" && gameboard.getPieces()[x, y].getPlayer() == "red"
+                else if (gameboard.getPieces()[x, y].getPieceWords() == "帥" && gameboard.getPieces()[x, y].getPlayer() == "red"
                     && x >= 0 && x <= 2 && y == intY)
                 {
                     for (int i = intX - 1; i > x; i--)

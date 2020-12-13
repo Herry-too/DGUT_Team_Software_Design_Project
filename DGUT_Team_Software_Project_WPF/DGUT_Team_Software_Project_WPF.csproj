@@ -9,6 +9,9 @@
   <ItemGroup>
     <None Remove="src\img\board.png" />
     <None Remove="src\img\button.png" />
+    <None Remove="src\img\button_light.png" />
+    <None Remove="src\img\flag.png" />
+    <None Remove="src\img\icon.ico" />
     <None Remove="src\img\null.png" />
     <None Remove="src\img\piece_black.png" />
     <None Remove="src\img\piece_black_light.png" />
@@ -17,13 +20,19 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="src\img\flag.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Resource Include="src\img\board.png" />
     <Resource Include="src\img\button.png" />
+    <Resource Include="src\img\button_light.png" />
     <Resource Include="src\img\null.png" />
     <Resource Include="src\img\piece_black.png" />
     <Resource Include="src\img\piece_black_light.png" />
     <Resource Include="src\img\piece_red.png" />
     <Resource Include="src\img\piece_red_light.png" />
+    <Resource Include="src\img\icon.ico" />
   </ItemGroup>
 
 </Project>
