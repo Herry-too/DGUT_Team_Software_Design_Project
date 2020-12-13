@@ -124,19 +124,31 @@ namespace DGUT_Team_Software_Project_WPF
 
             textInfoLine1.Text = "Waiting...";
             textInfoLine1.FontSize = 18;
+            textInfoLine1.VerticalAlignment = VerticalAlignment.Center;
             textInfoLine1.HorizontalAlignment = HorizontalAlignment.Center;
             infoStackPanel.Children.Add(textInfoLine1);
             //设置左右两个按钮
             var infoStyle = FindResource("infoButtonStyle") as Style;
             Button leftButton = new Button();
             leftButton.Content = "CLOSE";
+            leftButton.FontSize = 16;
             leftButton.Style = infoStyle;
+            leftButton.Height = 40;
+            leftButton.Width = 80;
+            leftButton.VerticalAlignment = VerticalAlignment.Center;
+            leftButton.HorizontalAlignment = HorizontalAlignment.Center;
             leftButton.Click += new RoutedEventHandler(left_button_Click);
             Grid.SetColumn(leftButton, 0);
 
             Button rightButton = new Button();
             rightButton.Content = "START";
+            rightButton.FontSize = 16;
+
             rightButton.Style = infoStyle;
+            rightButton.Height = 40;
+            rightButton.Width = 80;
+            rightButton.VerticalAlignment = VerticalAlignment.Center;
+            rightButton.HorizontalAlignment = HorizontalAlignment.Center;
             rightButton.Click += new RoutedEventHandler(right_button_Click);
             Grid.SetColumn(rightButton, 2);
 
@@ -175,19 +187,47 @@ namespace DGUT_Team_Software_Project_WPF
 
         void update_gameboard()
         {
+
             var redStyle = FindResource("RedButton") as Style;
             var blackStyle = FindResource("BlackButton") as Style;
             var EmptyStyle = FindResource("EmptyButton") as Style;
-            gameboardGrid.Children.Clear();//清空
-            for(int i = 0; i < 10; i++)//Row, 行
+            if (program.GetBoard().getPlayer() == "red")
             {
-                for(int j = 0; j < 9; j++)//Column,列
+                blackStyle = FindResource("BlackButtonNoLight") as Style;
+            }
+            else
+            {
+                redStyle = FindResource("RedButtonNoLight") as Style;
+            }
+            if (!program.GetBoard().getGameStatus())
+            {
+                blackStyle = FindResource("BlackButtonNoLight") as Style;
+                redStyle = FindResource("RedButtonNoLight") as Style;
+            }
+            gameboardGrid.Children.Clear();//清空
+            for (int i = 0; i < 10; i++)//Row, 行
+            {
+                for (int j = 0; j < 9; j++)//Column,列
                 {
-                    if(program.GetBoard().getPieceName(i,j) != "")//有棋子
+
+                    if (program.GetBoard().getSelectedX() != -1 &&
+                        (program.GetBoard().getPieces()[i,j] == null || program.GetBoard().getPieces()[i, j].getPlayer() != program.GetBoard().getPlayer())
+                        && program.GetBoard().getPieces()[program.GetBoard().getSelectedX(), program.GetBoard().getSelectedY()]
+                        .ValidMoves(i, j, program.GetBoard()))
+                    {
+                        Rectangle ellipse = new Rectangle();
+                        ellipse.Fill = System.Windows.Media.Brushes.DarkBlue;
+                        Grid.SetRow(ellipse, i);
+                        Grid.SetColumn(ellipse, j);
+                        gameboardGrid.Children.Add(ellipse);
+                    }
+
+
+                    if (program.GetBoard().getPieceName(i, j) != "")//有棋子
                     {
                         Button button = new Button();
                         button.Content = program.GetBoard().getPieceName(i, j);
-                        if(program.GetBoard().getPiecePlayer(i,j) == "red")
+                        if (program.GetBoard().getPiecePlayer(i, j) == "red")
                         {
                             button.Style = redStyle;
                         }
@@ -197,7 +237,7 @@ namespace DGUT_Team_Software_Project_WPF
                         }
                         button.Click += piece_Click;
                         button.FontSize = 15;
-                        button.Tag = new int[] {i,j };
+                        button.Tag = new int[] { i, j };
                         Grid.SetRow(button, i);
                         Grid.SetColumn(button, j);
                         gameboardGrid.Children.Add(button);
@@ -215,6 +255,14 @@ namespace DGUT_Team_Software_Project_WPF
                 }
             }
             textInfoLine0.Foreground = Brushes.Black;
+
+            if (!program.GetBoard().getGameStatus())
+            {
+                textInfoLine1.Foreground = Brushes.Red;
+                textInfoLine1.Text = "GAME OVER!";
+                return;
+            }
+
             if (program.GetBoard().getSelectedX() == -1)
             {
                 textInfoLine1.Text = "Please Select...";

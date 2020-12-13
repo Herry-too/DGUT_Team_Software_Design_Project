@@ -8,8 +8,8 @@
         Title="MainWindow" Height="450" Width="800">
     
     <Window.Resources>
-        <ImageBrush x:Key="info_button" ImageSource="src/img/wood.jpg"/>
-        <ImageBrush x:Key="info_button_light" ImageSource="src/img/wood.jpg"/>
+        <ImageBrush x:Key="info_button" ImageSource="src/img/button.png"/>
+        <ImageBrush x:Key="info_button_light" ImageSource="src/img/button.png"/>
         <ImageBrush x:Key="red_piece" ImageSource="src/img/piece_red.png"/>
         <ImageBrush x:Key="red_piece_light" ImageSource="src/img/piece_red_light.png"/>
         <ImageBrush x:Key="black_piece" ImageSource="src/img/piece_black.png"/>
@@ -27,7 +27,7 @@
                         </Grid>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsEnabled" Value="True">
-                                <Setter TargetName="content" Property="TextElement.Foreground" Value="White"/>
+                                <Setter TargetName="content" Property="TextElement.Foreground" Value="#FF7D391D"/>
                             </Trigger>
                             <Trigger Property="IsMouseOver" Value="True">
                                 <Setter TargetName="background" Property="Fill" Value="{StaticResource info_button_light}"/>
@@ -62,6 +62,27 @@
             </Setter>
         </Style>
 
+        <Style TargetType="Button" x:Key="RedButtonNoLight">
+            <Setter Property="OverridesDefaultStyle" Value="False"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Grid>
+                            <Rectangle Name="background" Fill="{StaticResource red_piece}"/>
+                            <ContentPresenter Name ="content" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsEnabled" Value="True">
+                                <Setter TargetName="content" Property="TextElement.Foreground" Value="Red"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        
         <Style TargetType="Button" x:Key="BlackButton">
             <Setter Property="OverridesDefaultStyle" Value="False"/>
             <Setter Property="Template">
@@ -77,6 +98,26 @@
                             </Trigger>
                             <Trigger Property="IsMouseOver" Value="True">
                                 <Setter TargetName="background" Property="Fill" Value="{StaticResource black_piece_light}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style TargetType="Button" x:Key="BlackButtonNoLight">
+            <Setter Property="OverridesDefaultStyle" Value="False"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Grid>
+                            <Rectangle Name="background" Fill="{StaticResource black_piece}"/>
+                            <ContentPresenter Name ="content" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsEnabled" Value="True">
+                                <Setter TargetName="content" Property="TextElement.Foreground" Value="Black"/>
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>

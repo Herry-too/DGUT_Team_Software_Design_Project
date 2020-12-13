@@ -145,7 +145,7 @@ namespace DGUT_Team_Software_Project_WPF
             }
             if (calculateValidMoves(posX, posY))//check if it could move
             {
-                if(pieces[posX, posY] != null && pieces[posX,posY].getPieceWords() == "G")
+                if(pieces[posX, posY] != null && (pieces[posX,posY].getPieceWords() == "將"|| pieces[posX, posY].getPieceWords() == "帅"))
                 {
                     gameStatus = false;
                 }
@@ -153,7 +153,7 @@ namespace DGUT_Team_Software_Project_WPF
                 pieces[posX, posY].setCurrentPosition(posX, posY);
                 pieces[selectedX, selectedY] = null;//remove old pieces
                 selectedX = selectedY = -1;// remove selected record.
-                if (pieces[posX, posY].getPieceWords() == "G")
+                if ((pieces[posX, posY].getPieceWords() == "將" || pieces[posX, posY].getPieceWords() == "帅"))
                 {
                     switch (player)
                     {
@@ -172,7 +172,7 @@ namespace DGUT_Team_Software_Project_WPF
             return false;
         }
 
-        bool calculateValidMoves(int posX, int posY)
+        public bool calculateValidMoves(int posX, int posY)
         {
             if (posX < 0 || posX > 9)
             {
