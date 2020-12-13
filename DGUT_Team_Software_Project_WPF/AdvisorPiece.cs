@@ -6,10 +6,10 @@ namespace DGUT_Team_Software_Project_WPF
 {
     class AdvisorPiece : Piece
     {
-        public AdvisorPiece(string player, int intX, int intY) : base(player, intX, intY)
+        public AdvisorPiece(Players player, int intX, int intY) : base(player, intX, intY)
         {
-            if (player == "red") this.Name = "士";
-            if (player == "black") this.Name = "仕";
+            if (player == Players.red) this.Name = "士";
+            if (player == Players.black) this.Name = "仕";
             //Advisor - 士
         }
 
@@ -19,7 +19,7 @@ namespace DGUT_Team_Software_Project_WPF
             int temp_x;
 
             //Determining whether the current player is red or black
-            if (player == "red") temp_x = 0;
+            if (player == Players.red) temp_x = 0;
             else temp_x = 7;
             
             //Determine if the end point is in the palace
