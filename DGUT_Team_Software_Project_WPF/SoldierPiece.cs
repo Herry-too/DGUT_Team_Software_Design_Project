@@ -6,10 +6,10 @@ namespace DGUT_Team_Software_Project_WPF
 {
     class SoldierPiece : Piece
     {
-        public SoldierPiece(string player, int intX, int intY) : base(player, intX, intY)
+        public SoldierPiece(Players player, int intX, int intY) : base(player, intX, intY)
         {
-            if (player == "red") this.Name = "兵";
-            if (player == "black") this.Name = "卒";
+            if (player == Players.red) this.Name = "兵";
+            if (player == Players.black) this.Name = "卒";
             //Soldier - 兵
         }
 
@@ -20,7 +20,7 @@ namespace DGUT_Team_Software_Project_WPF
 
             // red is above, black is below
             // red side
-            if (player == "red")
+            if (player == Players.red)
             {
                 //it hasn't passed the river 
                 if (CurrentX <= 4)
