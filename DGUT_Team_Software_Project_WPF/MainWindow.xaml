@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:DGUT_Team_Software_Project_WPF"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    
+
     <Window.Resources>
         <ImageBrush x:Key="info_button" ImageSource="src/img/button.png"/>
         <ImageBrush x:Key="info_button_light" ImageSource="src/img/button_light.png"/>
@@ -21,15 +21,18 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
+                        <!--Set the default Type-->
                         <Grid>
                             <Rectangle Name="background" Fill="{StaticResource info_button}"/>
                             <ContentPresenter Name ="content" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Grid>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsEnabled" Value="True">
+                                <!--Set the default Type again (Seems that Foreground only could be set like this)-->
                                 <Setter TargetName="content" Property="TextElement.Foreground" Value="#FF7D391D"/>
                             </Trigger>
                             <Trigger Property="IsMouseOver" Value="True">
+                                <!--Set the mouseover Type-->
                                 <Setter TargetName="background" Property="Fill" Value="{StaticResource info_button_light}"/>
                             </Trigger>
                         </ControlTemplate.Triggers>
