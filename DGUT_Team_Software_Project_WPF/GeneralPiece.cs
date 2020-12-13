@@ -8,7 +8,8 @@ namespace DGUT_Team_Software_Project_WPF
     {
         public GeneralPiece(string player, int intX, int intY) : base(player, intX, intY)
         {
-            this.Name = "G";
+            if(player == "red") this.Name = "帥";
+            if(player == "black") this.Name = "將";
             //General - 將
         }
 
@@ -20,7 +21,7 @@ namespace DGUT_Team_Software_Project_WPF
             //judge the relative position between red and black
             if (gameboard.getPieces()[x, y] != null)
             {   //from red to black
-                if (gameboard.getPieces()[x, y].getPieceWords() == "G" && gameboard.getPieces()[x, y].getPlayer() == "black"
+                if (gameboard.getPieces()[x, y].getPieceWords() == "將" && gameboard.getPieces()[x, y].getPlayer() == "black"
                     && x >= 7 && x <= 9 && y == intY)
                 {
                     for (int i = intX + 1; i < x; i++)
@@ -31,7 +32,7 @@ namespace DGUT_Team_Software_Project_WPF
                     return true; //if true the general could eat the opponent general piece directly
                 }//from black to red
 
-                else if (gameboard.getPieces()[x, y].getPieceWords() == "G" && gameboard.getPieces()[x, y].getPlayer() == "red"
+                else if (gameboard.getPieces()[x, y].getPieceWords() == "帅" && gameboard.getPieces()[x, y].getPlayer() == "red"
                     && x >= 0 && x <= 2 && y == intY)
                 {
                     for (int i = intX - 1; i > x; i--)

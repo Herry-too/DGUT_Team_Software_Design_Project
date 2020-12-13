@@ -8,7 +8,8 @@ namespace DGUT_Team_Software_Project_WPF
     {
         public ElephantPiece(string player, int intX, int intY): base (player,intX,intY)
         {
-            this.Name = "E";
+            if (player == "red") this.Name = "相";
+            if (player == "black") this.Name = "象";
             //Elephant - 象
         }
 

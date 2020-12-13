@@ -8,7 +8,8 @@ namespace DGUT_Team_Software_Project_WPF
     {
         public AdvisorPiece(string player, int intX, int intY) : base(player, intX, intY)
         {
-            this.Name = "A";
+            if (player == "red") this.Name = "士";
+            if (player == "black") this.Name = "仕";
             //Advisor - 士
         }
 

@@ -8,7 +8,8 @@ namespace DGUT_Team_Software_Project_WPF
     {
         public CarPiece(string player, int intX, int intY):base(player, intX, intY)
         {
-            this.Name = "R";
+            if (player == "red") this.Name = "俥";
+            if (player == "black") this.Name = "車";
             //Rook - 车
         }
 
