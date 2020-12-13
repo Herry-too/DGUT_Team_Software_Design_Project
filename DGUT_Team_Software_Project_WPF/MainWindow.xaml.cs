@@ -123,7 +123,7 @@ namespace DGUT_Team_Software_Project_WPF
             infoStackPanel.Children.Add(textInfoLine0);
 
             textInfoLine1.Text = "Waiting...";
-            textInfoLine1.FontSize = 20;
+            textInfoLine1.FontSize = 18;
             textInfoLine1.HorizontalAlignment = HorizontalAlignment.Center;
             infoStackPanel.Children.Add(textInfoLine1);
             //设置左右两个按钮
@@ -177,6 +177,7 @@ namespace DGUT_Team_Software_Project_WPF
         {
             var redStyle = FindResource("RedButton") as Style;
             var blackStyle = FindResource("BlackButton") as Style;
+            var EmptyStyle = FindResource("EmptyButton") as Style;
             gameboardGrid.Children.Clear();//清空
             for(int i = 0; i < 10; i++)//Row, 行
             {
@@ -205,6 +206,7 @@ namespace DGUT_Team_Software_Project_WPF
                     {
                         Button button = new Button();
                         button.Click += piece_Click;
+                        button.Style = EmptyStyle;
                         button.Tag = new int[] { i, j };
                         Grid.SetRow(button, i);
                         Grid.SetColumn(button, j);
@@ -212,6 +214,7 @@ namespace DGUT_Team_Software_Project_WPF
                     }
                 }
             }
+            textInfoLine0.Foreground = Brushes.Black;
             if (program.GetBoard().getSelectedX() == -1)
             {
                 textInfoLine1.Text = "Please Select...";
@@ -219,6 +222,11 @@ namespace DGUT_Team_Software_Project_WPF
             else
             {
                 textInfoLine1.Text = "Please Move...";
+            }
+            if (program.GetBoard().ifDeliveredCheck())
+            {
+                textInfoLine1.Foreground = Brushes.Red;
+                textInfoLine1.Text += "\nDELIVERED A CHECK!";
             }
             if (program.GetBoard().getPlayer() == "red")
             {
