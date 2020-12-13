@@ -7,8 +7,9 @@ namespace DGUT_Team_Software_Project_WPF
     class CannonPiece:Piece
     {
         public CannonPiece(string player, int intX, int intY) : base(player, intX, intY)
-        {
-            this.Name = "C";
+        {          
+            if (player == "red") this.Name = "炮";
+            if (player == "black") this.Name = "砲";
             //Cannon - 炮
         }
         public override bool ValidMoves(int x, int y, GameBoard gameboard)

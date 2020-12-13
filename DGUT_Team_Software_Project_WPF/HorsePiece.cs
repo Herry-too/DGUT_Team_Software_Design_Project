@@ -8,7 +8,8 @@ namespace DGUT_Team_Software_Project_WPF
     {
         public HorsePiece(string player, int CurrentX, int CurrentY) : base(player, CurrentX, CurrentY)
         {
-            this.Name = "H";
+            if (player == "red") this.Name = "傌";
+            if (player == "black") this.Name = "馬";
             //Horse - 马
         }
         public override bool ValidMoves(int x, int y, GameBoard gameboard)

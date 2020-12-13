@@ -8,7 +8,8 @@ namespace DGUT_Team_Software_Project_WPF
     {
         public SoldierPiece(string player, int intX, int intY) : base(player, intX, intY)
         {
-            this.Name = "S";
+            if (player == "red") this.Name = "兵";
+            if (player == "black") this.Name = "卒";
             //Soldier - 兵
         }
 
