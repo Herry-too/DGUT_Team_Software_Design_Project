@@ -6,7 +6,7 @@ namespace DGUT_Team_Software_Project_WPF
 {
     class GameBoard
     {
-        string player = "red";//current player
+        Piece.Players player = Piece.Players.red;//current player
         Piece[,] pieces;//all pieces
         bool gameStatus = true;//game status now
         int selectedX = -1;//if selected a pieces, it's row
@@ -18,39 +18,39 @@ namespace DGUT_Team_Software_Project_WPF
         {
             pieces = new Piece[10, 9];                      //Create a new gameboard, include 10*9 places to hold piece
             //Set Red Player default pieces
-            pieces[0, 0] = new CarPiece("red", 0, 0);
-            pieces[0, 1] = new HorsePiece("red", 0, 1);
-            pieces[0, 2] = new ElephantPiece("red", 0, 2);
-            pieces[0, 3] = new AdvisorPiece("red", 0, 3);
-            pieces[0, 4] = new GeneralPiece("red", 0, 4);
-            pieces[0, 5] = new AdvisorPiece("red", 0, 5);
-            pieces[0, 6] = new ElephantPiece("red", 0, 6);
-            pieces[0, 7] = new HorsePiece("red", 0, 7);
-            pieces[0, 8] = new CarPiece("red", 0, 8);
-            pieces[2, 1] = new CannonPiece("red", 2, 1);
-            pieces[2, 7] = new CannonPiece("red", 2, 7);
-            pieces[3, 0] = new SoldierPiece("red", 3, 0);
-            pieces[3, 2] = new SoldierPiece("red", 3, 2);
-            pieces[3, 4] = new SoldierPiece("red", 3, 4);
-            pieces[3, 6] = new SoldierPiece("red", 3, 6);
-            pieces[3, 8] = new SoldierPiece("red", 3, 8);
+            pieces[0, 0] = new CarPiece(Piece.Players.red, 0, 0);
+            pieces[0, 1] = new HorsePiece(Piece.Players.red, 0, 1);
+            pieces[0, 2] = new ElephantPiece(Piece.Players.red, 0, 2);
+            pieces[0, 3] = new AdvisorPiece(Piece.Players.red, 0, 3);
+            pieces[0, 4] = new GeneralPiece(Piece.Players.red, 0, 4);
+            pieces[0, 5] = new AdvisorPiece(Piece.Players.red, 0, 5);
+            pieces[0, 6] = new ElephantPiece(Piece.Players.red, 0, 6);
+            pieces[0, 7] = new HorsePiece(Piece.Players.red, 0, 7);
+            pieces[0, 8] = new CarPiece(Piece.Players.red, 0, 8);
+            pieces[2, 1] = new CannonPiece(Piece.Players.red, 2, 1);
+            pieces[2, 7] = new CannonPiece(Piece.Players.red, 2, 7);
+            pieces[3, 0] = new SoldierPiece(Piece.Players.red, 3, 0);
+            pieces[3, 2] = new SoldierPiece(Piece.Players.red, 3, 2);
+            pieces[3, 4] = new SoldierPiece(Piece.Players.red, 3, 4);
+            pieces[3, 6] = new SoldierPiece(Piece.Players.red, 3, 6);
+            pieces[3, 8] = new SoldierPiece(Piece.Players.red, 3, 8);
             //Same as Black Player
-            pieces[9, 0] = new CarPiece("black", 9, 0);
-            pieces[9, 1] = new HorsePiece("black", 9, 1);
-            pieces[9, 2] = new ElephantPiece("black", 9, 2);
-            pieces[9, 3] = new AdvisorPiece("black", 9, 3);
-            pieces[9, 4] = new GeneralPiece("black", 9, 4);
-            pieces[9, 5] = new AdvisorPiece("black", 9, 5);
-            pieces[9, 6] = new ElephantPiece("black", 9, 6);
-            pieces[9, 7] = new HorsePiece("black", 9, 7);
-            pieces[9, 8] = new CarPiece("black", 9, 8);
-            pieces[7, 1] = new CannonPiece("black", 7, 1);
-            pieces[7, 7] = new CannonPiece("black", 7, 7);
-            pieces[6, 0] = new SoldierPiece("black", 6, 0);
-            pieces[6, 2] = new SoldierPiece("black", 6, 2);
-            pieces[6, 4] = new SoldierPiece("black", 6, 4);
-            pieces[6, 6] = new SoldierPiece("black", 6, 6);
-            pieces[6, 8] = new SoldierPiece("black", 6, 8);
+            pieces[9, 0] = new CarPiece(Piece.Players.black, 9, 0);
+            pieces[9, 1] = new HorsePiece(Piece.Players.black, 9, 1);
+            pieces[9, 2] = new ElephantPiece(Piece.Players.black, 9, 2);
+            pieces[9, 3] = new AdvisorPiece(Piece.Players.black, 9, 3);
+            pieces[9, 4] = new GeneralPiece(Piece.Players.black, 9, 4);
+            pieces[9, 5] = new AdvisorPiece(Piece.Players.black, 9, 5);
+            pieces[9, 6] = new ElephantPiece(Piece.Players.black, 9, 6);
+            pieces[9, 7] = new HorsePiece(Piece.Players.black, 9, 7);
+            pieces[9, 8] = new CarPiece(Piece.Players.black, 9, 8);
+            pieces[7, 1] = new CannonPiece(Piece.Players.black, 7, 1);
+            pieces[7, 7] = new CannonPiece(Piece.Players.black, 7, 7);
+            pieces[6, 0] = new SoldierPiece(Piece.Players.black, 6, 0);
+            pieces[6, 2] = new SoldierPiece(Piece.Players.black, 6, 2);
+            pieces[6, 4] = new SoldierPiece(Piece.Players.black, 6, 4);
+            pieces[6, 6] = new SoldierPiece(Piece.Players.black, 6, 6);
+            pieces[6, 8] = new SoldierPiece(Piece.Players.black, 6, 8);
 
             redGeneralPiece = new int[2]{ 0,4};
             blackGeneralPiece = new int[2]{ 9,4};
@@ -61,7 +61,7 @@ namespace DGUT_Team_Software_Project_WPF
             return pieces;  //return all pieces,string.
         }
 
-        public string getPlayer()
+        public Piece.Players getPlayer()
         {
             return player;  //return current player, string.
         }
@@ -77,20 +77,20 @@ namespace DGUT_Team_Software_Project_WPF
             }
         }
 
-        public string getPiecePlayer(int x,int y)
+        public Piece.Players getPiecePlayer(int x,int y)
         {
             return pieces[x, y].getPlayer();    //get a piece's player
         }
 
         public void SwitchPlayer()  //Switch player
         {
-            if(player == "red")
+            if(player == Piece.Players.red)
             {
-                player = "black";
+                player = Piece.Players.black;
             }
             else
             {
-                player = "red";
+                player = Piece.Players.red;
             }
         }
 
@@ -119,7 +119,7 @@ namespace DGUT_Team_Software_Project_WPF
             {
                 return false;//if there is no pieces at this place,could not select nothing,return false
             }
-            if (pieces[posX, posY].getPlayer() == player)//make sure only cureent player could select own pieces
+            if (pieces[posX, posY].getPlayer() == player)//make sure only current player could select own pieces
             {
                 selectedX = posX;
                 selectedY = posY;
@@ -157,11 +157,11 @@ namespace DGUT_Team_Software_Project_WPF
                 {
                     switch (player)
                     {
-                        case "red":
+                        case Piece.Players.red:
                             redGeneralPiece[0] = posX;
                             redGeneralPiece[1] = posY;
                             break;
-                        case "black":
+                        case Piece.Players.black:
                             blackGeneralPiece[0] = posX;
                             blackGeneralPiece[1] = posY;
                             break;
@@ -203,7 +203,7 @@ namespace DGUT_Team_Software_Project_WPF
         public bool ifDeliveredCheck()
         {
             int genX, genY;
-            if(player == "red")
+            if(player == Piece.Players.red)
             {
                 genX = redGeneralPiece[0];
                 genY = redGeneralPiece[1];
