@@ -6,7 +6,85 @@
         xmlns:local="clr-namespace:DGUT_Team_Software_Project_WPF"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
+    
+    <Window.Resources>
+        <ImageBrush x:Key="info_button" ImageSource="src/img/wood.jpg"/>
+        <ImageBrush x:Key="info_button_light" ImageSource="src/img/wood.jpg"/>
+        <ImageBrush x:Key="red_piece" ImageSource="src/img/piece_red.png"/>
+        <ImageBrush x:Key="red_piece_light" ImageSource="src/img/piece_red.png"/>
+        <ImageBrush x:Key="black_piece" ImageSource="src/img/piece_black.png"/>
+        <ImageBrush x:Key="black_piece_light" ImageSource="src/img/piece_black.png"/>
+        
+        <Style TargetType="Button" x:Key="infoButtonStyle">
+            <Setter Property="OverridesDefaultStyle" Value="False"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Grid>
+                            <Rectangle Name="background" Fill="{StaticResource info_button_light}"/>
+                            <ContentPresenter Name ="content" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsEnabled" Value="True">
+                                <Setter TargetName="content" Property="TextElement.Foreground" Value="White"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="background" Property="Fill" Value="{StaticResource info_button_light}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
 
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style TargetType="Button" x:Key="RedButton">
+            <Setter Property="OverridesDefaultStyle" Value="False"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Grid>
+                            <Rectangle Name="background" Fill="{StaticResource red_piece}"/>
+                            <ContentPresenter Name ="content" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsEnabled" Value="True">
+                                <Setter TargetName="content" Property="TextElement.Foreground" Value="Red"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="background" Property="Fill" Value="{StaticResource red_piece_light}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style TargetType="Button" x:Key="BlackButton">
+            <Setter Property="OverridesDefaultStyle" Value="False"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Grid>
+                            <Rectangle Name="background" Fill="{StaticResource black_piece}"/>
+                            <ContentPresenter Name ="content" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsEnabled" Value="True">
+                                <Setter TargetName="content" Property="TextElement.Foreground" Value="Black"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="background" Property="Fill" Value="{StaticResource black_piece_light}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+    
+    <Grid>
     </Grid>
 </Window>
