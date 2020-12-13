@@ -194,7 +194,7 @@ namespace DGUT_Team_Software_Project_WPF
             var redStyle = FindResource("RedButton") as Style;
             var blackStyle = FindResource("BlackButton") as Style;
             var EmptyStyle = FindResource("EmptyButton") as Style;
-            if (program.GetBoard().getPlayer() == "red")
+            if (program.GetBoard().getPlayer() == Piece.Players.red)
             {
                 blackStyle = FindResource("BlackButtonNoLight") as Style;
             }
@@ -230,7 +230,7 @@ namespace DGUT_Team_Software_Project_WPF
                     {
                         Button button = new Button();
                         button.Content = program.GetBoard().getPieceName(i, j);
-                        if (program.GetBoard().getPiecePlayer(i, j) == "red")
+                        if (program.GetBoard().getPiecePlayer(i, j) == Piece.Players.red)
                         {
                             button.Style = redStyle;
                         }
@@ -280,7 +280,7 @@ namespace DGUT_Team_Software_Project_WPF
                 textInfoLine1.Foreground = Brushes.Red;
                 textInfoLine1.Text += "\nDELIVERED A CHECK!";
             }
-            if (program.GetBoard().getPlayer() == "red")
+            if (program.GetBoard().getPlayer() == Piece.Players.red)
             {
                 textInfoLine0.Foreground = Brushes.Red;
                 textInfoLine0.Text = "Red Player";

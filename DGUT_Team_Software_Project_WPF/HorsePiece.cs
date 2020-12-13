@@ -6,10 +6,10 @@ namespace DGUT_Team_Software_Project_WPF
 {
     class HorsePiece:Piece
     {
-        public HorsePiece(string player, int CurrentX, int CurrentY) : base(player, CurrentX, CurrentY)
+        public HorsePiece(Players player, int CurrentX, int CurrentY) : base(player, CurrentX, CurrentY)
         {
-            if (player == "red") this.Name = "傌";
-            if (player == "black") this.Name = "馬";
+            if (player == Players.red) this.Name = "傌";
+            if (player == Players.black) this.Name = "馬";
             //Horse - 马
         }
         public override bool ValidMoves(int x, int y, GameBoard gameboard)
