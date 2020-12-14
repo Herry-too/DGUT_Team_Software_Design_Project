@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
 using System.Windows;
 
@@ -8,11 +10,31 @@ namespace DGUT_Team_Software_Project_WPF
     class Program
     {
         GameBoard board = new GameBoard();
+        List<string> boardHistory = new List<string>();
         public Program()
         {
+            boardHistory.Add(board.toJson());
             //Just a bridge from console to WPF
         }
 
+        public bool undoBoard()
+        {
+            if (boardHistory.Count < 2)
+            {
+                return false;
+            }
+            setBoard(boardHistory[boardHistory.Count - 2]);
+            boardHistory.RemoveAt(boardHistory.Count - 1);
+            return true;
+        }
+
+        public void setBoard(string str)
+        {
+            board = JsonConvert.DeserializeObject<GameBoard>(str, new JsonSerializerSettings
+            {
+               TypeNameHandling = TypeNameHandling.Auto
+            });
+        }
         public GameBoard GetBoard()
         {
             return board;//Return the board
@@ -27,6 +49,8 @@ namespace DGUT_Team_Software_Project_WPF
         }
         public bool pieceClick(int column,int row)
         {
+
+            //MessageBox.Show(board.toJson());
             if (!board.getGameStatus())//If game over ignore anything
             {
                 return false;
@@ -41,6 +65,8 @@ namespace DGUT_Team_Software_Project_WPF
                 if(board.boolMovePiece(intArrtoStr(column, row)))//If move success, change the player
                 {
                     board.SwitchPlayer();
+                    boardHistory.Add(board.toJson());
+
                 }
             }
             return true;

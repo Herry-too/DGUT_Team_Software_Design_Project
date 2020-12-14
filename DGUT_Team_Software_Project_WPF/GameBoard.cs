@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -6,13 +7,13 @@ namespace DGUT_Team_Software_Project_WPF
 {
     class GameBoard
     {
-        Piece.Players player = Piece.Players.red;//current player
-        Piece[,] pieces;//all pieces
-        bool gameStatus = true;//game status now
-        int selectedX = -1;//if selected a pieces, it's row
-        int selectedY = -1;//it's column
-        int[] redGeneralPiece;//red General Piece
-        int[] blackGeneralPiece;//black general piece
+        public Piece.Players player { get; set; } = Piece.Players.red;//current player
+        public Piece[,] pieces { get; set; }//all pieces
+        public bool gameStatus { get; set; } = true;//game status now
+        public int selectedX { get; set; } = -1;//if selected a pieces, it's row
+        public int selectedY { get; set; } = -1;//it's column
+        public int[] redGeneralPiece { get; set; }//red General Piece
+        public int[] blackGeneralPiece { get; set; }//black general piece
 
         public GameBoard()
         {
@@ -54,6 +55,14 @@ namespace DGUT_Team_Software_Project_WPF
 
             redGeneralPiece = new int[2]{ 0,4};
             blackGeneralPiece = new int[2]{ 9,4};
+        }
+        public string toJson()
+        {
+            var toJson = JsonConvert.SerializeObject(this, Newtonsoft.Json.Formatting.Indented, new JsonSerializerSettings
+            {
+                TypeNameHandling = TypeNameHandling.Auto
+            });
+            return toJson;
         }
 
         public Piece[,] getPieces()
