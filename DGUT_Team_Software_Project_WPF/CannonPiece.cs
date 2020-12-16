@@ -6,12 +6,23 @@ namespace DGUT_Team_Software_Project_WPF
 {
     class CannonPiece:Piece
     {
+        
         public CannonPiece(Players player, int intX, int intY) : base(player, intX, intY)
         {          
-            if (player == Players.red) this.Name = "炮";
-            if (player == Players.black) this.Name = "砲";
+            if (player == Players.red)
+            {
+                this.Name = "炮";
+                this.Words = "C";
+            }
+            if (player == Players.black)
+            {
+                this.Name = "砲";
+                this.Words = "c";
+            }
             //Cannon - 炮
         }
+        
+
         public override bool ValidMoves(int x, int y, GameBoard gameboard)
         {
             int CurrentX = this.getCurrentPosition().Item1;
