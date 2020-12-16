@@ -180,7 +180,43 @@ namespace DGUT_Team_Software_Project_WPF
             }
             return false;
         }
-
+        public bool boolMovePiece(int posX, int posY)
+        {
+            if (posX == selectedX && posY == selectedY) //cancel the select
+            {
+                SwitchPlayer();
+                selectedX = -1;
+                selectedY = -1;
+                return true;
+            }
+            if (calculateValidMoves(posX, posY))//check if it could move
+            {
+                if (pieces[posX, posY] != null && (pieces[posX, posY].getPieceWords() == "將" || pieces[posX, posY].getPieceWords() == "帥"))
+                {
+                    gameStatus = false;
+                }
+                pieces[posX, posY] = pieces[selectedX, selectedY];//coverage the pieces
+                pieces[posX, posY].setCurrentPosition(posX, posY);
+                pieces[selectedX, selectedY] = null;//remove old pieces
+                selectedX = selectedY = -1;// remove selected record.
+                if ((pieces[posX, posY].getPieceWords() == "將" || pieces[posX, posY].getPieceWords() == "帥"))
+                {
+                    switch (player)
+                    {
+                        case Piece.Players.red:
+                            redGeneralPiece[0] = posX;
+                            redGeneralPiece[1] = posY;
+                            break;
+                        case Piece.Players.black:
+                            blackGeneralPiece[0] = posX;
+                            blackGeneralPiece[1] = posY;
+                            break;
+                    }
+                }
+                return true;
+            }
+            return false;
+        }
         public bool calculateValidMoves(int posX, int posY)
         {
             if (posX < 0 || posX > 9)
@@ -199,6 +235,7 @@ namespace DGUT_Team_Software_Project_WPF
                 return false;//dont eat own pieces
             return pieces[selectedX, selectedY].ValidMoves(posX, posY, this);//let pieces check it's rule
         }
+
 
         public int getSelectedX()
         {
