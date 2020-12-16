@@ -202,7 +202,7 @@ namespace DGUT_Team_Software_Project_WPF
             }
         }
 
-        private void NetworkTimerClicked(object sender, System.Timers.ElapsedEventArgs e)
+        private void NetworkTimerTask(object sender, System.Timers.ElapsedEventArgs e)
         {
             networkTimer.Stop();
             if (networkProgram.getPlayer() != networkProgram.GetBoard().getPlayer() && boardlocker == Lock.unlock)
@@ -238,7 +238,7 @@ namespace DGUT_Team_Software_Project_WPF
                     networkProgram = new NetworkProgram();
                     rightButton.Visibility = Visibility.Hidden;
                     leftButton.Visibility = Visibility.Hidden;
-                    networkTimer.Elapsed += NetworkTimerClicked;
+                    networkTimer.Elapsed += NetworkTimerTask;
                     networkTimer.Enabled = true;
                     networkTimer.AutoReset = true;
                     networkTimer.Start();
@@ -248,7 +248,7 @@ namespace DGUT_Team_Software_Project_WPF
             gamemodeChoose.Close();
         }
 
-        void update_gameboard()
+        void update_gameboard()//Normal gameboard
         {
             if(boardlocker == Lock.locked)
             {
@@ -369,7 +369,7 @@ namespace DGUT_Team_Software_Project_WPF
             boardlocker = Lock.unlock;
         }
 
-        private void piece_Click(object sender, RoutedEventArgs e)
+        private void piece_Click(object sender, RoutedEventArgs e)//Normal Gamemode Piece Clicked function
         {
             Button button = (Button)sender;
             int[] data = (int[])button.Tag;//get column and row
@@ -377,7 +377,7 @@ namespace DGUT_Team_Software_Project_WPF
             update_gameboard();
         }
 
-        private void piece_Network_Click(object sender, RoutedEventArgs e)
+        private void piece_Network_Click(object sender, RoutedEventArgs e)//When Network Gamemode, piece clicked function
         {
             if(boardlocker == Lock.locked)
             {
@@ -391,7 +391,7 @@ namespace DGUT_Team_Software_Project_WPF
             boardlocker = Lock.unlock;
             update_network_gameboard();
         }
-        void update_network_gameboard()
+        void update_network_gameboard()//Similar to udpate_gameboard but optimized network access (such as adding locks to prevent information conflicts)
         {
             if (boardlocker == Lock.locked)
             {
@@ -402,7 +402,7 @@ namespace DGUT_Team_Software_Project_WPF
             var redStyle = FindResource("RedButtonNoLight") as Style;
             var blackStyle = FindResource("BlackButtonNoLight") as Style;
             var EmptyStyle = FindResource("EmptyButton") as Style;
-            if (networkProgram.GetBoard().getPlayer() == networkProgram.getPlayer())// If now is Red player's turn, Blackbutton should not be highlighted
+            if (networkProgram.GetBoard().getPlayer() == networkProgram.getPlayer())// If now is Current player's turn, hightlighted.
             {
                 if (networkProgram.getPlayer() == Piece.Players.red)
                 {
@@ -472,7 +472,6 @@ namespace DGUT_Team_Software_Project_WPF
                 }
             }
 
-
             if (networkProgram.getPlayer() == Piece.Players.red)
             {
                 textInfoLine0.Foreground = Brushes.Red;
@@ -504,8 +503,6 @@ namespace DGUT_Team_Software_Project_WPF
             {
                 textInfoLine1.Text = "Waiting other Player...";
             }
-
-
 
             if (!networkProgram.GetBoard().getGameStatus())//If game over
             {
