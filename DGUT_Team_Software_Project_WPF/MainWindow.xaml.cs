@@ -159,7 +159,7 @@ namespace DGUT_Team_Software_Project_WPF
 
             //Set two buttons
             var infoStyle = FindResource("infoButtonStyle") as Style;//Find the pre-written style in xaml
-            leftButton.Content = "Online";//Default Text
+            leftButton.Content = "ONLINE";//Default Text
             leftButton.FontSize = 16;
             leftButton.Style = infoStyle;//Set the Style of this button
             leftButton.Height = 40;//It's Height and width
@@ -199,7 +199,7 @@ namespace DGUT_Team_Software_Project_WPF
                         MessageBox.Show("No History Record!");
                     update_gameboard();
                     break;
-                case "Online":
+                case "ONLINE":
                     networkProgram = new NetworkProgram();
                     rightButton.Visibility = Visibility.Hidden;
                     leftButton.Visibility = Visibility.Hidden;
