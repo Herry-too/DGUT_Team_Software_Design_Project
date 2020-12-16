@@ -244,6 +244,12 @@ namespace DGUT_Team_Software_Project_WPF
                     networkTimer.Start();
                     update_network_gameboard();
                     break;
+                case 3:
+                    program = new AIProgram();
+                    rightButton.Content = "RESET";
+                    leftButton.Content = "UNDO";
+                    update_gameboard();
+                    break;
             }
             gamemodeChoose.Close();
         }

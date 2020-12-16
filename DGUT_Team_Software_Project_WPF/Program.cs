@@ -9,8 +9,8 @@ namespace DGUT_Team_Software_Project_WPF
 {
     class Program
     {
-        GameBoard board = new GameBoard();
-        List<string> boardHistory = new List<string>();
+        protected GameBoard board = new GameBoard();
+        protected List<string> boardHistory = new List<string>();
         public Program()
         {
             boardHistory.Add(board.toJson());
