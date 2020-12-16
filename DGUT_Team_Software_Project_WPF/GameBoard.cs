@@ -15,6 +15,7 @@ namespace DGUT_Team_Software_Project_WPF
         public int[] redGeneralPiece { get; set; }//red General Piece
         public int[] blackGeneralPiece { get; set; }//black general piece
 
+        public int movehistory = 0;
         public GameBoard()
         {
             pieces = new Piece[10, 9];                      //Create a new gameboard, include 10*9 places to hold piece
@@ -63,6 +64,51 @@ namespace DGUT_Team_Software_Project_WPF
                 TypeNameHandling = TypeNameHandling.Auto
             });
             return toJson;
+        }
+
+        public string outputFENFile(GameBoard gameboard)
+        {
+            //Record the current game
+            string fen = "";
+            //get current gameboard
+            Piece[,] pieces = gameboard.getPieces();
+            //record number of space
+            int number_of_space = 0;
+            //traverse the whole gameboard (can be update)
+            for (int i = 0; i < 10; i++)
+            {
+                for (int j = 0; j < 9; j++)
+                {
+                    if (pieces[i, j] != null)
+                    {
+                        if (number_of_space != 0)
+                        {
+                            fen += "" + number_of_space;
+                        }
+                        fen += pieces[i, j].GetPieceName();
+                        number_of_space = 0;
+                    }
+                    else
+                    {
+                        number_of_space++;
+                    }
+                    if (j == 8)
+                    {
+                        if (number_of_space != 0)
+                        {
+                            fen += "" + number_of_space;
+                            number_of_space = 0;
+                        }
+                        //if it's the final pieces, stop recording "/"
+                        if (i == 9) break;
+                        fen += "/";
+                    }
+                }
+            }
+            //if current player is red, output r, else output b
+            if(gameboard.getPlayer()==0) fen += " r - - 0 " + movehistory;
+            else fen += " b - - 0 " + movehistory;
+            return fen;
         }
 
         public Piece[,] getPieces()
@@ -176,6 +222,8 @@ namespace DGUT_Team_Software_Project_WPF
                             break;
                     }
                 }
+                //增加当前回合数
+                movehistory++;
                 return true;
             }
             return false;

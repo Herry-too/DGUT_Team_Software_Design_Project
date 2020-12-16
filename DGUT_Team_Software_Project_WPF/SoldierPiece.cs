@@ -6,10 +6,19 @@ namespace DGUT_Team_Software_Project_WPF
 {
     class SoldierPiece : Piece
     {
+        
         public SoldierPiece(Players player, int intX, int intY) : base(player, intX, intY)
         {
-            if (player == Players.red) this.Name = "兵";
-            if (player == Players.black) this.Name = "卒";
+            if (player == Players.red)
+            {
+                this.Name = "兵";
+                this.Words = "S";
+            }
+            if (player == Players.black)
+            {
+                this.Name = "卒";
+                this.Words = "s";
+            }
             //Soldier - 兵
         }
 

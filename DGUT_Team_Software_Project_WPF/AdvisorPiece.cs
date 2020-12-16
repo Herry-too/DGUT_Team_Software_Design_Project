@@ -6,10 +6,19 @@ namespace DGUT_Team_Software_Project_WPF
 {
     class AdvisorPiece : Piece
     {
+        
         public AdvisorPiece(Players player, int intX, int intY) : base(player, intX, intY)
         {
-            if (player == Players.red) this.Name = "士";
-            if (player == Players.black) this.Name = "仕";
+            if (player == Players.red)
+            {
+                this.Name = "士";
+                this.Words = "A";
+            }
+            if (player == Players.black)
+            {
+                this.Name = "仕";
+                this.Words = "a";
+            }
             //Advisor - 士
         }
 

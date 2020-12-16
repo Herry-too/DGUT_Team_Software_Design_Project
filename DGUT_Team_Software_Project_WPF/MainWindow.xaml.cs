@@ -31,6 +31,7 @@ namespace DGUT_Team_Software_Project_WPF
 
         public MainWindow()
         {
+
             InitializeComponent();
 
             InitGameBoard();
@@ -216,7 +217,7 @@ namespace DGUT_Team_Software_Project_WPF
             4 for the pieces, each color of the pieces have two styles determines whether they are highlighted when the mouse slides over
             1 for the Empty Button, when there is no pieces we still need a button to handle the position selection, which is transparent.
             **/
-
+            
             //Just mark the styles
             var redStyle = FindResource("RedButton") as Style;
             var blackStyle = FindResource("BlackButton") as Style;
@@ -329,6 +330,7 @@ namespace DGUT_Team_Software_Project_WPF
             int[] data = (int[])button.Tag;//get column and row
             program.pieceClick(data[1], data[0]);//Let the bridge to solve this selection
             update_gameboard();
+            
         }
     }
 }

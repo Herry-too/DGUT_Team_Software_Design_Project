@@ -6,12 +6,22 @@ namespace DGUT_Team_Software_Project_WPF
 {
     class HorsePiece:Piece
     {
+        
         public HorsePiece(Players player, int CurrentX, int CurrentY) : base(player, CurrentX, CurrentY)
         {
-            if (player == Players.red) this.Name = "傌";
-            if (player == Players.black) this.Name = "馬";
+            if (player == Players.red)
+            {
+                this.Name = "傌";
+                this.Words = "H";
+            }
+            if (player == Players.black)
+            {
+                this.Name = "馬";
+                this.Words = "h";
+            }
             //Horse - 马
         }
+
         public override bool ValidMoves(int x, int y, GameBoard gameboard)
         {
             int CurrentX = this.getCurrentPosition().Item1;
