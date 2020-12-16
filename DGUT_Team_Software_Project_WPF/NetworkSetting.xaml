@@ -1,0 +1,17 @@
+﻿<Window x:Class="DGUT_Team_Software_Project_WPF.NetworkSetting"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DGUT_Team_Software_Project_WPF"
+        mc:Ignorable="d"
+        Title="NetworkSetting" Height="450" Width="800">
+    <Grid>
+        <Button Name="createroom" Content="Create Room" HorizontalAlignment="Left" Margin="107,55,0,0" VerticalAlignment="Top" Height="56" Width="124" Click="createroom_Click"/>
+        <Button Name="joinroom" Content="Join other room" HorizontalAlignment="Left" Margin="542,60,0,0" VerticalAlignment="Top" Height="56" Width="124" Click="joinroom_Click"/>
+        <TextBox Name="roomid" Text="ROOM ID" TextWrapping="Wrap" Margin="169,159,134,241"/>
+        <TextBlock TextWrapping="Wrap" Margin="107,159,636,159"><Run Text="Room:"/><LineBreak/><Run/><LineBreak/><Run/><LineBreak/><Run Text="Keygen:"/><LineBreak/><Run/><LineBreak/></TextBlock>
+        <TextBox x:Name="keygen" Text="Keygen" TextWrapping="Wrap" Margin="169,208,134,192"/>
+
+    </Grid>
+</Window>

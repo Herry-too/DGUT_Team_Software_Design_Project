@@ -20,15 +20,23 @@ namespace DGUT_Team_Software_Project_WPF
     /// </summary>
     public partial class MainWindow : Window
     {
+        private delegate void UpdateUIDelegate();
+
         TextBlock textInfoLine0 = new TextBlock();//Information Line 1
         TextBlock textInfoLine1 = new TextBlock();//Information Line 2
         Grid gameboardGrid = new Grid();//gameboard grid(child grid of main grid)
         Grid infoGrid = new Grid();//infomation Grid, contain two button and two information line
         Program program;//A bridge (or converter) to console versions of code
+        NetworkProgram networkProgram;
+        System.Timers.Timer networkTimer = new System.Timers.Timer(5000);
         Button leftButton = new Button();
         Button rightButton = new Button();
-
-
+        enum Lock
+        {
+            locked,
+            unlock
+        };
+        Lock boardlocker = Lock.unlock;
         public MainWindow()
         {
             InitializeComponent();
@@ -151,7 +159,7 @@ namespace DGUT_Team_Software_Project_WPF
 
             //Set two buttons
             var infoStyle = FindResource("infoButtonStyle") as Style;//Find the pre-written style in xaml
-            leftButton.Content = "CLOSE";//Default Text
+            leftButton.Content = "Online";//Default Text
             leftButton.FontSize = 16;
             leftButton.Style = infoStyle;//Set the Style of this button
             leftButton.Height = 40;//It's Height and width
@@ -191,7 +199,32 @@ namespace DGUT_Team_Software_Project_WPF
                         MessageBox.Show("No History Record!");
                     update_gameboard();
                     break;
+                case "Online":
+                    networkProgram = new NetworkProgram();
+                    rightButton.Visibility = Visibility.Hidden;
+                    leftButton.Visibility = Visibility.Hidden;
+                    networkTimer.Elapsed += NetworkTimerClicked;
+                    networkTimer.Enabled = true;
+                    networkTimer.AutoReset = true;
+                    networkTimer.Start();
+                    update_network_gameboard();
+                    break;
             }
+        }
+
+        private void NetworkTimerClicked(object sender, System.Timers.ElapsedEventArgs e)
+        {
+            networkTimer.Stop();
+            if (networkProgram.getPlayer() != networkProgram.GetBoard().getPlayer() && boardlocker == Lock.unlock)
+            {
+                networkProgram.updateStatus();
+                if (networkProgram.getPlayer() == networkProgram.GetBoard().getPlayer())
+                {
+                    UpdateUIDelegate updateUIDelegate = new UpdateUIDelegate(update_network_gameboard);
+                    this.Dispatcher.Invoke(updateUIDelegate);
+                }
+            }
+            networkTimer.Start();
         }
 
         void right_button_Click(object sender, EventArgs e)
@@ -210,6 +243,11 @@ namespace DGUT_Team_Software_Project_WPF
 
         void update_gameboard()
         {
+            if(boardlocker == Lock.locked)
+            {
+                return;
+            }
+            boardlocker = Lock.locked;
             /**
             There are 6 styles in this program, Which located in the xaml file
             1 for the information Button, such as the "START" Button
@@ -321,6 +359,7 @@ namespace DGUT_Team_Software_Project_WPF
                 textInfoLine0.Foreground = Brushes.Black;
                 textInfoLine0.Text = "Black Player";
             }
+            boardlocker = Lock.unlock;
         }
 
         private void piece_Click(object sender, RoutedEventArgs e)
@@ -329,6 +368,138 @@ namespace DGUT_Team_Software_Project_WPF
             int[] data = (int[])button.Tag;//get column and row
             program.pieceClick(data[1], data[0]);//Let the bridge to solve this selection
             update_gameboard();
+        }
+
+        private void piece_Network_Click(object sender, RoutedEventArgs e)
+        {
+            if(boardlocker == Lock.locked)
+            {
+                return;
+            }
+            boardlocker = Lock.locked;
+
+            Button button = (Button)sender;
+            int[] data = (int[])button.Tag;//get column and row
+            networkProgram.pieceClick(data[1], data[0]);//Let the bridge to solve this selection
+            boardlocker = Lock.unlock;
+            update_network_gameboard();
+        }
+        void update_network_gameboard()
+        {
+            if (boardlocker == Lock.locked)
+            {
+                return;
+            }
+            boardlocker = Lock.locked;
+            //Just mark the styles
+            var redStyle = FindResource("RedButtonNoLight") as Style;
+            var blackStyle = FindResource("BlackButtonNoLight") as Style;
+            var EmptyStyle = FindResource("EmptyButton") as Style;
+            if (networkProgram.GetBoard().getPlayer() == networkProgram.getPlayer())// If now is Red player's turn, Blackbutton should not be highlighted
+            {
+                if (networkProgram.getPlayer() == Piece.Players.red)
+                {
+                    redStyle = FindResource("RedButton") as Style;
+                }
+                else
+                {
+                    blackStyle = FindResource("BlackButton") as Style;
+                }
+            }
+            if (!networkProgram.GetBoard().getGameStatus())//If gameover, no pieces could be selected and no highlighted.
+            {
+                blackStyle = FindResource("BlackButtonNoLight") as Style;
+                redStyle = FindResource("RedButtonNoLight") as Style;
+            }
+            gameboardGrid.Children.Clear();//Clear all the Old Children, they are old pieces.
+            for (int i = 0; i < 10; i++)//Each Row
+            {
+                for (int j = 0; j < 9; j++)//Each Column
+                {
+                    //IF:
+                    //Already selected the pieces AND
+                    //(No piece in this position OR this piece is another player) AND
+                    //The selected pieces could move to this place
+                    if (networkProgram.GetBoard().getSelectedX() != -1 &&
+                        (networkProgram.GetBoard().getPieces()[i, j] == null || networkProgram.GetBoard().getPieces()[i, j].getPlayer() != networkProgram.GetBoard().getPlayer())
+                        && networkProgram.GetBoard().getPieces()[networkProgram.GetBoard().getSelectedX(), networkProgram.GetBoard().getSelectedY()]
+                        .ValidMoves(i, j, networkProgram.GetBoard()))
+                    {
+                        Rectangle rectangle = new Rectangle();//Create a Rectangle to Suggest pieces Location.
+                        rectangle.Fill = new ImageBrush(new BitmapImage(new Uri(@"pack://application:,,,/src/img/flag.png")));//Fill it with pic.
+                        Grid.SetRow(rectangle, i);
+                        Grid.SetColumn(rectangle, j);
+                        gameboardGrid.Children.Add(rectangle);//Add it to the right place.
+                    }
+
+                    if (networkProgram.GetBoard().getPieceName(i, j) != "")//If there are piece in this position
+                    {
+                        Button button = new Button();
+                        button.Content = networkProgram.GetBoard().getPieceName(i, j);//button's name from the piece
+                        if (networkProgram.GetBoard().getPiecePlayer(i, j) == Piece.Players.red)
+                        {
+                            button.Style = redStyle;//Set it to red style
+                        }
+                        else
+                        {
+                            button.Style = blackStyle;//Set it to black style
+                        }
+                        button.Click += piece_Network_Click;//Add a Event
+                        button.FontSize = 24;//Set font size
+                        button.FontFamily = new FontFamily("隶书");//Set Font Family to LISHU
+                        button.Tag = new int[] { i, j };//Create a int array to store the location and set it to the tag.
+                        Grid.SetRow(button, i);
+                        Grid.SetColumn(button, j);
+                        gameboardGrid.Children.Add(button);
+                    }
+                    else//If not
+                    {
+                        Button button = new Button();
+                        button.Click += piece_Network_Click;
+                        button.Style = EmptyStyle;//Transparent button
+                        button.Tag = new int[] { i, j };
+                        Grid.SetRow(button, i);
+                        Grid.SetColumn(button, j);
+                        gameboardGrid.Children.Add(button);
+                    }
+                }
+            }
+
+
+            if (networkProgram.getPlayer() == Piece.Players.red)
+            {
+                textInfoLine0.Foreground = Brushes.Red;
+                textInfoLine0.Text = "You are Red Player";
+            }
+            else
+            {
+                textInfoLine0.Foreground = Brushes.Black;
+                textInfoLine0.Text = "You are Black Player";
+            }
+
+            if(networkProgram.getPlayer() == networkProgram.GetBoard().getPlayer())
+            {
+                if (networkProgram.GetBoard().getSelectedX() == -1)
+                {
+                    textInfoLine1.Text = "Please Select...";
+                }
+                else
+                {
+                    textInfoLine1.Text = "Please Move...";
+                }
+            }
+            else
+            {
+                textInfoLine1.Text = "Waiting other Player...";
+            }
+
+            if (!networkProgram.GetBoard().getGameStatus())//If game over
+            {
+                textInfoLine1.Foreground = Brushes.Red;
+                textInfoLine1.Text = "GAME OVER!";
+                return;
+            }
+            boardlocker = Lock.unlock;
         }
     }
 }
