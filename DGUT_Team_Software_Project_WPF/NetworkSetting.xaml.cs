@@ -33,7 +33,8 @@ namespace DGUT_Team_Software_Project_WPF
 
         private void NetworkSetting_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            Environment.Exit(1);
+            if(roomid.Text.Length<10)
+                Environment.Exit(1);
         }
 
         public void setRoomid(string str)
