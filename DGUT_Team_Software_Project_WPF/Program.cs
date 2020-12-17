@@ -65,7 +65,7 @@ namespace DGUT_Team_Software_Project_WPF
             {
                 if(board.boolMovePiece(intArrtoStr(column, row)))//If move success, change the player
                 {
-                    //Console.WriteLine(board.outputFENFile(board));
+                    Console.WriteLine(board.outputFENFile(board));
                     board.SwitchPlayer();
                     boardHistory.Add(board.toJson());
 
