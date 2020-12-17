@@ -7,7 +7,7 @@ namespace DGUT_Team_Software_Project_WPF
     class ElephantPiece : Piece
     {
         
-        public ElephantPiece(Players player, int intX, int intY): base (player,intX,intY)
+        public ElephantPiece(Players player, int currentPositionX, int currentPositionY): base (player,currentPositionX, currentPositionY)
         {
             if (player == Players.red)
             {
@@ -22,7 +22,7 @@ namespace DGUT_Team_Software_Project_WPF
             //Elephant - 象
         }
 
-        public override bool ValidMoves(int x, int y, GameBoard gameboard)
+        public override bool ValidMoves(int newPositionX, int newPositionY, GameBoard gameboard)
         {
             Piece[,] board = gameboard.getPieces();
             int temp_x;
@@ -32,20 +32,20 @@ namespace DGUT_Team_Software_Project_WPF
             else temp_x = 5;
 
             //Determining compliance with the rules of moving pieces(田）
-            if (x >= temp_x && x <= (temp_x+4) && y >= 0 && y <= 8)
+            if (newPositionX >= temp_x && newPositionX <= (temp_x+4) && newPositionY >= 0 && newPositionY <= 8)
             {
-                if (x - intX == 2 || x - intX == -2)
+                if (newPositionX - currentPositionX == 2 || newPositionX - currentPositionX == -2)
                 {
-                    if (y - intY == 2 || y - intY == -2)
+                    if (newPositionY - currentPositionY == 2 || newPositionY - currentPositionY == -2)
                     {
                         //Determine if there are any pieces in the middle of "田"
-                        if (board[(x + intX) / 2, (y + intY) / 2] == null)
+                        if (board[(newPositionX + currentPositionX) / 2, (newPositionY + currentPositionY) / 2] == null)
                         {
                             //Determine if there are pawns in the target position
-                            if (board[x, y] != null)
+                            if (board[newPositionX, newPositionY] != null)
                             {
                                 //Determine whether the piece in the target position is your own pawn
-                                if (board[x, y].getPlayer() == this.player)
+                                if (board[newPositionX, newPositionY].getPlayer() == this.player)
                                 {
                                     return false;
                                 }

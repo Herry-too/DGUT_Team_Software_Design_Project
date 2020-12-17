@@ -11,16 +11,16 @@ namespace DGUT_Team_Software_Project_WPF
             red,
             black
         }
-        public int intX { get; set; }
-        public int intY { get; set; }
+        public int currentPositionX { get; set; }
+        public int currentPositionY { get; set; }
         public string Name { get; set; }
         public Players player { get; set; }
         protected string Words;
-        public Piece(Players player, int intX, int intY)
+        public Piece(Players player, int currentPositionX, int currentPositionY)
         {
             this.player = player;
-            this.intX = intX;
-            this.intY = intY;
+            this.currentPositionX = currentPositionX;
+            this.currentPositionY = currentPositionY;
         }
 
         public string GetPieceName()
@@ -29,14 +29,14 @@ namespace DGUT_Team_Software_Project_WPF
         }
 
         public (int, int) getCurrentPosition() { 
-            return (intX,intY); 
+            return (currentPositionX, currentPositionY); 
         }
-        public void setCurrentPosition(int NewIntX, int NewIntY) {
-            intX = NewIntX;
-            intY = NewIntY; 
+        public void setCurrentPosition(int newPositionX, int newPositionY) {
+            currentPositionX = newPositionX;
+            currentPositionY = newPositionY; 
         }
 
-        public abstract bool ValidMoves(int x, int y, GameBoard gameboard);
+        public abstract bool ValidMoves(int newPositionX, int newPositionY, GameBoard gameboard);
         
         public string getPieceWords()
         {

@@ -7,7 +7,7 @@ namespace DGUT_Team_Software_Project_WPF
     class AdvisorPiece : Piece
     {
         
-        public AdvisorPiece(Players player, int intX, int intY) : base(player, intX, intY)
+        public AdvisorPiece(Players player, int currentPositionX, int currentPositionY) : base(player, currentPositionX, currentPositionY)
         {
             if (player == Players.red)
             {
@@ -22,7 +22,7 @@ namespace DGUT_Team_Software_Project_WPF
             //Advisor - 士
         }
 
-        public override bool ValidMoves(int x, int y, GameBoard gameboard)
+        public override bool ValidMoves(int newPositionX, int newPositionY, GameBoard gameboard)
         {
             Piece[,] board = gameboard.getPieces();
             int temp_x;
@@ -32,16 +32,16 @@ namespace DGUT_Team_Software_Project_WPF
             else temp_x = 7;
             
             //Determine if the end point is in the palace
-            if (x <= (temp_x+2) && x >= temp_x && y <= 5 && y >= 3)
+            if (newPositionX <= (temp_x+2) && newPositionX >= temp_x && newPositionY <= 5 && newPositionY >= 3)
             {
                 //Determining compliance with the rules of moving pieces (diagonal)
-                if ((x - intX == 1 || x - intX == -1 ) && (y - intY == 1 || y - intY == -1))
+                if ((newPositionX - currentPositionX == 1 || newPositionX - currentPositionX == -1 ) && (newPositionY - currentPositionY == 1 || newPositionY - currentPositionY == -1))
                 {
-                    //Determine if there are pawns in the target position
-                    if (board[x, y] != null)
+                    //Determine if there are pieces in the target position
+                    if (board[newPositionX, newPositionY] != null)
                     {
-                        //Determine whether the piece in the target position is your own pawn
-                        if (board[x, y].getPlayer() == this.player)
+                        //Determine whether the piece in the target position is your own piece
+                        if (board[newPositionX, newPositionY].getPlayer() == this.player)
                         {
                             return false;
                         }

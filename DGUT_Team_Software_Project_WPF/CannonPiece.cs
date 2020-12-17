@@ -7,7 +7,7 @@ namespace DGUT_Team_Software_Project_WPF
     class CannonPiece:Piece
     {
         
-        public CannonPiece(Players player, int intX, int intY) : base(player, intX, intY)
+        public CannonPiece(Players player, int currentPositionX, int currentPositionY) : base(player, currentPositionX, currentPositionY)
         {          
             if (player == Players.red)
             {
@@ -23,7 +23,7 @@ namespace DGUT_Team_Software_Project_WPF
         }
         
 
-        public override bool ValidMoves(int x, int y, GameBoard gameboard)
+        public override bool ValidMoves(int newPositionX, int newPositionY, GameBoard gameboard)
         {
             int CurrentX = this.getCurrentPosition().Item1;
             int CurrentY = this.getCurrentPosition().Item2;
@@ -32,52 +32,52 @@ namespace DGUT_Team_Software_Project_WPF
             int count = -1;
 
             //move horizontally
-            if (x == CurrentX && y != CurrentY)
+            if (newPositionX == CurrentX && newPositionY != CurrentY)
             {
-                if (y > CurrentY)
+                if (newPositionY > CurrentY)
                 {
                     //to right
                     count = 0;
-                    for (int i = CurrentY + 1; i < y; i++)
-                        if (gameboard.getPieces()[x, i] != null)
+                    for (int i = CurrentY + 1; i < newPositionY; i++)
+                        if (gameboard.getPieces()[newPositionX, i] != null)
                             count++;
                 }
-                if (y < CurrentY)
+                if (newPositionY < CurrentY)
                 {
                     //to left
                     count = 0;
-                    for (int i = CurrentY - 1; i > y; i--)
+                    for (int i = CurrentY - 1; i > newPositionY; i--)
                     {
-                        if (gameboard.getPieces()[x, i] != null)
+                        if (gameboard.getPieces()[newPositionX, i] != null)
                             count++;
                     }
                 }
             }
             //move vertically
-            if (y == CurrentY && x != CurrentX)
+            if (newPositionY == CurrentY && newPositionX != CurrentX)
             {
                 //up
-                if (x < CurrentX)
+                if (newPositionX < CurrentX)
                 {
                     count = 0;
-                    for (int i = CurrentX - 1; i > x; i--)
-                        if (gameboard.getPieces()[i, y] != null)
+                    for (int i = CurrentX - 1; i > newPositionX; i--)
+                        if (gameboard.getPieces()[i, newPositionY] != null)
                             count++;
                 }
                 //down
-                if (x > CurrentX)
+                if (newPositionX > CurrentX)
                 {
                     count = 0;
-                    for (int i = CurrentX + 1; i < x; i++)
-                        if (gameboard.getPieces()[i, y] != null)
+                    for (int i = CurrentX + 1; i < newPositionX; i++)
+                        if (gameboard.getPieces()[i, newPositionY] != null)
                             count++;
                 }
             }
             //move and eat the piece
-            if (count == 1 && gameboard.getPieces()[x, y] != null)  //if count == 1 it means that there is only one piece on the way it move  
+            if (count == 1 && gameboard.getPieces()[newPositionX, newPositionY] != null)  //if count == 1 it means that there is only one piece on the way it move  
                 return true;                                        //forward and it must be the eaten piece
             //just move the Cannon
-            if (count == 0 && gameboard.getPieces()[x, y] == null)  //if count == 0 it means that there is no piece on the way it move forward
+            if (count == 0 && gameboard.getPieces()[newPositionX, newPositionY] == null)  //if count == 0 it means that there is no piece on the way it move forward
                 return true;                                        //and the destination must of no piece 
 
             return false;

@@ -7,7 +7,7 @@ namespace DGUT_Team_Software_Project_WPF
     class HorsePiece:Piece
     {
         
-        public HorsePiece(Players player, int CurrentX, int CurrentY) : base(player, CurrentX, CurrentY)
+        public HorsePiece(Players player, int currentPositionX, int currentPositionY) : base(player, currentPositionX, currentPositionY)
         {
             if (player == Players.red)
             {
@@ -22,13 +22,13 @@ namespace DGUT_Team_Software_Project_WPF
             //Horse - 马
         }
 
-        public override bool ValidMoves(int x, int y, GameBoard gameboard)
+        public override bool ValidMoves(int newPositionX, int newPositionY, GameBoard gameboard)
         {
             int CurrentX = this.getCurrentPosition().Item1;
             int CurrentY = this.getCurrentPosition().Item2;
 
             //to right
-            if (y == CurrentY + 2 && (x == CurrentX + 1 || x == CurrentX - 1))
+            if (newPositionY == CurrentY + 2 && (newPositionX == CurrentX + 1 || newPositionX == CurrentX - 1))
             {
                 //whether stuck by other pieces ?
                 if (gameboard.getPieces()[CurrentX, CurrentY + 1] == null)
@@ -36,7 +36,7 @@ namespace DGUT_Team_Software_Project_WPF
             }
 
             //to left
-            if (y == CurrentY - 2 && (x == CurrentX + 1 || x == CurrentX - 1))
+            if (newPositionY == CurrentY - 2 && (newPositionX == CurrentX + 1 || newPositionX == CurrentX - 1))
             {
                 //whether stuck by other pieces ?
                 if (gameboard.getPieces()[CurrentX, CurrentY - 1] == null)
@@ -44,7 +44,7 @@ namespace DGUT_Team_Software_Project_WPF
             }
 
             //to up
-            if (x == CurrentX - 2 && (y == CurrentY + 1 || y == CurrentY - 1))
+            if (newPositionX == CurrentX - 2 && (newPositionY == CurrentY + 1 || newPositionY == CurrentY - 1))
             {
                 //whether stuck by other pieces ?
                 if (gameboard.getPieces()[CurrentX - 1, CurrentY] == null)
@@ -52,7 +52,7 @@ namespace DGUT_Team_Software_Project_WPF
             }
 
             //to down
-            if (x == CurrentX + 2 && (y == CurrentY + 1 || y == CurrentY - 1))
+            if (newPositionX == CurrentX + 2 && (newPositionY == CurrentY + 1 || newPositionY == CurrentY - 1))
             {
                 //whether stuck by other pieces ?
                 if (gameboard.getPieces()[CurrentX + 1, CurrentY] == null)
