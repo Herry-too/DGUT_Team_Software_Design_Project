@@ -18,14 +18,14 @@ namespace DGUT_Team_Software_Project_WPF
             //Just a bridge from console to WPF
         }
 
-        public bool undoBoard()
+        public virtual bool undoBoard()
         {
             if (boardHistory.Count < 2)
             {
                 return false;
             }
-            setBoard(boardHistory[boardHistory.Count - 2]);
             boardHistory.RemoveAt(boardHistory.Count - 1);
+            setBoard(boardHistory[boardHistory.Count - 1]);
             return true;
         }
 
@@ -48,7 +48,7 @@ namespace DGUT_Team_Software_Project_WPF
             returnStr = alphabet.ToString() + row.ToString();
             return returnStr;
         }
-        public bool pieceClick(int column,int row)
+        public virtual bool pieceClick(int column,int row)
         {
 
             //MessageBox.Show(board.toJson());

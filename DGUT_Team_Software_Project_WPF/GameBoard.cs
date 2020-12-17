@@ -15,7 +15,7 @@ namespace DGUT_Team_Software_Project_WPF
         public int[] redGeneralPiece { get; set; }//red General Piece
         public int[] blackGeneralPiece { get; set; }//black general piece
 
-        public int movehistory = 0;
+        public int movehistory = 1;
         public GameBoard()
         {
             pieces = new Piece[10, 9];                      //Create a new gameboard, include 10*9 places to hold piece
