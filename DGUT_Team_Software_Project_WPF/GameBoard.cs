@@ -15,7 +15,7 @@ namespace DGUT_Team_Software_Project_WPF
         public int[] redGeneralPiece { get; set; }//red General Piece
         public int[] blackGeneralPiece { get; set; }//black general piece
 
-        public int movehistory = 1;
+        public int movehistory = 0;
         public GameBoard()
         {
             pieces = new Piece[10, 9];                      //Create a new gameboard, include 10*9 places to hold piece
@@ -75,7 +75,7 @@ namespace DGUT_Team_Software_Project_WPF
             //record number of space
             int number_of_space = 0;
             //traverse the whole gameboard (can be update)
-            for (int i = 0; i < 10; i++)
+            for (int i = 9; i >= 0; i--)
             {
                 for (int j = 0; j < 9; j++)
                 {
@@ -100,14 +100,14 @@ namespace DGUT_Team_Software_Project_WPF
                             number_of_space = 0;
                         }
                         //if it's the final pieces, stop recording "/"
-                        if (i == 9) break;
+                        if (i == 0) break;
                         fen += "/";
                     }
                 }
             }
             //if current player is red, output r, else output b
-            if(gameboard.getPlayer()==0) fen += " r - - 0 " + movehistory;
-            else fen += " b - - 0 " + movehistory;
+            if(gameboard.getPlayer()==0) fen += " b - - 0 " + movehistory;
+            else fen += " r - - 0 " + movehistory;
             return fen;
         }
 
