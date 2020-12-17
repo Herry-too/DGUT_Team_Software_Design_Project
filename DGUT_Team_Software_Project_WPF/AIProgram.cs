@@ -88,14 +88,15 @@ namespace DGUT_Team_Software_Project_WPF
         {
             int[] array = new int[4];
             int iniX, iniY, DesX, DesY;
-            for(int i = 0; i < fenstr.Length; i++)
-            {
-                array[i] = int.Parse(fenstr.Substring(i,1));
-            }
+
+            char[] x1 = new char[1];
+            char[] x2 = new char[1];
+            x1 = fenstr.Substring(0, 1).ToCharArray();
+            x2 = fenstr.Substring(2, 1).ToCharArray();
             iniX = array[1];
-            iniY = array[0];
+            iniY = (int)x1[0] - 49;
             DesX = array[3];
-            DesY = array[2];
+            DesY = (int)x2[0] - 49;
 
             return (iniX, iniY, DesX, DesY);
         }
