@@ -24,16 +24,13 @@ namespace DGUT_Team_Software_Project_WPF
 
         public override bool ValidMoves(int newPositionX, int newPositionY, GameBoard gameboard)
         {
-            int intX = this.getCurrentPosition().Item1;
-            int intY = this.getCurrentPosition().Item2;
-
             //judge the relative position between red and black
             if (gameboard.getPieces()[newPositionX, newPositionY] != null)
             {   //from red to black
                 if (gameboard.getPieces()[newPositionX, newPositionY].getPieceWords() == "將" && gameboard.getPieces()[newPositionX, newPositionY].getPlayer() == Players.black
-                    && newPositionX >= 7 && newPositionX <= 9 && newPositionY == intY)
+                    && newPositionX >= 7 && newPositionX <= 9 && newPositionY == currentPositionY)
                 {
-                    for (int i = intX + 1; i < newPositionX; i++)
+                    for (int i = currentPositionX + 1; i < newPositionX; i++)
                         if (gameboard.getPieces()[i,newPositionY] != null)
                         {
                             return false;
@@ -42,9 +39,9 @@ namespace DGUT_Team_Software_Project_WPF
                 }//from black to red
 
                 else if (gameboard.getPieces()[newPositionX, newPositionY].getPieceWords() == "帥" && gameboard.getPieces()[newPositionX, newPositionY].getPlayer() == Players.red
-                    && newPositionX >= 0 && newPositionX <= 2 && newPositionY == intY)
+                    && newPositionX >= 0 && newPositionX <= 2 && newPositionY == currentPositionY)
                 {
-                    for (int i = intX - 1; i > newPositionX; i--)
+                    for (int i = currentPositionX - 1; i > newPositionX; i--)
                         if (gameboard.getPieces()[i,newPositionY] != null)
                         {
                             return false;
@@ -71,7 +68,7 @@ namespace DGUT_Team_Software_Project_WPF
             }
 
             //Judge the moving less than one 
-            if ((Math.Abs(intX - newPositionX) + Math.Abs(intY - newPositionY)) <= 1)
+            if ((Math.Abs(currentPositionX - newPositionX) + Math.Abs(currentPositionY - newPositionY)) <= 1)
             {
                 //go right
                 if (gameboard.getPieces()[newPositionX, newPositionY] != null)// Judge the next position doesn't have piece  

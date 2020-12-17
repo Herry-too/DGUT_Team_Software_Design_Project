@@ -24,28 +24,25 @@ namespace DGUT_Team_Software_Project_WPF
 
         public override bool ValidMoves(int newPositionX, int newPositionY, GameBoard gameboard)
         {
-            int CurrentX = this.getCurrentPosition().Item1;
-            int CurrentY = this.getCurrentPosition().Item2;
-
             // red is above, black is below
             // red side
             if (player == Players.red)
             {
                 //it hasn't passed the river 
-                if (CurrentX <= 4)
+                if (currentPositionX <= 4)
                 {
                     //down
-                    if (newPositionX == CurrentX + 1 && newPositionY == CurrentY)
+                    if (newPositionX == currentPositionX + 1 && newPositionY == currentPositionY)
                         return true;
                 }
                 //it has passed the river
                 else
                 {
                     //down
-                    if (newPositionX == CurrentX + 1 && newPositionY == CurrentY)
+                    if (newPositionX == currentPositionX + 1 && newPositionY == currentPositionY)
                         return true;
                     //left or right
-                    if ((newPositionY == CurrentY - 1 && newPositionX == CurrentX) || (newPositionX == CurrentX && newPositionY == CurrentY + 1))
+                    if ((newPositionY == currentPositionY - 1 && newPositionX == currentPositionX) || (newPositionX == currentPositionX && newPositionY == currentPositionY + 1))
                         return true;
                 }
             }
@@ -53,20 +50,20 @@ namespace DGUT_Team_Software_Project_WPF
             else
             {
                 //it hasn't passed the river 
-                if (CurrentX >= 5)
+                if (currentPositionX >= 5)
                 {
                     //up
-                    if (newPositionX == CurrentX - 1 && newPositionY == CurrentY)
+                    if (newPositionX == currentPositionX - 1 && newPositionY == currentPositionY)
                         return true;
                 }
                 //it has passed the river
                 else
                 {
                     //up
-                    if (newPositionX == CurrentX - 1 && newPositionY == CurrentY)
+                    if (newPositionX == currentPositionX - 1 && newPositionY == currentPositionY)
                         return true;
                     //left or right
-                    if ((newPositionY == CurrentY - 1 && newPositionX == CurrentX) || (newPositionX == CurrentX && newPositionY == CurrentY + 1))
+                    if ((newPositionY == currentPositionY - 1 && newPositionX == currentPositionX) || (newPositionX == currentPositionX && newPositionY == currentPositionY + 1))
                         return true;
                 }
             }
