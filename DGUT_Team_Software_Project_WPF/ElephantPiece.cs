@@ -6,10 +6,19 @@ namespace DGUT_Team_Software_Project_WPF
 {
     class ElephantPiece : Piece
     {
+        
         public ElephantPiece(Players player, int intX, int intY): base (player,intX,intY)
         {
-            if (player == Players.red) this.Name = "相";
-            if (player == Players.black) this.Name = "象";
+            if (player == Players.red)
+            {
+                this.Name = "相";
+                this.Words = "E";
+            }
+            if (player == Players.black)
+            {
+                this.Name = "象";
+                this.Words = "e";
+            }
             //Elephant - 象
         }
 

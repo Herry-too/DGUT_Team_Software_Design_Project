@@ -15,12 +15,17 @@ namespace DGUT_Team_Software_Project_WPF
         public int intY { get; set; }
         public string Name { get; set; }
         public Players player { get; set; }
-
+        protected string Words;
         public Piece(Players player, int intX, int intY)
         {
             this.player = player;
             this.intX = intX;
             this.intY = intY;
+        }
+
+        public string GetPieceName()
+        {
+            return Words;
         }
 
         public (int, int) getCurrentPosition() { 
@@ -37,6 +42,7 @@ namespace DGUT_Team_Software_Project_WPF
         {
             return Name;
         }
+
 
         public Players getPlayer()
         {
