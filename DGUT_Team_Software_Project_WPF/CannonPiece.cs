@@ -12,12 +12,12 @@ namespace DGUT_Team_Software_Project_WPF
             if (player == Players.red)
             {
                 this.Name = "炮";
-                this.Words = "C";
+                this.Words = "c";
             }
             if (player == Players.black)
             {
                 this.Name = "砲";
-                this.Words = "c";
+                this.Words = "C";
             }
             //Cannon - 炮
         }
@@ -25,28 +25,25 @@ namespace DGUT_Team_Software_Project_WPF
 
         public override bool ValidMoves(int newPositionX, int newPositionY, GameBoard gameboard)
         {
-            int CurrentX = this.getCurrentPosition().Item1;
-            int CurrentY = this.getCurrentPosition().Item2;
-
             //to count how many pieces on the way it move forward
             int count = -1;
 
             //move horizontally
-            if (newPositionX == CurrentX && newPositionY != CurrentY)
+            if (newPositionX == currentPositionX && newPositionY != currentPositionY)
             {
-                if (newPositionY > CurrentY)
+                if (newPositionY > currentPositionY)
                 {
                     //to right
                     count = 0;
-                    for (int i = CurrentY + 1; i < newPositionY; i++)
+                    for (int i = currentPositionY + 1; i < newPositionY; i++)
                         if (gameboard.getPieces()[newPositionX, i] != null)
                             count++;
                 }
-                if (newPositionY < CurrentY)
+                if (newPositionY < currentPositionY)
                 {
                     //to left
                     count = 0;
-                    for (int i = CurrentY - 1; i > newPositionY; i--)
+                    for (int i = currentPositionY - 1; i > newPositionY; i--)
                     {
                         if (gameboard.getPieces()[newPositionX, i] != null)
                             count++;
@@ -54,21 +51,21 @@ namespace DGUT_Team_Software_Project_WPF
                 }
             }
             //move vertically
-            if (newPositionY == CurrentY && newPositionX != CurrentX)
+            if (newPositionY == currentPositionY && newPositionX != currentPositionX)
             {
                 //up
-                if (newPositionX < CurrentX)
+                if (newPositionX < currentPositionX)
                 {
                     count = 0;
-                    for (int i = CurrentX - 1; i > newPositionX; i--)
+                    for (int i = currentPositionX - 1; i > newPositionX; i--)
                         if (gameboard.getPieces()[i, newPositionY] != null)
                             count++;
                 }
                 //down
-                if (newPositionX > CurrentX)
+                if (newPositionX > currentPositionX)
                 {
                     count = 0;
-                    for (int i = CurrentX + 1; i < newPositionX; i++)
+                    for (int i = currentPositionX + 1; i < newPositionX; i++)
                         if (gameboard.getPieces()[i, newPositionY] != null)
                             count++;
                 }

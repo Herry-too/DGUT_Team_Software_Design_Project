@@ -12,50 +12,47 @@ namespace DGUT_Team_Software_Project_WPF
             if (player == Players.red)
             {
                 this.Name = "傌";
-                this.Words = "N";
+                this.Words = "n";
             }
             if (player == Players.black)
             {
                 this.Name = "馬";
-                this.Words = "n";
+                this.Words = "N";
             }
             //Horse - 马
         }
 
         public override bool ValidMoves(int newPositionX, int newPositionY, GameBoard gameboard)
         {
-            int CurrentX = this.getCurrentPosition().Item1;
-            int CurrentY = this.getCurrentPosition().Item2;
-
             //to right
-            if (newPositionY == CurrentY + 2 && (newPositionX == CurrentX + 1 || newPositionX == CurrentX - 1))
+            if (newPositionY == currentPositionY + 2 && (newPositionX == currentPositionX + 1 || newPositionX == currentPositionX - 1))
             {
                 //whether stuck by other pieces ?
-                if (gameboard.getPieces()[CurrentX, CurrentY + 1] == null)
+                if (gameboard.getPieces()[currentPositionX, currentPositionY + 1] == null)
                     return true;
             }
 
             //to left
-            if (newPositionY == CurrentY - 2 && (newPositionX == CurrentX + 1 || newPositionX == CurrentX - 1))
+            if (newPositionY == currentPositionY - 2 && (newPositionX == currentPositionX + 1 || newPositionX == currentPositionX - 1))
             {
                 //whether stuck by other pieces ?
-                if (gameboard.getPieces()[CurrentX, CurrentY - 1] == null)
+                if (gameboard.getPieces()[currentPositionX, currentPositionY - 1] == null)
                     return true;
             }
 
             //to up
-            if (newPositionX == CurrentX - 2 && (newPositionY == CurrentY + 1 || newPositionY == CurrentY - 1))
+            if (newPositionX == currentPositionX - 2 && (newPositionY == currentPositionY + 1 || newPositionY == currentPositionY - 1))
             {
                 //whether stuck by other pieces ?
-                if (gameboard.getPieces()[CurrentX - 1, CurrentY] == null)
+                if (gameboard.getPieces()[currentPositionX - 1, currentPositionY] == null)
                     return true;
             }
 
             //to down
-            if (newPositionX == CurrentX + 2 && (newPositionY == CurrentY + 1 || newPositionY == CurrentY - 1))
+            if (newPositionX == currentPositionX + 2 && (newPositionY == currentPositionY + 1 || newPositionY == currentPositionY - 1))
             {
                 //whether stuck by other pieces ?
-                if (gameboard.getPieces()[CurrentX + 1, CurrentY] == null)
+                if (gameboard.getPieces()[currentPositionX + 1, currentPositionY] == null)
                     return true;
             }
             return false;
