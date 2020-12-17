@@ -73,5 +73,21 @@ namespace DGUT_Team_Software_Project_WPF
             }
             return true;
         }
+        //input example:a9a8
+        public (int,int,int,int) bestMoveStrIntoInt(string fenstr)
+        {
+            int[] array = new int[4];
+            int iniX, iniY, DesX, DesY;
+            for(int i = 0; i < fenstr.Length; i++)
+            {
+                array[i] = int.Parse(fenstr.Substring(i,1));
+            }
+            iniX = array[1];
+            iniY = array[0];
+            DesX = array[3];
+            DesY = array[2];
+
+            return (iniX, iniY, DesX, DesY);
+        }
     }
 }
