@@ -16,7 +16,7 @@ namespace DGUT_Team_Software_Project_WPF
             elephanteye.StartInfo.UseShellExecute = false;
             elephanteye.StartInfo.RedirectStandardInput = true;
             elephanteye.StartInfo.RedirectStandardOutput = true;
-            elephanteye.StartInfo.CreateNoWindow = false;
+            elephanteye.StartInfo.CreateNoWindow = true;
         }
         public override bool undoBoard()
         {
@@ -42,16 +42,26 @@ namespace DGUT_Team_Software_Project_WPF
             elephanteye.Start();
             elephanteye.StandardInput.WriteLine("ucci\nsetoption batch true\nsetoption usemillisec true\nposition fen "+ 
                 board.outputFENFile(board) + "\ngo time 1000\nquit");
-            MessageBox.Show(board.outputFENFile(board));
+            Debug.WriteLine(board.outputFENFile(board));
             elephanteye.WaitForExit();
-            MessageBox.Show(elephanteye.StandardOutput.ReadToEnd());
+            string[] getmove = elephanteye.StandardOutput.ReadToEnd().Split('\n');
+            string bestmovestr = "";
+            foreach (string command in getmove)
+            {
+                if(command.Contains("bestmove"))
+                {
+                    Debug.WriteLine("Find it"+ command);
+                    bestmovestr = command;
+                    bestmovestr = bestmovestr.Substring(9, 4);
+                    break;
+                }
+            }
+            Debug.WriteLine("NOW Suggest:"+bestmovestr);
         }
 
         public override bool pieceClick(int column, int row)
         {
-            MessageBox.Show("HI");
             aicalculate();
-            //MessageBox.Show(board.toJson());
             if (!board.getGameStatus())//If game over ignore anything
             {
                 return false;

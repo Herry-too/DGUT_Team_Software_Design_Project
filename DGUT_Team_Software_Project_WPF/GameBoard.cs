@@ -75,7 +75,7 @@ namespace DGUT_Team_Software_Project_WPF
             //record number of space
             int number_of_space = 0;
             //traverse the whole gameboard (can be update)
-            for (int i = 9; i >= 0; i--)
+            for (int i = 0; i < 10; i++)
             {
                 for (int j = 0; j < 9; j++)
                 {
@@ -100,7 +100,7 @@ namespace DGUT_Team_Software_Project_WPF
                             number_of_space = 0;
                         }
                         //if it's the final pieces, stop recording "/"
-                        if (i == 0) break;
+                        if (i == 9) break;
                         fen += "/";
                     }
                 }

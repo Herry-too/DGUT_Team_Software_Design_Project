@@ -12,12 +12,12 @@ namespace DGUT_Team_Software_Project_WPF
             if (player == Players.red)
             {
                 this.Name = "炮";
-                this.Words = "C";
+                this.Words = "c";
             }
             if (player == Players.black)
             {
                 this.Name = "砲";
-                this.Words = "c";
+                this.Words = "C";
             }
             //Cannon - 炮
         }

@@ -12,13 +12,13 @@ namespace DGUT_Team_Software_Project_WPF
             if (player == Players.red)
             {
                 this.Name = "俥";
-                this.Words = "R";
+                this.Words = "r";
 
             }
             if (player == Players.black)
             {
                 this.Name = "車";
-                this.Words = "r";
+                this.Words = "R";
             }
             //Rook - 车
         }
