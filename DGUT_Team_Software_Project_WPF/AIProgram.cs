@@ -57,11 +57,15 @@ namespace DGUT_Team_Software_Project_WPF
                 }
             }
             Debug.WriteLine("NOW Suggest:"+bestmovestr);
+            (int baseX, int baseY, int destX, int destY) = bestMoveStrIntoInt(bestmovestr);
+            board.boolSelectPiece(intArrtoStr(baseX,baseY));
+            board.boolMovePiece(destX, destY);
+
         }
 
         public override bool pieceClick(int column, int row)
         {
-            aicalculate();
+
             if (!board.getGameStatus())//If game over ignore anything
             {
                 return false;
@@ -81,10 +85,14 @@ namespace DGUT_Team_Software_Project_WPF
 
                 }
             }
+            if (board.player == Piece.Players.black)
+            {
+                aicalculate();
+            }
             return true;
         }
         //input example:a9a8
-        public (int,int,int,int) bestMoveStrIntoInt(string fenstr)
+        public (int baseX,int baseY,int destX,int destY) bestMoveStrIntoInt(string fenstr)
         {
             int[] array = new int[4];
             int iniX, iniY, DesX, DesY;
