@@ -12,12 +12,12 @@ namespace DGUT_Team_Software_Project_WPF
             if(player == Players.red)
             {
                 this.Name = "帥";
-                this.Words = "G";
+                this.Words = "K";
             }
             if(player == Players.black)
             {
                 this.Name = "將";
-                this.Words = "g";
+                this.Words = "k";
             }
             //General - 將
         }
