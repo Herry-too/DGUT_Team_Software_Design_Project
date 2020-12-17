@@ -12,7 +12,7 @@ namespace DGUT_Team_Software_Project_WPF
 
         public AIProgram() : base()
         {
-            elephanteye.StartInfo.FileName = "C:\\Users\\herry\\Source\\Repos\\DGUT_Team_Design_Project_S5\\DGUT_Team_Design_Project_S5\\DGUT_Team_Software_Project_WPF\\src\\elephanteye\\ELEEYE.EXE";
+            elephanteye.StartInfo.FileName = "C:\\Program Files (x86)\\XQWizard\\ELEEYE.EXE";
             elephanteye.StartInfo.UseShellExecute = false;
             elephanteye.StartInfo.RedirectStandardInput = true;
             elephanteye.StartInfo.RedirectStandardOutput = true;
@@ -39,6 +39,19 @@ namespace DGUT_Team_Software_Project_WPF
 
         public void aicalculate()
         {
+            //foreach (Piece piece in board.getPieces())
+            //{
+            //   if (piece == null)
+            //        continue;
+            //    if (piece.getPlayer() == Piece.Players.red)
+            //        continue;
+            //    if(piece.ValidMoves(board.redGeneralPiece[0], board.redGeneralPiece[1], board))
+            //    {
+            //        pieceClick(piece.currentPositionX, piece.currentPositionY);
+            //        pieceClick(board.redGeneralPiece[0], board.redGeneralPiece[1]);
+            //        return;
+            //    }
+            //}
             elephanteye.Start();
             elephanteye.StandardInput.WriteLine("ucci\nsetoption batch true\nsetoption usemillisec true\nposition fen "+ 
                 board.outputFENFile(board) + "\ngo time 1000\nquit");
@@ -58,8 +71,8 @@ namespace DGUT_Team_Software_Project_WPF
             }
             Debug.WriteLine("NOW Suggest:"+bestmovestr);
             (int baseX, int baseY, int destX, int destY) = bestMoveStrIntoInt(bestmovestr);
-            board.boolSelectPiece(intArrtoStr(baseX,baseY));
-            board.boolMovePiece(destX, destY);
+            pieceClick(baseX,baseY);
+            pieceClick(destX, destY);
 
         }
 
@@ -85,7 +98,7 @@ namespace DGUT_Team_Software_Project_WPF
 
                 }
             }
-            if (board.player == Piece.Players.black)
+            if (board.player == Piece.Players.black && board.selectedX == -1)
             {
                 aicalculate();
             }
@@ -94,17 +107,17 @@ namespace DGUT_Team_Software_Project_WPF
         //input example:a9a8
         public (int baseX,int baseY,int destX,int destY) bestMoveStrIntoInt(string fenstr)
         {
-            int[] array = new int[4];
             int iniX, iniY, DesX, DesY;
 
-            char[] x1 = new char[1];
-            char[] x2 = new char[1];
-            x1 = fenstr.Substring(0, 1).ToCharArray();
-            x2 = fenstr.Substring(2, 1).ToCharArray();
-            iniX = array[1];
-            iniY = (int)x1[0] - 49;
-            DesX = array[3];
-            DesY = (int)x2[0] - 49;
+            char[] X0 = new char[1];
+            char[] X1 = new char[1];
+            //b2e2
+            X0 = fenstr.Substring(0, 1).ToCharArray();
+            X1 = fenstr.Substring(2, 1).ToCharArray();
+            iniY = 9 - int.Parse(fenstr.Substring(1, 1));
+            iniX = (int)((int)X0[0] - 97);
+            DesY = 9 - int.Parse(fenstr.Substring(3, 1));
+            DesX = (int)((int)X1[0] - 97);
 
             return (iniX, iniY, DesX, DesY);
         }

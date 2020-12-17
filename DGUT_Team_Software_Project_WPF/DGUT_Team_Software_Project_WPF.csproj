@@ -28,9 +28,15 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="src\elephanteye\BOOK.DAT" />
-    <Resource Include="src\elephanteye\ELEEYE.EXE" />
-    <Resource Include="src\elephanteye\EVALUATE.DLL" />
+    <Resource Include="src\elephanteye\BOOK.DAT">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="src\elephanteye\ELEEYE.EXE">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="src\elephanteye\EVALUATE.DLL">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="src\img\3button.png" />
     <Resource Include="src\img\flag.png" />
   </ItemGroup>
