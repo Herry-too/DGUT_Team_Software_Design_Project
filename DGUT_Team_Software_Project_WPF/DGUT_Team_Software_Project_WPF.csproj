@@ -7,9 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="src\elephanteye\BOOK.DAT" />
-    <None Remove="src\elephanteye\ELEEYE.EXE" />
-    <None Remove="src\elephanteye\EVALUATE.DLL" />
     <None Remove="src\img\3button.png" />
     <None Remove="src\img\board.png" />
     <None Remove="src\img\button.png" />
@@ -28,15 +25,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="src\elephanteye\BOOK.DAT">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="src\elephanteye\ELEEYE.EXE">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="src\elephanteye\EVALUATE.DLL">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
     <Resource Include="src\img\3button.png" />
     <Resource Include="src\img\flag.png" />
   </ItemGroup>

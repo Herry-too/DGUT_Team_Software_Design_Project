@@ -52,6 +52,14 @@ namespace DGUT_Team_Software_Project_WPF
             //        return;
             //    }
             //}
+            try
+            {
+                elephanteye.Start();
+            } catch(Exception)
+            {
+                MessageBox.Show("NO AI Model!");
+                Environment.Exit(1);
+            }
             elephanteye.Start();
             elephanteye.StandardInput.WriteLine("ucci\nsetoption batch true\nsetoption usemillisec true\nposition fen "+ 
                 board.outputFENFile(board) + "\ngo time 1000\nquit");
